@@ -35,6 +35,8 @@ module Oinfo
     config.i18n.default_locale = :en
     config.i18n.available_locales = [:en, :de]
 
+    config.assets.precompile += ['jquery.ui.datepicker-de.js']
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
@@ -62,7 +64,7 @@ module Oinfo
     config.assets.version = '1.0'
 
 
-    # Configuration for Devise (heroku.com deplyment)
+    # Configuration for Devise (heroku.com deployment)
     config.assets.initialize_on_precompile = false
   end
 end
