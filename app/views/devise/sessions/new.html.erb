@@ -1,14 +1,14 @@
 <div id="login">
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <fieldset>
-      <legend>Sign in</legend>
+      <legend><%= t('app.title.login') %></legend>
       <div class="field">
         <%= f.label :email %>
         <%= f.email_field :email, :autofocus => true %>
       </div>
       <div class="field">
         <%= f.label :password %>
-        <%= f.password_field :password %>
+        <%= f.password_field :password, :autocomplete => 'off' %>
       </div>
     <% if devise_mapping.rememberable? -%>
       <div class="field">
@@ -17,7 +17,7 @@
       </div>
     <% end %>
       <div class="button">
-        <%= f.submit 'Sign in' %>
+        <%= f.submit t('app.action.login') %>
       </div>
     </fieldset>
   <% end %>

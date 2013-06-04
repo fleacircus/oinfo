@@ -1,5 +1,43 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  app:
+    title:
+      login: "Login"
+      registration: "Registration"
+      update_userdata: "Update userdata"
+      cancel_account: "Cancel account"
+      password_request: "Password request"
+      confirmation_instructions: "Confirmation instructions"
+      unlock_instructions: "Unlock instructions"
+      dashboard: "Dashboard"
+      new_user: "New User"
+      edit_user: "Edit User"
+      account_settings: "Your Account Settings"
+
+    label:
+      account: "Your Account"
+      send_me_reset_password_instructions: "Send me reset password instructions"
+      change_password: "Change password"
+      new_password: "New password"
+      confirm_new_password: "Confirm new password"
+      new_user: "New User"
+    
+    action:
+      back:   "Back"
+      login:  "Login"
+      logout: "Logout"
+      regist: "Regist"
+      update: "Update"
+      edit:   "Edit"
+      change: "Change"
+      create: "Create"
+      delete: "Delete"
+      send:   "Send"
+      resend: "Resend"
+  
+    question:
+      forgot_your_password: "Forgot your password?"
+      receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+      receive_unlock_instructions: "Didn't receive unlock instructions?"
+
+    confirm:
+      are_you_sure: "Are you sure?"

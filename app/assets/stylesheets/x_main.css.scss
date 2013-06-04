@@ -49,7 +49,7 @@ fieldset {
   }
   input {
     &[type='text'], &[type='email'], &[type='password'] {
-      width: 280px;
+      width: 300px;
     }
     &[type='checkbox'] {
       margin: 0;
@@ -232,7 +232,7 @@ header {
 }
 
 #login {
-  width: 310px;;
+  width: 330px;
   margin: 0 auto;
 }
 
@@ -244,7 +244,10 @@ footer {
   #locale_switcher {
     float: right;
 
-    img, a:hover img { opacity: 1; }
-    a img { opacity: .5; }
+    img { vertical-align: bottom; }
+    a {
+      img { opacity: .5; }
+      &:hover img { opacity: 1; }
+    }
   }
 }

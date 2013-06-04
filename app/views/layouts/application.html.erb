@@ -4,6 +4,7 @@
   <title>OInfo</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag("jquery.ui.datepicker-#{I18n.locale}.js") %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -12,8 +13,8 @@
 	  <h1>Online Information</h1>
 	  <% if user_signed_in? %>
 	  <div id="account_box">
-		<%= link_to 'Your Account', edit_account_path %> |
-		<%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+		<%= link_to t('app.label.account'), edit_account_path %> |
+		<%= link_to t('app.action.logout'), destroy_user_session_path, :method => :delete %>
 	  </div>
 	  <div id="navigation"><%= render_navigation %></div>
 	  <% end %>
@@ -25,9 +26,14 @@
 	  <%= yield %>
 	</div>
 	<footer>
-	  <span class="right">
-		<%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %> seconds
+	  <span>
+		<%= t('datetime.distance_in_words.x_seconds', :count => sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0)) %>
 	  </span>
+	  <div id="locale_switcher">
+		<% I18n.available_locales.each do |loc| %>
+		<%= link_to_unless I18n.locale == loc, image_tag("flags/#{loc}.png", :alt => loc.upcase), :locale => loc %>
+		<% end %>
+	  </div>
 	</footer>
   </div>
 </body>

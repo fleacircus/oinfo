@@ -1,13 +1,13 @@
 <%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
   <fieldset>
-    <legend>Unlock instructions</legend>
+    <legend><%= t('app.title.unlock_instructions') %></legend>
 	<div class="field">
 	  <%= f.label :email %>
 	  <%= f.email_field :email, :autofocus => true %>
 	</div>
     <div class="button">
-	  <%= f.submit 'Resend' %>
+	  <%= f.submit t('app.action.resend') %>
 	</div>
   </fieldset>
 <% end %>

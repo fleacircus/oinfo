@@ -1,0 +1,45 @@
+# ruby encoding: utf-8
+de:
+  app:
+    title:
+      login: "Anmeldung"
+      registration: "Registrierung"
+      update_userdata: "Benutzerdaten aktualisieren"
+      cancel_account: "Benutzerkonto löschen"
+      password_request: "Passwort anfordern"
+      change_password: "Passwort ändern"
+      confirmation_instructions: "Anweisungen zur Bestätigung"
+      unlock_instructions: "Anweisungen zum Entsperren"
+      dashboard: "Dashboard"
+      new_user: "Neuer Benutzer"
+      edit_user: "Benutzer bearbeiten"
+      account_settings: "Ihre Konto Einstellungen"
+
+    label:
+      account: "Ihr Konto"
+      send_me_reset_password_instructions: "Anweisungen zur Passwort-Zurücksetzung senden"
+      change_password: "Passwort ändern"
+      new_password: "Neues Passwort"
+      confirm_new_password: "Neues Passwort Wdh."
+      new_user: "Neuer Benutzer"
+    
+    action:
+      back:   "Zurück"
+      login:  "Anmelden"
+      logout: "Abmelden"
+      regist: "Registrieren"
+      update: "Aktualisieren"
+      edit:   "Bearbeiten"
+      change: "Ändern"
+      create: "Anlegen"
+      delete: "Löschen"
+      send:   "Senden"
+      resend: "Erneut senden"
+  
+    question:
+      forgot_your_password: "Passwort vergessen?"
+      receive_confirmation_instructions: "Keine Bestätigungs-E-Mail erhalten?"
+      receive_unlock_instructions: "Keine E-Mail zum Entsperren erhalten?"
+
+    confirm:
+      are_you_sure: "Sind Sie sicher?"

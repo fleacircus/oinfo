@@ -1,0 +1,14 @@
+# ruby encoding: utf-8
+de:
+  activerecord:
+    models:
+      user: "Benutzer"
+    
+    attributes:
+      user:
+        email: "E-Mail-Adresse"
+        password: "Passwort"
+        password_confirmation : "Passwort Wdh."
+        current_password: "Aktuelles Passwort"
+        current_sign_in_at: "Aktuelle Anmeldung"
+        last_sign_in_at: "Letzte Anmeldung"

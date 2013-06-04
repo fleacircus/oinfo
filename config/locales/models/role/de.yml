@@ -1,0 +1,9 @@
+# ruby encoding: utf-8
+de:
+  activerecord:
+    models:
+      role: "Rolle"
+    
+    attributes:
+      role:
+        name: "Name"
