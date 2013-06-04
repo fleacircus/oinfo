@@ -22,3 +22,10 @@ gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0', :require => 'bcrypt'
+
+# Authentication/Authorisation
+gem 'devise', '~> 2.2.4'
+gem 'cancan', '~> 1.6.10'
+
+# Navigation
+gem 'simple-navigation', '~> 3.10.1'

@@ -1,0 +1,242 @@
+$color_text: #333;
+$color_border: #333;
+$color_text_visited: #666;
+$color_text_highlight: #1f00bf;
+$color_error: #c00;
+$color_warning: $color_error;
+$color_alert: $color_error;
+$color_notice: #090;
+$color_success: $color_notice;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-height: 100%;
+}
+body {
+  background-color: #aaa;
+  background-image: linear-gradient(to top, darken(#aaa, 50%), #aaa);
+  color: $color_text;
+  font: normal 14px verdana, arial, helvetica, sans-serif;
+}
+
+#page {
+  margin: 20px auto;
+  width: 960px;
+  background-color: #fff;
+}
+
+header {
+  position: relative;
+  padding: 10px 10px 0 10px;
+
+  h1 {
+    margin: 0 0 10px 0;
+  }
+
+  #account_box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  #navigation {
+    ul { list-style: none inside; }
+    li {
+      display: inline-block;
+      margin: 0 0 -1px 10px;
+      padding: 4px 10px;
+      border: 1px solid $color_border;
+      border-radius: 5px 5px 0 0;
+
+      &:first-child { margin-left: 0; }
+      &.selected { border-bottom-color: #fff; }
+    }
+  }
+}
+
+#content{
+  padding: 20px;
+  border-top: 1px solid $color_border;
+  border-bottom: 1px solid $color_border;
+
+  h2 { margin-bottom: 4px; }
+}
+
+#login {
+  width: 310px;;
+  margin: 0 auto;
+}
+
+footer {
+  padding: 5px 10px;
+  min-height: 18px;
+  font-size: 86%;
+
+  #locale_switcher {
+    float: right;
+
+    img, a:hover img { opacity: 1; }
+    a img { opacity: .5; }
+  }
+}
+
+p, ol, ul, td {
+  font: normal 14px verdana, arial, helvetica, sans-serif;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 12px;
+}
+
+a {
+  color: $color_text;
+
+  &:visited { color: $color_text_visited; }
+  &:hover { color: $color_text_highlight; }
+}
+
+fieldset {
+  display: inline-block;
+  margin: 0 0 20px 0;
+  padding: 10px;
+  border-radius: 5px;
+
+  legend {
+    padding: 0 10px;
+    font-size: 120%;
+    font-weight: bold;
+  }
+  label {
+    display: block;
+  }
+  input {
+    &[type='text'], &[type='email'], &[type='password'] {
+      width: 280px;
+    }
+    &[type='checkbox'] {
+      margin: 0;
+      vertical-align: text-bottom;
+
+      &+label { display: inline-block; }
+    }
+    &[type='submit'] {
+      float: right;
+      padding: 2px 10px;
+    }
+  }
+}
+
+div {
+  &.flash {
+    margin: -10px 0 10px 0;
+    padding: 4px 10px;
+    border: 1px solid $color_border;
+    text-align: center;
+    font-weight: bold;
+
+    &.error, &.alert  {
+      color: #fff;
+      background-color: $color_alert;
+      background-image: linear-gradient(to top, darken($color_alert, 15%), $color_alert);
+    }
+    &.notice, &.success {
+      color: #fff;
+      background-color: $color_notice;
+      background-image: linear-gradient(to top, darken($color_notice, 15%), $color_notice);
+    }
+  }
+
+  &#error_explanation {
+    width: 400px;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    border: 1px solid $color_error;
+    background: #f0f0f0;
+
+    h2 {
+      margin: -4px -10px 4px -10px;
+      padding: 0 10px;
+      background-color: $color_error;
+      color: #fff;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 20px;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: square inside;
+      li { font-size: 12px; }
+    }
+  }
+
+  &.field {
+    margin-bottom: 4px;
+  }
+  &.field_with_errors {
+    display: inline;
+
+    label { color: $color_error; }
+  }
+  &.button {
+    padding-top: 10px;
+  }
+}
+
+table {
+  margin-bottom: 10px;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  thead tr {
+    background: #ddd;
+    border: 1px solid $color_border;
+  }
+
+  th {
+    padding: 0 6px;
+    text-align: left;
+  }
+
+  tbody tr {
+    &:last-child {
+      border-bottom: 1px solid $color_border;
+    }
+    &:hover {
+      background: #eee;
+    }
+  }
+
+  td {
+    padding: 2px 6px;
+    border-left: 1px solid $color_border;
+    border-right: 1px solid $color_border;
+
+    &.left {
+      text-align: left;
+    }
+    &.right {
+      text-align: right;
+    }
+  }
+
+  a img {
+    vertical-align: bottom;
+  }
+}
+
+.clear {
+  clear: both !important;
+}
+.left {
+  float: left !important;
+}
+.right {
+  float: right !important;
+}

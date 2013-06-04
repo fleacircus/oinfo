@@ -1,0 +1,47 @@
+<%
+  if @user.id.nil?
+    legend = 'New User'
+  elsif @user == @current_user
+    legend = 'Your Account Settings'
+  else
+    legend = 'Edit User'
+  end
+
+%>
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <legend><%= legend %></legend>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, :autofocus => true %>
+    </div>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, :autocomplete => 'off' %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <%= f.label :role %>
+    <% for role in Role.all %>
+    <div class="field">
+      <%= check_box_tag 'user[role_ids][]', role.id, @user.role?(role.name), {:id => "user_#{role.name}"} %>
+      <%= f.label role.name %>
+    </div>
+    <% end %>
+    <div class="button">
+      <%= f.submit (@user.id.nil? ? 'Create' : 'Update') %>
+    </div>
+  </fieldset>
+<% end %>

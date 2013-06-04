@@ -1,0 +1,29 @@
+  <h2>Users</h2>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Email</th>
+        <th>Current sign in at</th>
+        <th>Last sign in at</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |u| %>
+      <tr>
+        <td>
+          <%= link_to 'Edit', edit_user_path(u) %>
+          <% if can? :destroy, User %>
+            <%= link_to 'Delete', u, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+        <td><%= u.email %></td>
+        <td><%= l(u.current_sign_in_at, format: :long) if !u.current_sign_in_at.nil? %></td>
+        <td><%= l(u.last_sign_in_at, format: :long) if !u.current_sign_in_at.nil? %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <% if can? :create, User %>
+  <%= link_to 'New user', new_user_path %>
+  <% end %>
