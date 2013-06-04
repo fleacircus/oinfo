@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.where('id != ?', current_user.id)
+    @users_grid = initialize_grid(
+      User.where('id != ?', current_user.id),
+      :order => 'users.email',
+      :order_direction => 'desc'
+    )
   end
 
   def new

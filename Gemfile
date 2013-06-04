@@ -3,12 +3,12 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.7'
 end
 
 group :production do
-  gem 'pg'
-  gem 'unicorn'
+  gem 'pg',      '~> 0.15.1'
+  gem 'unicorn', '~> 4.6.2'
 end
 
 group :assets do
@@ -18,7 +18,8 @@ group :assets do
   gem 'yui-compressor', '~> 0.9.6'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails',    '~> 2.2.2'
+gem 'jquery-ui-rails', '~> 4.0.3'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0', :require => 'bcrypt'
@@ -29,3 +30,6 @@ gem 'cancan', '~> 1.6.10'
 
 # Navigation
 gem 'simple-navigation', '~> 3.10.1'
+
+# Table builder
+gem 'wice_grid', '~> 3.2.1'

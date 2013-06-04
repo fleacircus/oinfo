@@ -1,0 +1,17 @@
+<%= grid(@users_grid, show_filters: :when_filtered, allow_showing_all_records:  false) do |g|
+
+  g.column :name => User.human_attribute_name('email'), :attribute => 'email' do |user|
+    user.email
+  end
+  g.column :name => User.human_attribute_name('current_sign_in_at'), :attribute => 'current_sign_in_at' do |user|
+    l(user.current_sign_in_at, format: :long) if !user.current_sign_in_at.nil?
+  end
+  g.column :name => User.human_attribute_name('last_sign_in_at'), :attribute => 'last_sign_in_at' do |user|
+    l(user.last_sign_in_at, format: :long) if !user.last_sign_in_at.nil?
+  end
+  g.column html: {class: 'button-column'} do |user|
+    link_to(image_tag('icons/page_white_edit.png'), edit_user_path(user), title: 'Edit') + ' ' +
+    link_to(image_tag('icons/page_white_delete.png'), user, title: 'Delete', method: :delete, data: {confirm: 'Are you sure?'})
+  end
+
+end %>

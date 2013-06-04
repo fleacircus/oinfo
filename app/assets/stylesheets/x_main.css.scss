@@ -1,12 +1,13 @@
 $color_text: #333;
-$color_border: #333;
-$color_text_visited: #666;
-$color_text_highlight: #1f00bf;
+$color_border: #ccc;
+$color_link: #06c;
 $color_error: #c00;
 $color_warning: $color_error;
 $color_alert: $color_error;
 $color_notice: #090;
 $color_success: $color_notice;
+
+$font: normal 14px verdana, arial, helvetica, sans-serif;
 
 * {
   margin: 0;
@@ -20,91 +21,22 @@ body {
   background-color: #aaa;
   background-image: linear-gradient(to top, darken(#aaa, 50%), #aaa);
   color: $color_text;
-  font: normal 14px verdana, arial, helvetica, sans-serif;
+  font: $font;
 }
-
-#page {
-  margin: 20px auto;
-  width: 960px;
-  background-color: #fff;
-}
-
-header {
-  position: relative;
-  padding: 10px 10px 0 10px;
-
-  h1 {
-    margin: 0 0 10px 0;
-  }
-
-  #account_box {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-
-  #navigation {
-    ul { list-style: none inside; }
-    li {
-      display: inline-block;
-      margin: 0 0 -1px 10px;
-      padding: 4px 10px;
-      border: 1px solid $color_border;
-      border-radius: 5px 5px 0 0;
-
-      &:first-child { margin-left: 0; }
-      &.selected { border-bottom-color: #fff; }
-    }
-  }
-}
-
-#content{
-  padding: 20px;
-  border-top: 1px solid $color_border;
-  border-bottom: 1px solid $color_border;
-
-  h2 { margin-bottom: 4px; }
-}
-
-#login {
-  width: 310px;;
-  margin: 0 auto;
-}
-
-footer {
-  padding: 5px 10px;
-  min-height: 18px;
-  font-size: 86%;
-
-  #locale_switcher {
-    float: right;
-
-    img, a:hover img { opacity: 1; }
-    a img { opacity: .5; }
-  }
-}
-
-p, ol, ul, td {
-  font: normal 14px verdana, arial, helvetica, sans-serif;
-}
-
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 12px;
-}
+p, ol, ul, td { font: $font; }
 
 a {
-  color: $color_text;
+  color: $color_link;
+  text-decoration: none;
 
-  &:visited { color: $color_text_visited; }
-  &:hover { color: $color_text_highlight; }
+  img { vertical-align: bottom; }
 }
 
 fieldset {
   display: inline-block;
   margin: 0 0 20px 0;
   padding: 10px;
+  border: 1px solid $color_border;
   border-radius: 5px;
 
   legend {
@@ -190,44 +122,42 @@ div {
 }
 
 table {
+  width: 100%;
   margin-bottom: 10px;
   border-collapse: collapse;
   border-spacing: 0;
 
-  thead tr {
-    background: #ddd;
-    border: 1px solid $color_border;
+  thead, tfoot {
+    tr {
+      border-radius: 5px;
+      border: 1px solid $color_border;
+    }
+  }
+  tfoot td {
+    font-size: 86%;
   }
 
-  th {
-    padding: 0 6px;
+  tbody tr:hover {
+    background: #eee;
+  }
+
+  th, td {
+    padding: 4px 6px;
+    border: 1px solid $color_border;
+
+    &.right { text-align: right; }
+  }
+  th, td.left {
     text-align: left;
   }
 
-  tbody tr {
-    &:last-child {
-      border-bottom: 1px solid $color_border;
-    }
-    &:hover {
-      background: #eee;
-    }
-  }
-
-  td {
-    padding: 2px 6px;
-    border-left: 1px solid $color_border;
-    border-right: 1px solid $color_border;
-
-    &.left {
-      text-align: left;
-    }
-    &.right {
-      text-align: right;
-    }
-  }
-
-  a img {
+  img {
     vertical-align: bottom;
+  }
+
+  td.button-column {
+    width: 1% !important;
+    white-space: nowrap;
   }
 }
 
@@ -239,4 +169,82 @@ table {
 }
 .right {
   float: right !important;
+}
+
+#page {
+  margin: 20px auto;
+  width: 960px;
+  background-color: #fff;
+}
+
+header {
+  position: relative;
+  padding: 10px 10px 0 10px;
+
+  h1 {
+    margin: 0 0 10px 0;
+  }
+
+  #account_box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  #navigation {
+    ul { list-style: none inside; }
+    li {
+      display: inline-block;
+      margin: 0 0 -1px 10px;
+      border: 1px solid $color_border;
+      border-radius: 5px 5px 0 0;
+      box-shadow: 0 -10px 10px -10px darken($color_border, 10%) inset;
+      text-align: center;
+
+      &:first-child { margin-left: 0; }
+      &.selected {
+        border-bottom-color: #fff;
+        box-shadow: none;
+      }
+
+      a {
+        display: inline-block;
+        min-width: 80px;
+        padding: 4px 10px;
+      }
+    }
+  }
+}
+
+#content{
+  padding: 20px;
+  border-top: 1px solid $color_border;
+  border-bottom: 1px solid $color_border;
+
+  h2 {
+    margin-bottom: 5px;
+
+    span {
+      float: right;
+      font: $font;
+    }
+  }
+}
+
+#login {
+  width: 310px;;
+  margin: 0 auto;
+}
+
+footer {
+  padding: 5px 10px;
+  min-height: 18px;
+  font-size: 86%;
+
+  #locale_switcher {
+    float: right;
+
+    img, a:hover img { opacity: 1; }
+    a img { opacity: .5; }
+  }
 }
