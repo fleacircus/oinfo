@@ -4,7 +4,7 @@
   <title>OInfo</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag("jquery.ui.datepicker-#{I18n.locale}.js") %>
+  <%= javascript_include_tag("jquery.ui.datepicker-#{I18n.locale}.js") if I18n.locale != :en %>
   <%= csrf_meta_tags %>
 </head>
 <body>
