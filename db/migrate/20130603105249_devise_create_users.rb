@@ -31,6 +31,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string :authentication_token
 
 
+      ## Custom
+      t.boolean :activated, :null => false, :default => false
+      t.integer :mandator_id
+
+
       t.timestamps
     end
 
@@ -39,5 +44,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :unlock_token,         :unique => true
     # add_index :users, :confirmation_token,   :unique => true
     # add_index :users, :authentication_token, :unique => true
+
+    add_index :users, :activated
+    add_index :users, :mandator_id
   end
 end

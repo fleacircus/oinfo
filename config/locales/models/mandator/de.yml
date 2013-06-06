@@ -1,0 +1,11 @@
+# ruby encoding: utf-8
+de:
+  activerecord:
+    models:
+      mandator:
+        one:   "Mandant"
+        other: "Mandanten"
+    
+    attributes:
+      role:
+        name: "Name"

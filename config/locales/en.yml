@@ -1,17 +1,27 @@
+# ruby encoding: utf-8
 en:
+  devise:
+    registrations:
+      user:
+        signed_up_but_not_approved: "You have signed up successfully but your account has not been activated by your administrator yet"
+    failure:
+      not_approved: "Your account has not been activated by your administrator yet."
+
+
   app:
     title:
       login: "Login"
       registration: "Registration"
-      update_userdata: "Update userdata"
-      cancel_account: "Cancel account"
-      password_request: "Password request"
-      confirmation_instructions: "Confirmation instructions"
-      unlock_instructions: "Unlock instructions"
+      update_userdata: "Update User Data"
+      cancel_account: "Cancel Cccount"
+      password_request: "Password Request"
+      confirmation_instructions: "Confirmation Instructions"
+      unlock_instructions: "Unlock Instructions"
       dashboard: "Dashboard"
-      new_user: "New User"
-      edit_user: "Edit User"
+      user_data: "User Data"
       account_settings: "Your Account Settings"
+      new_model: "New %{model}"
+      edit_model: "Edit %{model}"
 
     label:
       account: "Your Account"
@@ -20,7 +30,7 @@ en:
       new_password: "New password"
       confirm_new_password: "Confirm new password"
       new_user: "New User"
-    
+
     action:
       back:   "Back"
       login:  "Login"
@@ -41,3 +51,11 @@ en:
 
     confirm:
       are_you_sure: "Are you sure?"
+
+    messages:
+      updated_account: "Successfully updated your account."
+      deactivate_account_impossible : "You can't deactivate your account!"
+      delete_account_impossible : "You can't delete your account!"
+      created_model: "Successfully created %{model} %{user}."
+      updated_model: "Successfully updated %{model} %{user}."
+      deleted_model: "Successfully deleted %{model} %{user}."

@@ -1,18 +1,24 @@
-<%= grid(@users_grid, show_filters: :when_filtered, allow_showing_all_records:  false) do |g|
+<%= grid(@users_grid, show_filters: :when_filtered, allow_showing_all_records: false) do |g|
 
   g.column :name => User.human_attribute_name('email'),
     :attribute => 'email' do |user|
-      user.email
+      link_to(user.email, user_path(user))
   end
 
-  g.column :name => User.human_attribute_name('current_sign_in_at'),
-    :attribute => 'current_sign_in_at' do |user|
-      l(user.current_sign_in_at, format: :long) if !user.current_sign_in_at.nil?
+  g.column :name => User.human_attribute_name('mandator'), :attribute => 'mandator_id',
+    :custom_filter => Mandator.all.map{|m| [m.name, m.id]} do |user|
+        user.mandator_name
   end
 
-  g.column :name => User.human_attribute_name('last_sign_in_at'),
-    :attribute => 'last_sign_in_at' do |user|
-      l(user.last_sign_in_at, format: :long) if !user.last_sign_in_at.nil?
+  ['created_at', 'updated_at'].each do |attr|
+    g.column :name => User.human_attribute_name(attr), :attribute => attr do |user|
+      l(user[attr], format: :fdatetime) if !user[attr].nil?
+    end
+  end
+
+  g.column :name => User.human_attribute_name('activated'),
+    :attribute => 'activated' do |user|
+      t(user.activated.to_s)
   end
 
   g.column html: {class: 'button-column'} do |user|

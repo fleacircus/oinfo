@@ -3,12 +3,21 @@ de:
   activerecord:
     models:
       user: "Benutzer"
-    
+
     attributes:
       user:
-        email: "E-Mail-Adresse"
-        password: "Passwort"
+        email:                  "E-Mail-Adresse"
+        password:               "Passwort"
         password_confirmation : "Passwort Wdh."
-        current_password: "Aktuelles Passwort"
-        current_sign_in_at: "Aktuelle Anmeldung"
-        last_sign_in_at: "Letzte Anmeldung"
+        encrypted_password:     "Verschlüsseltes Passwort"
+        current_password:       "Aktuelles Passwort"
+        current_sign_in_at:     "Aktuelle Anmeldung"
+        last_sign_in_at:        "Letzte Anmeldung"
+        reset_password_sent_at: "Passwortanfrage"
+        reset_password_token:   "Passwort Token"
+        locked_at:              "Sperrung"
+        unlock_token:           "Entsperrung Token"
+        sign_in_count:          "Anmeldungen"
+        failed_attemps:         "Fehlversuche"
+        activated:              "Aktiviert"
+        mandator:               "Mandant"

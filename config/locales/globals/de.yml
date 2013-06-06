@@ -1,0 +1,14 @@
+# ruby encoding: utf-8
+de:
+  'true':  'Ja'
+  'false': 'Nein'
+
+  time:
+    formats:
+      fdatetime: ! '%d.%m.%Y %H:%M:%S'
+      mdatetime: ! '%d.%m.%Y %H:%M'
+      sdatetime: ! '%d.%m. %H:%M'
+
+  attributes:
+    created_at: 'Angelegt'
+    updated_at: 'Aktualisiert'

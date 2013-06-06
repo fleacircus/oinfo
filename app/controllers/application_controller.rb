@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
   end
 
 	def set_locale
-		locale = params[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
-    I18n.locale = locale || I18n.default_locale
+		I18n.locale = params[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+    I18n.locale = I18n.default_locale if !I18n.available_locales.include? I18n.locale
     session[:locale] = I18n.locale
   end
 

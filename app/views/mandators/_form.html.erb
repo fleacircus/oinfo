@@ -1,0 +1,28 @@
+<%
+  model = Mandator.model_name.human
+
+  action = @mandator.id.nil? ? 'new' : 'edit'
+  legend = t("app.title.#{action}_model", :model => model)
+
+%>
+<%= form_for(@mandator) do |f| %>
+  <% if @mandator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activerecord.errors.template.header', :model => model, :count => @mandator.errors.count) %></h2>
+      <ul>
+      <% @mandator.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= field_set_tag legend do %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, :autofocus => true %>
+    </div>
+    <div class="button">
+      <%= f.submit t(@mandator.id.nil? ? 'app.action.create' : 'app.action.update') %>
+    </div>
+  <% end %>
+<% end %>

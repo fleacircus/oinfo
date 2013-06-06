@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
 
+  autocomplete :mandator, :name
+
   def index
     @users_grid = initialize_grid(
       User.where('id != ?', current_user.id),
-      :order => 'users.email',
-      :order_direction => 'desc'
+      :order => 'users.email', :order_direction => 'asc'
     )
   end
 
@@ -16,8 +17,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "Successfully created #{@user.email}."
-      redirect_to users_path
+      redirect_to users_path, notice: flash_message('created')
     else
       render :action => 'new'
     end
@@ -35,13 +35,11 @@ class UsersController < ApplicationController
 
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      if (@user.id == current_user.id)
-        flash[:notice] = "Successfully updated your account."
+      if @user.id == current_user.id
         sign_in @user, :bypass => true
-        redirect_to root_path
+        redirect_to root_path, notice: t('app.messages.updated_account')
       else
-        flash[:notice] = "Successfully updated #{@user.email}."
-        redirect_to users_path
+        redirect_to users_path, notice: flash_message('updated')
       end
     else
       render :action => 'edit'
@@ -50,10 +48,17 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if @user.destroy
-      flash[:notice] = "Successfully deleted #{@user.email}."
-      redirect_to users_path
-    end
+    if @user.id == current_user.id
+        redirect_to users_path, alert: t('app.message.delete_account_impossible')
+    elsif @user.destroy
+        redirect_to users_path, notice: flash_message('deleted')
+      end
+  end
+
+  private
+
+  def flash_message(type)
+    t('app.messages.'+type+'_model', :model => User.model_name.human, :name => @user.email)
   end
 
 end

@@ -1,17 +1,18 @@
 <%
-  if @user.id.nil?
-    legend = 'new_user'
-  elsif @user == @current_user
-    legend = 'account_settings'
+  model = User.model_name.human
+
+  if @user == @current_user
+    legend = t('app.title.account_settings')
   else
-    legend = 'edit_user'
+    action = @user.id.nil? ? 'new' : 'edit'
+    legend = t("app.title.#{action}_model", :model => model)
   end
 
 %>
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= t('activerecord.errors.template.header', :model => User.model_name.human, :count => @user.errors.count) %></h2>
+      <h2><%= t('activerecord.errors.template.header', :model => model, :count => @user.errors.count) %></h2>
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -19,8 +20,7 @@
       </ul>
     </div>
   <% end %>
-  <fieldset>
-    <legend><%= t('app.title.'+legend) %></legend>
+  <%= field_set_tag legend do %>
     <div class="field">
       <%= f.label :email %>
       <%= f.email_field :email, :autofocus => true %>
@@ -33,15 +33,32 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation %>
     </div>
+    <% if current_user.id != @user.id %>
+    <div class="field">
+      <%= f.check_box :activated %>
+      <%= f.label :activated %>
+    </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :mandator %>
+      <%= f.hidden_field :mandator_id %>
+      <%= f.autocomplete_field :mandator_name, autocomplete_mandator_name_users_path, :id_element => :mandator_id %>
+    </div>
+    <!--
+    <div class="field">
+      <%= f.label :mandator %>
+      <%= f.collection_select :mandator_id, Mandator.all, :id, :name, {prompt: true} %>
+    </div>
+    -->
     <%= f.label Role.model_name.human %>
     <% for role in Role.all %>
     <div class="field">
-      <%= check_box_tag 'user[role_ids][]', role.id, @user.role?(role.name), {:id => "user_#{role.name}"} %>
+      <%= check_box_tag 'user[role_ids][]', role.id, @user.role_ids.include?(role.id), {:id => "user_#{role.name}"} %>
       <%= f.label role.name %>
     </div>
     <% end %>
     <div class="button">
       <%= f.submit t(@user.id.nil? ? 'app.action.create' : 'app.action.update') %>
     </div>
-  </fieldset>
+  <% end %>
 <% end %>

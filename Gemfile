@@ -15,7 +15,7 @@ group :assets do
   gem 'sass-rails',     '~> 3.2.3'
   gem 'coffee-rails',   '~> 3.2.1'
   gem 'uglifier',       '>= 1.0.3'
-  gem 'yui-compressor', '~> 0.9.6'
+  gem 'yui-compressor', '>= 0.9.6'
 end
 
 gem 'jquery-rails',    '~> 2.2.2'
@@ -27,6 +27,7 @@ gem 'bcrypt-ruby', '~> 3.0.0', :require => 'bcrypt'
 # Authentication/Authorisation
 gem 'devise', '~> 2.2.4'
 gem 'cancan', '~> 1.6.10'
+gem 'rolify', '~> 3.2.0'
 
 # Navigation
 gem 'simple-navigation', '~> 3.10.1'
@@ -36,3 +37,9 @@ gem 'wice_grid', '~> 3.2.1'
 
 # I18n
 gem 'rails-i18n'
+
+# Formular text_field autocomplete
+gem 'rails3-jquery-autocomplete', '~> 1.0.11'
+
+# Test data generator
+gem 'faker'

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.datepicker
+//= require jquery-ui
+//= require autocomplete-rails
 //= require wice_grid
 //= require_tree .

@@ -1,0 +1,7 @@
+<h2>
+  <%= Mandator.model_name.human(:count => 2) %>
+  <% if can? :create, Mandator %>
+    <span><%= link_to image_tag('icons/page_white_add.png')+' '+t('app.label.new_model', :model => Mandator.model_name.human), new_mandator_path %></span>
+  <% end %>
+</h2>
+<%= render 'grid' %>

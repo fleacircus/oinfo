@@ -1,11 +1,26 @@
 class User < ActiveRecord::Base
+  rolify
   devise :database_authenticatable, :recoverable, :lockable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :role_ids
+  attr_accessible :email, :password, :password_confirmation, :activated, :mandator_id, :mandator_name, :role_ids
 
-  has_and_belongs_to_many :roles, :uniq => true
+  default_scope order('email asc')
 
-  def role?(role)
-    return self.roles.find_by_name(role)
+  belongs_to :mandator
+
+  def mandator_name
+    mandator.try(:name)
+  end
+
+  def mandator_name=(name)
+    self.mandator = Mandator.find_or_create_by_name(name) if name.present?
+  end
+
+  def active_for_authentication?
+    super && activated?
+  end
+
+  def inactive_message
+    activated? ? :not_approved : super
   end
 end

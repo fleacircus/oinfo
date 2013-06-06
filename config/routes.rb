@@ -1,5 +1,13 @@
 Oinfo::Application.routes.draw do
 
+	resources :dashboard, :only => :index
+	resources :users do
+  	get :autocomplete_mandator_name, :on => :collection
+  end
+  resources :mandators
+
+	resource :account, :controller => "users", :only => :edit
+
   root :to => 'dashboard#index'
 
   devise_for :users,
@@ -7,10 +15,5 @@ Oinfo::Application.routes.draw do
 			:sign_in => 'login',
 			:sign_out => 'logout'
 		}
-
-	resources :users
-	resource :account, :controller => "users", :only => :edit
-
-	resources :dashboard, :only => :index
 
 end

@@ -1,3 +1,4 @@
+# ruby encoding: utf-8
 en:
   date:
     order:
@@ -454,6 +455,8 @@ de:
     query_saved_message: Abfrage gespeichert.
     select_all: Alle auswählen
     deselect_all: Auswahl aufheben
+    expand: Erweitern
+    collapse: Reduzieren
 
 zh:
   date:

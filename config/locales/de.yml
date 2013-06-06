@@ -1,5 +1,13 @@
 # ruby encoding: utf-8
 de:
+  devise:
+    registrations:
+      user:
+        signed_up_but_not_approved: "Sie haben sich erfolgreich registriert, aber ihr Benutzerkonto wurde von Ihrem Administrator noch nicht aktiviert."
+    failure:
+      not_approved: "Ihr Benutzerkonto wurde von Ihrem Administrator nicht aktiviert."
+
+
   app:
     title:
       login: "Anmeldung"
@@ -11,9 +19,11 @@ de:
       confirmation_instructions: "Anweisungen zur Bestätigung"
       unlock_instructions: "Anweisungen zum Entsperren"
       dashboard: "Dashboard"
-      new_user: "Neuer Benutzer"
-      edit_user: "Benutzer bearbeiten"
+      user_data: "Benutzerdaten"
       account_settings: "Ihre Konto Einstellungen"
+      new_model: "%{model} anlegen"
+      edit_model: "%{model} bearbeiten"
+
 
     label:
       account: "Ihr Konto"
@@ -21,8 +31,8 @@ de:
       change_password: "Passwort ändern"
       new_password: "Neues Passwort"
       confirm_new_password: "Neues Passwort Wdh."
-      new_user: "Neuer Benutzer"
-    
+      new_model: "%{model} anlegen"
+
     action:
       back:   "Zurück"
       login:  "Anmelden"
@@ -43,3 +53,11 @@ de:
 
     confirm:
       are_you_sure: "Sind Sie sicher?"
+
+    messages:
+      updated_account: "Ihr Benutzerkonto wurde erfolgreich aktualisiert."
+      deactivate_account_impossible : "Sie können Ihr Benutzerkonto nicht deaktvieren!"
+      delete_account_impossible : "Sie können Ihr Benutzerkonto nicht löschen!"
+      created_model: "%{model} %{name} wurde erfolgreich angelegt."
+      updated_model: "%{model} %{name} wurde erfolgreich aktualisiert."
+      deleted_model: "%{model} %{name} wurde erfolgreich gelöscht."

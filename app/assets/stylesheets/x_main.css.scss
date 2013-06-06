@@ -1,5 +1,6 @@
 $color_text: #333;
 $color_border: #ccc;
+$color_shadow: darken($color_border, 10%);
 $color_link: #06c;
 $color_error: #c00;
 $color_warning: $color_error;
@@ -46,21 +47,27 @@ fieldset {
   }
   label {
     display: block;
+    margin-bottom: 2px;
   }
   input {
     &[type='text'], &[type='email'], &[type='password'] {
       width: 300px;
     }
     &[type='checkbox'] {
-      margin: 0;
-      vertical-align: text-bottom;
+      vertical-align: bottom;
 
-      &+label { display: inline-block; }
+      &+label {
+        display: inline-block;
+        margin-bottom: 0;
+      }
     }
     &[type='submit'] {
       float: right;
       padding: 2px 10px;
     }
+  }
+  select {
+    width: 300px;
   }
 }
 
@@ -109,7 +116,7 @@ div {
   }
 
   &.field {
-    margin-bottom: 4px;
+    margin-bottom: 10px;
   }
   &.field_with_errors {
     display: inline;
@@ -126,15 +133,13 @@ table {
   margin-bottom: 10px;
   border-collapse: collapse;
   border-spacing: 0;
+  font-size: 86% !important;
 
   thead, tfoot {
     tr {
       border-radius: 5px;
       border: 1px solid $color_border;
     }
-  }
-  tfoot td {
-    font-size: 86%;
   }
 
   tbody tr:hover {
@@ -160,6 +165,33 @@ table {
     white-space: nowrap;
   }
 }
+
+.pagination {
+  ul {
+    display: inline-block;
+    list-style: none outset;
+    border: 1px solid $color_border;
+    border-radius: 5px;
+  }
+  li {
+    display: inline;
+
+    a {
+      float: left;
+      padding: 0 8px;
+      border-left: 1px solid $color_border;
+      line-height: 22px;
+    }
+    &:first-child a { border-left: 0; }
+    &.active, &.disabled {
+      a { color: $color_text; }
+    }
+  }
+}
+.pagination a, .pagination_status {
+  font-size: 71%;
+}
+
 
 .clear {
   clear: both !important;
@@ -198,7 +230,7 @@ header {
       margin: 0 0 -1px 10px;
       border: 1px solid $color_border;
       border-radius: 5px 5px 0 0;
-      box-shadow: 0 -10px 10px -10px darken($color_border, 10%) inset;
+      box-shadow: 0 -10px 10px -10px $color_shadow inset;
       text-align: center;
 
       &:first-child { margin-left: 0; }

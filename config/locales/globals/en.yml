@@ -1,0 +1,10 @@
+# ruby encoding: utf-8
+en:
+  'true':  'Yes'
+  'false': 'No'
+
+  time:
+    formats:
+      fdatetime: ! '%d/%m/%Y %H:%M:%S'
+      mdatetime: ! '%d/%m/%Y %H:%M'
+      sdatetime: ! '%d/%m %H:%M'
