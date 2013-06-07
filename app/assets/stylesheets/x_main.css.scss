@@ -1,4 +1,5 @@
 $color_text: #333;
+$color_text_missing: lighten($color_text, 40%);
 $color_border: #ccc;
 $color_shadow: darken($color_border, 10%);
 $color_link: #06c;
@@ -9,6 +10,9 @@ $color_notice: #090;
 $color_success: $color_notice;
 
 $font: normal 14px verdana, arial, helvetica, sans-serif;
+
+$shadow_inset_top: inset 0 5px 5px -5px $color_shadow;
+$shadow_inset_bottom: inset 0 -10px 10px -10px $color_shadow;
 
 * {
   margin: 0;
@@ -68,6 +72,12 @@ fieldset {
   }
   select {
     width: 300px;
+  }
+  textarea {
+    width: 300px;
+    min-height: 200px;
+    height: 200px;
+    resize: vertical;
   }
 }
 
@@ -142,9 +152,8 @@ table {
     }
   }
 
-  tbody tr:hover {
-    background: #eee;
-  }
+  thead tr { box-shadow: $shadow_inset_bottom; }
+  tbody tr:hover { background: #eee; }
 
   th, td {
     padding: 4px 6px;
@@ -152,17 +161,15 @@ table {
 
     &.right { text-align: right; }
   }
-  th, td.left {
-    text-align: left;
-  }
+  th, td.left { text-align: left; }
 
-  img {
-    vertical-align: bottom;
-  }
+  img { vertical-align: bottom; }
 
-  td.button-column {
-    width: 1% !important;
-    white-space: nowrap;
+  td {
+    &.fdatetime, &.boolean, &.button-column {
+      width: 1% !important;
+      white-space: nowrap;
+    }
   }
 }
 
@@ -192,6 +199,46 @@ table {
   font-size: 71%;
 }
 
+ul.group_by {
+  list-style: none outside;
+
+  span.group_title {
+    display: block;
+    padding: 4px;
+    border: 1px solid $color_border;
+    box-shadow: $shadow_inset_bottom;
+    line-height: 1;
+  }
+  ul {
+    margin-bottom: 10px;
+    list-style: none inside;
+    li {
+      display: block;
+      padding: 2px;
+      border-bottom: 1px solid $color_border;
+
+      &:last-child { border-bottom: 0; }
+    }
+  }
+}
+
+.box, .show_for {
+  padding: 10px;
+  border: 1px solid $color_border;
+  border-radius: 5px;
+  background-color: #eee;
+  box-shadow: $shadow_inset_top;
+
+  p {
+    margin: 5px 0;
+    &:first-child, &:only-child { margin-top: 0; }
+    &:last-child, &:only-child { margin-bottom: 0; }
+  }
+  span.nil {
+    color: $color_text_missing;
+    font-style: italic;
+  }
+}
 
 .clear {
   clear: both !important;
@@ -230,7 +277,7 @@ header {
       margin: 0 0 -1px 10px;
       border: 1px solid $color_border;
       border-radius: 5px 5px 0 0;
-      box-shadow: 0 -10px 10px -10px $color_shadow inset;
+      box-shadow: $shadow_inset_bottom;
       text-align: center;
 
       &:first-child { margin-left: 0; }

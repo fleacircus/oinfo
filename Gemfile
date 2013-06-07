@@ -35,6 +35,9 @@ gem 'simple-navigation', '~> 3.10.1'
 # Table builder
 gem 'wice_grid', '~> 3.2.1'
 
+# Quick model information render
+gem 'show_for', '~> 0.2.6'
+
 # I18n
 gem 'rails-i18n'
 

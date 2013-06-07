@@ -1,0 +1,6 @@
+<h2><%%= <%= class_name %>.model_name.human %></h2>
+<%%= show_for @<%= singular_name %> do |s| %>
+  <% attributes.each do |attribute| -%>
+    <%%= s.<%= attribute.reference? ? :association : :attribute %> :<%= attribute.name %> %>
+  <% end %>
+<%% end %>

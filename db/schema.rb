@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605132616) do
+ActiveRecord::Schema.define(:version => 20130607123745) do
 
   create_table "mandators", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(:version => 20130605132616) do
   end
 
   add_index "mandators", ["name"], :name => "index_mandators_on_name", :unique => true
+
+  create_table "messages", :force => true do |t|
+    t.string   "title"
+    t.text     "text"
+    t.integer  "mandator_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "messages", ["mandator_id"], :name => "index_messages_on_mandator_id"
+  add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,6 @@
+# ruby encoding: utf-8
+en:
+  activerecord:
+    attributes:
+      user:
+        mandator_name:          "Mandator"

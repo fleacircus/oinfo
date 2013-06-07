@@ -29,7 +29,7 @@ en:
       change_password: "Change password"
       new_password: "New password"
       confirm_new_password: "Confirm new password"
-      new_user: "New User"
+      new_model: "New %{model}"
 
     action:
       back:   "Back"
@@ -43,7 +43,7 @@ en:
       delete: "Delete"
       send:   "Send"
       resend: "Resend"
-  
+
     question:
       forgot_your_password: "Forgot your password?"
       receive_confirmation_instructions: "Didn't receive confirmation instructions?"
@@ -59,3 +59,4 @@ en:
       created_model: "Successfully created %{model} %{user}."
       updated_model: "Successfully updated %{model} %{user}."
       deleted_model: "Successfully deleted %{model} %{user}."
+      no_more_model_information: "No more information available."

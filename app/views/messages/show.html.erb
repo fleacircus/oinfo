@@ -1,0 +1,11 @@
+<h2>
+  <%= @message.title %>
+  <span>
+    <%= link_to @message.user.email, user_path(@message.user) %>
+    |
+    <%= l(@message.updated_at, format: :mdatetime) %>
+  </span>
+</h2>
+<div class="box">
+  <%= @message.text %>
+</div>

@@ -1,0 +1,29 @@
+<h2>
+  <%= Message.model_name.human(:count => 2) %>
+  <% if can? :create, Message %>
+    <span><%= link_to image_tag('icons/page_white_add.png')+' '+t('app.label.new_model', :model => Message.model_name.human), new_message_path %></span>
+  <% end %>
+</h2>
+<%= grid(@messages_grid, show_filters: :when_filtered, allow_showing_all_records: false) do |g|
+
+  g.column :name => Message.human_attribute_name('title'), :attribute => 'title' do |message|
+    link_to(message.title, message_path(message))
+  end
+
+  ['created_at', 'updated_at'].each do |attr|
+    g.column :name => Message.human_attribute_name(attr), :attribute => attr do |message|
+      [message[attr].nil? ? '' : l(message[attr], format: :fdatetime), :class => 'fdatetime']
+    end
+  end
+
+  g.column html: {class: 'button-column'} do |message|
+    link_to(image_tag('icons/page_white_edit.png'),
+      edit_message_path(message), title: t('app.action.edit')
+    ) + ' ' +
+    link_to(image_tag('icons/page_white_delete.png'),
+      message, title: t('app.action.delete'),
+      method: :delete, data: {confirm: 'Are you sure?'}
+    )
+  end
+
+end %>

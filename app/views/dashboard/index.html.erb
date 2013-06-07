@@ -1,2 +1,13 @@
 <h2>Dashboard</h2>
-<strong>Welcome <%= current_user.email %></strong>
+<h3><%= Message.model_name.human(:count => 2) %></h3>
+<ul class="group_by">
+<% @messages.each do |date, messages| %>
+  <li><span class="group_title"><%= l(date, format: :fdate) %></span>
+    <ul>
+<% messages.each do |message| %>
+      <li><%= link_to message.title, message_path(message) %></li>
+<% end %>
+    </ul>
+  </li>
+<% end %>
+</ul>

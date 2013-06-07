@@ -18,6 +18,7 @@ de:
         locked_at:              "Sperrung"
         unlock_token:           "Entsperrung Token"
         sign_in_count:          "Anmeldungen"
-        failed_attemps:         "Fehlversuche"
+        failed_attempts:         "Fehlversuche"
         activated:              "Aktiviert"
         mandator:               "Mandant"
+        mandator_name:          "Mandant"

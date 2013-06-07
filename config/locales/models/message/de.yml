@@ -1,0 +1,12 @@
+# ruby encoding: utf-8
+de:
+  activerecord:
+    models:
+      message:
+        one:   "Nachricht"
+        other: "Nachrichten"
+
+    attributes:
+      message:
+        title: "Titel"
+        text:  "Text"

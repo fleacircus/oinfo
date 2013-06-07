@@ -5,4 +5,5 @@ class Mandator < ActiveRecord::Base
   default_scope order('name asc')
 
   has_many :user, :order => :email
+  has_many :message
 end

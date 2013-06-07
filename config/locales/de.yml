@@ -45,7 +45,7 @@ de:
       delete: "Löschen"
       send:   "Senden"
       resend: "Erneut senden"
-  
+
     question:
       forgot_your_password: "Passwort vergessen?"
       receive_confirmation_instructions: "Keine Bestätigungs-E-Mail erhalten?"
@@ -61,3 +61,4 @@ de:
       created_model: "%{model} %{name} wurde erfolgreich angelegt."
       updated_model: "%{model} %{name} wurde erfolgreich aktualisiert."
       deleted_model: "%{model} %{name} wurde erfolgreich gelöscht."
+      no_more_model_information: "Keine weiteren Informationen verfügbar."

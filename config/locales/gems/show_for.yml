@@ -1,0 +1,13 @@
+en:
+  show_for:
+    blank:      'Not specified'
+    blank_html: '<span class="nil">Not specified</span>'
+    "yes":      'Yes'
+    "no":       'No'
+
+de:
+  show_for:
+    blank:      'Keine Angabe'
+    blank_html: '<span class="nil">Keine Angabe</span>'
+    "yes":      'Ja'
+    "no":       'Nein'

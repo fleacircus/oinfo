@@ -5,7 +5,7 @@ de:
       mandator:
         one:   "Mandant"
         other: "Mandanten"
-    
+
     attributes:
-      role:
+      mandator:
         name: "Name"

@@ -67,5 +67,12 @@ module Oinfo
 
     # Configuration for Devise (heroku.com deployment)
     config.assets.initialize_on_precompile = false
+
+    # Scaffold
+    config.generators do |g|
+      g.stylesheets false
+      g.assets      false
+      g.helper      false
+    end
   end
 end

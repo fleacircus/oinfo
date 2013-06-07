@@ -8,6 +8,12 @@ de:
       fdatetime: ! '%d.%m.%Y %H:%M:%S'
       mdatetime: ! '%d.%m.%Y %H:%M'
       sdatetime: ! '%d.%m. %H:%M'
+      fdate: ! '%d.%m.%Y'
+      mdate: ! '%d.%m.' # convenience
+      sdate: ! '%d.%m.'
+      ftime: ! '%H:%M:%S'
+      mtime: ! '%H:%M' # convenience
+      stime: ! '%H:%M'
 
   attributes:
     created_at: 'Angelegt'
