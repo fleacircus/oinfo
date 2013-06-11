@@ -18,7 +18,7 @@
 		<%= link_to t('app.label.account'), edit_account_path, :class => 'icon account' %> |
 		<%= link_to t('app.action.logout'), destroy_user_session_path, :method => :delete, :class => 'icon logout' %>
 	  </div>
-	  <div id="navigation"><%= render_navigation %></div>
+	  <div id="navigation"><%= render_navigation :level => 1 %></div>
 	  <% end %>
 	</header>
 	<div id="content">

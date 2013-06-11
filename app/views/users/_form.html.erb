@@ -1,4 +1,38 @@
 <%
+  content_for :head do
+    javascript_include_tag 'password.js'
+    javascript_tag do
+%>$(document).ready(function() {
+  function scorePwd() {
+		var p = $('#user_password').val();
+		if(p == '')
+		  $('label[for="user_password"], #user_password').attr('class', '');
+		else {
+		  var s = Password.score(p),
+			    i = 0;
+	  	if(s > 15) i++;
+		  if(s > 24) i++;
+		  if(s > 34) i++;
+		  if(s > 44) i++;
+		  $('label[for="user_password"], #user_password').attr('class', 'password score'+i);
+		}
+	}
+  $('#user_password_confirmation').parent().hide();
+  $('button[name="generate_password"]').click(function() {
+    var pwd;
+		while(Password.score(pwd) < 35) pwd = Password.generate();
+		$('#user_password').val(pwd).attr('type', 'text');
+		$('#user_password_confirmation').val(pwd);
+		scorePwd();
+  });
+  $('#user_password').keyup(function() {
+    $('#user_password_confirmation').parent().fadeIn();
+    scorePwd();
+  });
+});<%
+    end
+  end
+
   model = User.model_name.human
 
   if @user == @current_user
@@ -28,6 +62,7 @@
     <div class="field">
       <%= f.label :password %>
       <%= f.password_field :password, :autocomplete => 'off' %>
+      <%= f.button t('app.action.generate'), :type => 'button', :name => 'generate_password' %>
     </div>
     <div class="field">
       <%= f.label :password_confirmation %>

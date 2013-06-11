@@ -2,8 +2,10 @@
 de:
   activerecord:
     models:
-      role: "Rolle"
-    
+      role:
+        one:   "Rolle"
+        other: "Rollen"
+
     attributes:
       role:
         name: "Name"

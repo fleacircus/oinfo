@@ -1,0 +1,18 @@
+# ruby encoding: utf-8
+en:
+  paper_trail_manager:
+    change:
+      one:   'Change'
+      other: 'Changes'
+
+    time:           'Time'
+    attribute_diff: 'Attribute with previous and current values'
+
+de:
+  paper_trail_manager:
+    change:
+      one:   'Änderung'
+      other: 'Änderungen'
+
+    time:           'Datum'
+    attribute_diff: 'Attribut mit vorherigen und aktuellen Werten'

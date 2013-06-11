@@ -1,9 +1,17 @@
-<h2>Change <%= @version.id %></h2>
-
-<table class='changes_table'>
-  <tr class='changes_header'>
-    <th class='change_time'>Time</th>
-    <th class='change_details'>Attribute with previous and current values</th>
-    <%= render :partial => 'version', :object => @version %>
-  </tr>
+<h2><%= t('paper_trail_manager.change', :count => 1) %> #<%= @version.id %></h2>
+<table class="wice-grid">
+  <thead>
+    <tr class="wice-grid-title-row">
+      <th><%= t('paper_trail_manager.time') %></th>
+      <th><%= t('paper_trail_manager.attribute_diff') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="odd">
+      <td><%= l(@version.created_at, format: :fdatetime) %></td>
+      <td>
+        <%= render'grid_version_detail_cell', :version => @version %>
+      </td>
+    </tr>
+  </tbody>
 </table>
