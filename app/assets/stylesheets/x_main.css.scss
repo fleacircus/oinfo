@@ -399,6 +399,15 @@ header {
     width: 892px;
   }
 }
+#messages_show {
+  .info {
+    float: left;
+    margin-top: 10px;
+  }
+  ul {
+    margin: 0 15px;
+  }
+}
 
 #dashboard_index {
   .link { margin-top: 0; }

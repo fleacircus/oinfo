@@ -1,12 +1,10 @@
-<h2>
-  <%= @message.title %>
-  <span>
-    <%= current_user.has_role?(:meta_admin) ? link_to(@message.user.email, user_path(@message.user)) : @message.user.email %>
-    |
-    <%= l(@message.updated_at, format: :mdatetime) %>
-  </span>
-</h2>
+<h2><%= @message.title %></h2>
 <div class="box">
   <%= markdown(@message.text) %>
+</div>
+<div class="info">
+  <%= l(@message.updated_at, format: :mdatetime) %>
+  |
+  <%= current_user.has_role?(:meta_admin) ? link_to(@message.user.email, user_path(@message.user)) : @message.user.email %>
 </div>
 <%= render 'shared/link_edit_delete', :record => @message, :edit_path => edit_message_path(@message) %>
