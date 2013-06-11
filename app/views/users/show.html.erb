@@ -21,3 +21,4 @@
     <%= u.attribute f, :format => :fdatetime %>
   <% end %>
 <% end %>
+<%= render 'shared/link_edit_delete', :record => @user, :edit_path => edit_user_path(@user) %>

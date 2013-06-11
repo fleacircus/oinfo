@@ -106,6 +106,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (2.3.0)
     rolify (3.2.0)
     sass (3.2.9)
     sass-rails (3.2.6)
@@ -158,6 +159,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails-i18n
   rails3-jquery-autocomplete (~> 1.0.11)
+  redcarpet (~> 2.3.0)
   rolify (~> 3.2.0)
   sass-rails (~> 3.2.3)
   show_for (~> 0.2.6)

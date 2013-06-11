@@ -32,6 +32,9 @@ de:
       new_password: "Neues Passwort"
       confirm_new_password: "Neues Passwort Wdh."
       new_model: "%{model} anlegen"
+      edit_model: "%{model} bearbeiten"
+      delete_model: "%{model} löschen"
+      more_model: "Weitere %{model}"
 
     action:
       back:   "Zurück"
@@ -40,6 +43,7 @@ de:
       regist: "Registrieren"
       update: "Aktualisieren"
       edit:   "Bearbeiten"
+      show:   "Anzeigen"
       change: "Ändern"
       create: "Anlegen"
       delete: "Löschen"
@@ -54,6 +58,9 @@ de:
     confirm:
       are_you_sure: "Sind Sie sicher?"
 
+    hint:
+      markdown_syntax: 'Sie können zur Formatierung des Textes <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> verwenden.'
+
     messages:
       updated_account: "Ihr Benutzerkonto wurde erfolgreich aktualisiert."
       deactivate_account_impossible : "Sie können Ihr Benutzerkonto nicht deaktvieren!"
@@ -62,3 +69,4 @@ de:
       updated_model: "%{model} %{name} wurde erfolgreich aktualisiert."
       deleted_model: "%{model} %{name} wurde erfolgreich gelöscht."
       no_more_model_information: "Keine weiteren Informationen verfügbar."
+      no_records_for_model: "Es wurden keine %{model} gefunden."

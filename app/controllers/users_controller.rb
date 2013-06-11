@@ -4,19 +4,37 @@ class UsersController < ApplicationController
 
   autocomplete :mandator, :name
 
+
   def index
+    if current_user.has_role? :meta_admin
+      conditions = ['users.id != ?', current_user.id]
+    else
+      conditions = ['users.id != ? AND users.mandator_id == ?', current_user.id, current_user.mandator_id]
+    end
+
     @users_grid = initialize_grid(
-      User.where('id != ?', current_user.id),
-      :order => 'users.email', :order_direction => 'asc'
+      User, :include => :mandator,
+      :conditions => conditions,
+      :order => 'users.email', :order_direction => 'asc',
+      :custom_order => {
+        'users.mandator_id' => 'mandators.name'
+      }
     )
   end
+
 
   def new
     @user = User.new
   end
 
+
   def create
     @user = User.new(params[:user])
+
+    if !current_user.has_role? :meta_admin
+      @user.mandator_id = current_user.mandator_id
+    end
+
     if @user.save
       redirect_to users_path, notice: flash_message('created')
     else
@@ -24,9 +42,11 @@ class UsersController < ApplicationController
     end
   end
 
+
   def edit
     @user = User.find(params[:id] || current_user)
   end
+
 
   def update
     if params[:user][:password].blank?
@@ -35,6 +55,12 @@ class UsersController < ApplicationController
     end
 
     @user = User.find(params[:id])
+
+    if !current_user.has_role? :meta_admin
+      params[:user].delete('role_ids')
+      params[:user].delete('mandator_id')
+    end
+
     if @user.update_attributes(params[:user])
       if @user.id == current_user.id
         sign_in @user, :bypass => true
@@ -47,6 +73,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def destroy
     @user = User.find(params[:id])
     if @user.id == current_user.id
@@ -56,10 +83,10 @@ class UsersController < ApplicationController
       end
   end
 
+
   private
 
   def flash_message(type)
     t('app.messages.'+type+'_model', :model => User.model_name.human, :name => @user.email)
   end
-
 end

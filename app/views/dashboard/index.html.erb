@@ -11,3 +11,8 @@
   </li>
 <% end %>
 </ul>
+<div class="link">
+  <%= link_to t('app.label.more_model', :model => Message.model_name.human(:count => 2)),
+    messages_path, :class => 'icon more'
+  %>
+</div>

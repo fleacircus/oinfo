@@ -44,5 +44,8 @@ gem 'rails-i18n'
 # Formular text_field autocomplete
 gem 'rails3-jquery-autocomplete', '~> 1.0.11'
 
+# Markdown processing
+gem 'redcarpet', '~> 2.3.0'
+
 # Test data generator
 gem 'faker'

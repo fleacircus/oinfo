@@ -1,0 +1,9 @@
+# ruby encoding: utf-8
+en:
+  unauthorized:
+    default: 'You are not authorized to access this page.'
+
+
+de:
+  unauthorized:
+    default: "Sie sind nicht berechtigt auf diese Seite zuzugreifen."

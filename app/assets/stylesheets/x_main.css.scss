@@ -4,8 +4,9 @@ $color_border: #ccc;
 $color_shadow: darken($color_border, 10%);
 $color_link: #06c;
 $color_error: #c00;
-$color_warning: $color_error;
 $color_alert: $color_error;
+$color_warning: #edd400;
+$color_info: $color_link;
 $color_notice: #090;
 $color_success: $color_notice;
 
@@ -35,6 +36,25 @@ a {
   text-decoration: none;
 
   img { vertical-align: bottom; }
+
+  &.icon {
+    padding-left: 20px;
+    background: transparent center left no-repeat;
+
+    &.account { background-image: url(image_path('icons/user_gray.png')) }
+    &.logout  { background-image: url(image_path('icons/door_in.png')) }
+    &.more    { background-image: url(image_path('icons/resultset_next.png')) }
+    &.new     { background-image: url(image_path('icons/page_white_add.png')) }
+    &.edit    { background-image: url(image_path('icons/page_white_edit.png')) }
+    &.show    { background-image: url(image_path('icons/page_white_show.png')) }
+    &.delete  { background-image: url(image_path('icons/page_white_delete.png')) }
+  }
+
+  &[href^=http] {
+    padding-right: 15px;
+    background: transparent url(image_path('icons/world_link.png')) bottom right no-repeat;
+    background-size: 12px;
+  }
 }
 
 fieldset {
@@ -88,14 +108,22 @@ div {
     border: 1px solid $color_border;
     text-align: center;
     font-weight: bold;
+    color: #fff;
 
-    &.error, &.alert  {
-      color: #fff;
+    &.error, &.alert {
       background-color: $color_alert;
       background-image: linear-gradient(to top, darken($color_alert, 15%), $color_alert);
     }
+    &.warning {
+      color: $color_text;
+      background-color: $color_warning;
+      background-image: linear-gradient(to top, darken($color_warning, 15%), $color_warning);
+    }
+    &.info {
+      background-color: $color_info;
+      background-image: linear-gradient(to top, darken($color_info, 15%), $color_info);
+    }
     &.notice, &.success {
-      color: #fff;
       background-color: $color_notice;
       background-image: linear-gradient(to top, darken($color_notice, 15%), $color_notice);
     }
@@ -143,16 +171,25 @@ table {
   margin-bottom: 10px;
   border-collapse: collapse;
   border-spacing: 0;
+  empty-cells: show;
   font-size: 86% !important;
 
   thead, tfoot {
-    tr {
-      border-radius: 5px;
-      border: 1px solid $color_border;
-    }
+    tr { border: 1px solid $color_border; }
   }
 
-  thead tr { box-shadow: $shadow_inset_bottom; }
+  thead {
+    tr { box-shadow: $shadow_inset_bottom; }
+
+    th {
+      &.boolean div {
+        padding: 0 !important;
+      }
+      input[type='text'], select {
+        width: 97% !important;
+      }
+    }
+  }
   tbody tr:hover { background: #eee; }
 
   th, td {
@@ -165,11 +202,15 @@ table {
 
   img { vertical-align: bottom; }
 
-  td {
-    &.fdatetime, &.boolean, &.button-column {
+  th, td {
+    &.fdatetime, &.boolean, &.numeric, &.button {
       width: 1% !important;
       white-space: nowrap;
     }
+  }
+  td {
+    &.boolean { text-align: center; }
+    &.numeric { text-align: right; }
   }
 }
 
@@ -240,6 +281,11 @@ ul.group_by {
   }
 }
 
+.link {
+  float: right;
+  margin-top: 10px;
+}
+
 .clear {
   clear: both !important;
 }
@@ -271,25 +317,40 @@ header {
   }
 
   #navigation {
-    ul { list-style: none inside; }
-    li {
-      display: inline-block;
-      margin: 0 0 -1px 10px;
-      border: 1px solid $color_border;
-      border-radius: 5px 5px 0 0;
-      box-shadow: $shadow_inset_bottom;
-      text-align: center;
+    position: relative;
+    height: 28px;
 
-      &:first-child { margin-left: 0; }
-      &.selected {
-        border-bottom-color: #fff;
-        box-shadow: none;
-      }
+    ul {
+      position: absolute;
+      left: -10px;
+      bottom: 0;
+      list-style: none inside;
 
-      a {
+      li {
         display: inline-block;
-        min-width: 80px;
-        padding: 4px 10px;
+        margin: 0 0 -1px 10px;
+        border: 1px solid $color_border;
+        border-radius: 5px 5px 0 0;
+
+        &.selected {
+          border-bottom-color: #fff;
+
+          a {
+            padding: 4px 10px;
+            box-shadow: none;
+            background-color: transparent !important;
+          }
+        }
+
+        a {
+          display: inline-block;
+          min-width: 80px;
+          padding: 1px 10px 4px 10px;
+          box-shadow: $shadow_inset_bottom;
+          text-align: center;
+
+          &:hover { background-color: #f6f6f6; }
+        }
       }
     }
   }
@@ -313,6 +374,34 @@ header {
 #login {
   width: 330px;
   margin: 0 auto;
+}
+
+#users_edit {
+  fieldset {
+    float: left;
+    width: 430px;
+  }
+  input[type='email'], input[type='password'] {
+    width: 424px;
+  }
+  .show_for.user {
+    float: right;
+    width: 430px;
+    margin-top: 9px;
+  }
+}
+
+#messages_new, #messages_edit {
+  fieldset {
+    display: block
+  }
+  input[type='text'], textarea {
+    width: 892px;
+  }
+}
+
+#dashboard_index {
+  .link { margin-top: 0; }
 }
 
 footer {

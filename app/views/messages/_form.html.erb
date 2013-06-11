@@ -29,5 +29,8 @@
     <div class="button">
       <%= f.submit t(@message.id.nil? ? 'app.action.create' : 'app.action.update') %>
     </div>
+    <div class="hint">
+      <%= t('app.hint.markdown_syntax').html_safe %>
+    </div>
   <% end %>
 <% end %>

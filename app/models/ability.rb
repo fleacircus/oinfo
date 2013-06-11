@@ -6,18 +6,38 @@ class Ability
 
   def initialize(user)
 
+    alias_action :update, :destroy, :to => :modify
+
     # MetaAdmin
-    can :manage, :all if user.has_role? :meta_admin
+    if user.has_role? :meta_admin
+      can :manage, :all
 
-    # Users can edit their account
-    can :update, User, :id => user.id
-    # Version 2.0 will restricted also attributes:
-    #   cannot :update, User, [:activated, :role_ids] if !user.has_role? 'meta_admin'
-    #
-    # see https://github.com/ryanb/cancan/tree/2.0#resource-attributes
+    # MandatorAdmin
+    elsif user.has_role? :mandator_admin
 
-    # MandatorAdmins can manage their associated user
-    can :manage, User if user.has_role? :mandator_admin
+      # MandatorAdmins can create and manage their associated user
+      can :create, User
+      can :manage, User, :mandator_id => User.with_role(:mandator_admin, user).map(&:mandator_id)
 
+      # MandatorAdmins can create and manage their associated messages
+      can :create, Message
+      can :read,   Message, :mandator_id => nil
+      can :manage, Message, :mandator_id => user.mandator_id
+
+
+    # User
+    else
+
+      # Users can edit their account
+      can :update, User, :id => user.id
+      # Version 2.0 will restricted also attributes:
+      #   cannot :update, User, [:activated, :role_ids] if !user.has_role? 'meta_admin'
+      #
+      # see https://github.com/ryanb/cancan/tree/2.0#resource-attributes
+
+      # User can read their associated messages
+      can :read, Message, :mandator_id => [nil , user.mandator_id]
+
+    end
   end
 end

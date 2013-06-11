@@ -1,40 +1,7 @@
 <h2>
   <%= User.model_name.human(:count => 2) %>
   <% if can? :create, User %>
-    <span><%= link_to image_tag('icons/page_white_add.png')+' '+t('app.label.new_model', :model => User.model_name.human), new_user_path %></span>
+    <span><%= link_to t('app.label.new_model', :model => User.model_name.human), new_user_path, :class => 'icon new' %></span>
   <% end %>
 </h2>
-<%= grid(@users_grid, show_filters: :when_filtered, allow_showing_all_records: false) do |g|
-
-  g.column :name => User.human_attribute_name('email'),
-    :attribute => 'email' do |user|
-      link_to(user.email, user_path(user))
-  end
-
-  g.column :name => User.human_attribute_name('mandator'), :attribute => 'mandator_id',
-    :custom_filter => Mandator.all.map{|m| [m.name, m.id]} do |user|
-      link_to user.mandator_name, mandator_path(user.mandator)
-  end
-
-  ['created_at', 'updated_at'].each do |attr|
-    g.column :name => User.human_attribute_name(attr), :attribute => attr do |user|
-      [user[attr].nil? ? '' : l(user[attr], format: :fdatetime), :class => 'fdatetime']
-    end
-  end
-
-  g.column :name => User.human_attribute_name('activated'),
-    :attribute => 'activated' do |user|
-      [t(user.activated.to_s), :class => 'boolean']
-  end
-
-  g.column html: {class: 'button-column'} do |user|
-    link_to(image_tag('icons/page_white_edit.png'),
-      edit_user_path(user), title: t('app.action.edit')
-    ) + ' ' +
-    link_to(image_tag('icons/page_white_delete.png'),
-      user, title: t('app.action.delete'),
-      method: :delete, data: {confirm: 'Are you sure?'}
-    )
-  end
-
-end %>
+<%= render 'shared/grid_users', :show_mandator_col => current_user.has_role?(:meta_admin) %>

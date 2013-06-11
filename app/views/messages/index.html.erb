@@ -1,7 +1,7 @@
 <h2>
   <%= Message.model_name.human(:count => 2) %>
   <% if can? :create, Message %>
-    <span><%= link_to image_tag('icons/page_white_add.png')+' '+t('app.label.new_model', :model => Message.model_name.human), new_message_path %></span>
+    <span><%= link_to t('app.label.new_model', :model => Message.model_name.human), new_message_path, :class => 'icon new' %></span>
   <% end %>
 </h2>
 <%= grid(@messages_grid, show_filters: :when_filtered, allow_showing_all_records: false) do |g|
@@ -11,19 +11,38 @@
   end
 
   ['created_at', 'updated_at'].each do |attr|
-    g.column :name => Message.human_attribute_name(attr), :attribute => attr do |message|
-      [message[attr].nil? ? '' : l(message[attr], format: :fdatetime), :class => 'fdatetime']
+    g.column :html => {class: 'fdatetime'}, :name => Message.human_attribute_name(attr),
+      :attribute => attr do |message|
+        message[attr].nil? ? '' : l(message[attr], format: :fdatetime)
     end
   end
 
-  g.column html: {class: 'button-column'} do |message|
-    link_to(image_tag('icons/page_white_edit.png'),
-      edit_message_path(message), title: t('app.action.edit')
-    ) + ' ' +
-    link_to(image_tag('icons/page_white_delete.png'),
-      message, title: t('app.action.delete'),
-      method: :delete, data: {confirm: 'Are you sure?'}
-    )
+  g.column :html => {class: 'button'} do |message|
+    links = [
+      link_to(image_tag('icons/page_white_show.png'),
+        message_path(message), title: t('app.action.show')
+      )
+    ]
+
+    if can? :modify, message
+    links << link_to(image_tag('icons/page_white_edit.png'),
+        edit_message_path(message), title: t('app.action.edit')
+      )
+    links << link_to(image_tag('icons/page_white_delete.png'),
+        message, title: t('app.action.delete'),
+        method: :delete, data: {confirm: t('app.confirm.are_you_sure')}
+      )
+    end
+
+    raw links.join ' '
+  end
+
+  if @messages_grid.count == 0
+    g.last_row do |number_of_columns|
+      content_tag(:tr, content_tag(:td,
+        t('app.messages.no_records_for_model', :model => Message.model_name.human(:count => 2)),
+        :colspan => number_of_columns), :class => 'no_records')
+    end
   end
 
 end %>

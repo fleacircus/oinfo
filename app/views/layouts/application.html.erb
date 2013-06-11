@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
 <head>
+  <meta charset="UTF-8">
   <title>OInfo</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -8,14 +9,14 @@
   <%= yield :head %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="<%= [controller.controller_name, controller.action_name].join '_' %>">
   <div id="page">
 	<header>
 	  <h1>Online Information</h1>
 	  <% if user_signed_in? %>
 	  <div id="account_box">
-		<%= link_to t('app.label.account'), edit_account_path %> |
-		<%= link_to t('app.action.logout'), destroy_user_session_path, :method => :delete %>
+		<%= link_to t('app.label.account'), edit_account_path, :class => 'icon account' %> |
+		<%= link_to t('app.action.logout'), destroy_user_session_path, :method => :delete, :class => 'icon logout' %>
 	  </div>
 	  <div id="navigation"><%= render_navigation %></div>
 	  <% end %>
@@ -25,6 +26,7 @@
 	  <%= content_tag :div, msg, :class => "flash #{name}" if msg.is_a?(String) %>
 	  <% end %>
 	  <%= yield %>
+	  <div class="clear"></div>
 	</div>
 	<footer>
 	  <span>

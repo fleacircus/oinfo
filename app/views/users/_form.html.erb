@@ -33,29 +33,25 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation %>
     </div>
-    <% if current_user.id != @user.id %>
-    <div class="field">
-      <%= f.check_box :activated %>
-      <%= f.label :activated %>
-    </div>
-    <% end %>
-    <div class="field">
-      <%= f.label :mandator %>
-      <%= f.hidden_field :mandator_id %>
-      <%= f.autocomplete_field :mandator_name, autocomplete_mandator_name_users_path, :id_element => :mandator_id %>
-    </div>
-    <!--
-    <div class="field">
-      <%= f.label :mandator %>
-      <%= f.collection_select :mandator_id, Mandator.all, :id, :name, {prompt: true} %>
-    </div>
-    -->
-    <%= f.label Role.model_name.human %>
-    <% for role in Role.all %>
-    <div class="field">
-      <%= check_box_tag 'user[role_ids][]', role.id, @user.role_ids.include?(role.id), {:id => "user_#{role.name}"} %>
-      <%= f.label role.name %>
-    </div>
+    <% if current_user.id != @user.id || current_user.has_role?(:mandator_admin) %>
+      <div class="field">
+        <%= f.check_box :activated %>
+        <%= f.label :activated %>
+      </div>
+      <% if current_user.has_role? :meta_admin %>
+        <div class="field">
+          <%= f.label :mandator %>
+          <%= f.hidden_field :mandator_id %>
+          <%= f.autocomplete_field :mandator_name, autocomplete_mandator_name_users_path, :id_element => :mandator_id %>
+        </div>
+        <%= f.label Role.model_name.human %>
+        <% for role in Role.all %>
+        <div class="field">
+          <%= check_box_tag 'user[role_ids][]', role.id, @user.role_ids.include?(role.id), {:id => "user_#{role.name}"} %>
+          <%= f.label role.name %>
+        </div>
+        <% end %>
+      <% end %>
     <% end %>
     <div class="button">
       <%= f.submit t(@user.id.nil? ? 'app.action.create' : 'app.action.update') %>

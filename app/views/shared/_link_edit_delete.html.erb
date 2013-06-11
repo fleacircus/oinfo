@@ -1,0 +1,11 @@
+<% if can? :edit, record
+
+  model = record.class.model_name.human
+%>
+<div class="link">
+  <%= link_to t('app.label.edit_model', :model => model), edit_path, :class => 'icon edit' %>
+  |
+  <%= link_to t('app.label.delete_model', :model => model), record, :class => 'icon delete',
+    method: :delete, data: {confirm: t('app.confirm.are_you_sure')} %>
+</div>
+<% end %>

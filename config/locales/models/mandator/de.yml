@@ -8,4 +8,5 @@ de:
 
     attributes:
       mandator:
-        name: "Name"
+        name:       "Name"
+        user_count: "Benutzer"

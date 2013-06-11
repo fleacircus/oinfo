@@ -1,5 +1,8 @@
 <h2><%= @mandator.name %></h2>
-<div class="box">
-  <span class="nil"><%= t('app.messages.no_more_model_information') %></span>
-  <pre><br/>TODO: Implement grid for corresponding user.</pre>
-</div>
+<h2>
+  <%= User.model_name.human(:count => 2) %>
+  <% if can? :create, User %>
+    <span><%= link_to image_tag('icons/page_white_add.png')+' '+t('app.label.new_model', :model => User.model_name.human), new_user_path %></span>
+  <% end %>
+</h2>
+<%= render 'shared/grid_users' %>

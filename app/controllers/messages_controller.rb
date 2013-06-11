@@ -2,23 +2,34 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
 
+
   def index
+    messages = Message
+    if !current_user.has_role? :meta_admin
+      messages = messages.where(:mandator_id => [nil, current_user.mandator_id])
+    end
+
     @messages_grid = initialize_grid(
-      Message
+      messages,
+      :order => 'messages.updated_at', :order_direction => 'desc'
     )
   end
+
 
   def show
     @message = Message.find(params[:id])
   end
 
+
   def new
     @message = Message.new
   end
 
+
   def edit
     @message = Message.find(params[:id])
   end
+
 
   def create
     @message = Message.new(params[:message])
@@ -33,6 +44,7 @@ class MessagesController < ApplicationController
     end
   end
 
+
   def update
     @message = Message.find(params[:id])
 
@@ -46,6 +58,7 @@ class MessagesController < ApplicationController
     end
   end
 
+
   def destroy
     @message = Message.find(params[:id])
     @message.destroy
@@ -53,9 +66,10 @@ class MessagesController < ApplicationController
     redirect_to messages_path, notice: flash_message('deleted')
   end
 
+
   private
 
   def flash_message(type)
-    t('app.messages.'+type+'_model', :model => Message.model_name.human, :name => @message.id)
+    t('app.messages.'+type+'_model', :model => Message.model_name.human, :name => @message.title)
   end
 end
