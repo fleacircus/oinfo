@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   belongs_to :mandator
   has_many :message
 
+  has_paper_trail
+
   def mandator_name
     mandator.try(:name)
   end

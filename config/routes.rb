@@ -1,6 +1,4 @@
 Oinfo::Application.routes.draw do
-  resources :messages
-
 
 	resources :dashboard, :only => :index
 
@@ -9,6 +7,8 @@ Oinfo::Application.routes.draw do
   end
 
   resources :mandators
+
+  resources :messages
 
 	resource :account, :controller => "users", :only => :edit
 
@@ -19,5 +19,7 @@ Oinfo::Application.routes.draw do
 			:sign_in => 'login',
 			:sign_out => 'logout'
 		}
+
+	resources :changes, :controller => 'changes'
 
 end

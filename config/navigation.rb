@@ -16,5 +16,9 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :messages, Message.model_name.human(:count => 2),
       messages_path, :highlights_on => %r(/messages),
       :if => Proc.new {can? :show, Message}
+
+    primary.item :changes, 'Tracking',
+      changes_path, :highlights_on => %r(/changes),
+      :if => Proc.new {current_user.has_role? :meta_admin}
   end
 end

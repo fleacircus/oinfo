@@ -5,5 +5,7 @@ class Message < ActiveRecord::Base
   belongs_to :user
   belongs_to :mandator
 
+  has_paper_trail
+
   default_scope order('updated_at desc')
 end
