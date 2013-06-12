@@ -1,13 +1,5 @@
 # ruby encoding: utf-8
 en:
-  devise:
-    registrations:
-      user:
-        signed_up_but_not_approved: "You have signed up successfully but your account has not been activated by your administrator yet"
-    failure:
-      not_approved: "Your account has not been activated by your administrator yet."
-
-
   app:
     title:
       login: "Login"
@@ -24,6 +16,7 @@ en:
       edit_model: "Edit %{model}"
       more_model: "More %{model}"
 
+
     label:
       account: "Your Account"
       send_me_reset_password_instructions: "Send me reset password instructions"
@@ -33,7 +26,12 @@ en:
       new_model: "New %{model}"
       edit_model: "Edit %{model}"
       delete_model: "Delete %{model}"
+      show_changes: "Show changes"
+      all_changes: "All changes for this record"
       all: "All"
+      unknown: "Unknown"
+      not_specified: "Not specified"
+
 
     action:
       back:     "Back"
@@ -50,22 +48,28 @@ en:
       resend:   "Resend"
       generate: "Generate"
       rollback: "Roll back"
+      rollback_change: "Roll back change"
+      show_changes: "Show changes"
+
 
     question:
       forgot_your_password: "Forgot your password?"
       receive_confirmation_instructions: "Didn't receive confirmation instructions?"
       receive_unlock_instructions: "Didn't receive unlock instructions?"
 
+
     confirm:
       are_you_sure: "Are you sure?"
+
 
     hint:
       markdown_syntax: 'You can use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> to format the text.'
 
+
     messages:
       updated_account: "Successfully updated your account."
-      deactivate_account_impossible : "You can't deactivate your account!"
-      delete_account_impossible : "You can't delete your account!"
+      deactivate_account_impossible: "You can't deactivate your account!"
+      delete_account_impossible: "You can't delete your account!"
       created_model: "Successfully created %{model} %{user}."
       updated_model: "Successfully updated %{model} %{user}."
       deleted_model: "Successfully deleted %{model} %{user}."

@@ -1,17 +1,59 @@
-<h2><%= t('paper_trail_manager.change', :count => 1) %> #<%= @version.id %></h2>
-<table class="wice-grid">
-  <thead>
-    <tr class="wice-grid-title-row">
-      <th><%= t('paper_trail_manager.time') %></th>
-      <th><%= t('paper_trail_manager.attribute_diff') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="odd">
-      <td><%= l(@version.created_at, format: :fdatetime) %></td>
-      <td>
-        <%= render'grid_version_detail_cell', :version => @version %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<h2>
+  <%= t('paper_trail_manager.show_title', :date => l(@version.created_at, format: :fdatetime)) %>
+  <span><%= link_to t('app.label.all_changes'), model_changes_path(@version.item_type, @version.item_id), :class => 'icon changes' %></span>
+</h2>
+<div class="link pager">
+  <% if !@version.previous.nil? %>
+    <%= link_to t('paper_trail_manager.previous'), change_path(@version.previous), :class => 'icon previous' %>
+  <% end %>
+  <% if !@version.next.nil? %>
+    <%= link_to t('paper_trail_manager.next'), change_path(@version.next), :class => 'icon next' %>
+  <% end %>
+  <div class="clear"></div>
+</div>
+<%= show_for @version do |v| %>
+  <p>
+    <strong><%= Version.human_attribute_name('item_id') %></strong>
+    <%= change_item_link(@version) %>
+  </p>
+  <div class="left">
+  <%= v.attribute :item_type do
+    t("activerecord.models.#{@version.item_type.downcase}", :count => 1)
+  end %>
+
+  <%= v.attribute :event do
+    t("paper_trail_manager.#{@version.event}")
+  end %>
+
+  <%= v.attribute :whodunnit do
+    change_whodunnit_link(@version) || unknown_value()
+  end %>
+  </div>
+  <% if @version.event == 'update' or @version.event == 'create'
+      changes = changes_for(@version)
+  %>
+  <table class="wice-grid right">
+    <thead>
+      <tr class="wice-grid-title-row">
+        <th colspan="4"><%= Version.model_name.human(:count => 2) %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% changes.keys.sort.each_with_index do |key, i| %>
+      <tr>
+        <td class="shrink"><%= key %></td>
+        <td class="prev"><%= text_or_nil(changes[key][:previous]) %></td>
+        <td class="shrink">&rarr;</td>
+        <td class="curr"><%= text_or_nil(changes[key][:current]) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+  <div class="clear"></div>
+<% end %>
+<% if change_revert_allowed?(@version) %>
+<div class="link">
+  <%= link_to t('app.action.rollback_change'), change_path(@version), :method => 'put', :confirm => t('app.confirm.are_you_sure'), :class => 'icon rollback' %>
+</div>
+<% end %>

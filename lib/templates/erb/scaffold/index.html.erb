@@ -1,6 +1,13 @@
-<h2>
-  <%%= <%= class_name %>.model_name.human(:count => 2) %>
-  <%% if can? :create, <%= class_name %> %>
-    <span><%%= link_to image_tag('icons/page_white_add.png')+' '+t('app.label.new_model', :model => <%= class_name %>.model_name.human), new_<%= singular_table_name %>_path %></span>
-  <%% end %>
-</h2>
+
+<%%= render 'shared/view_title_link_new', :model => <%= class_name %> %>
+<%%= grid(@<%= plural_table_name %>_grid, show_filters: :when_filtered, allow_showing_all_records: false) do |g|
+
+  g.column :name => <%= class_name %>.human_attribute_name('id'), :attribute => 'id' do |<%= singular_table_name %>|
+    link_to(<%= singular_table_name %>.id, <%= singular_table_name %>_path(<%= singular_table_name %>))
+  end
+
+  render 'shared/grid_columns_timestamps', :row => g, :model => <%= class_name %>
+  render 'shared/grid_column_action', :row => g
+  render 'shared/grid_row_no_records', :grid => @<%= plural_table_name %>_grid, :row => g, :model => <%= class_name %>
+
+end %>

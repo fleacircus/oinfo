@@ -1,0 +1,8 @@
+<%
+  ['created_at', 'updated_at'].each do |attr|
+    row.column :html => {class: 'fdatetime'}, :name => model.human_attribute_name(attr),
+      :attribute => attr do |record|
+        record[attr].nil? ? '' : l(record[attr], format: :fdatetime)
+    end
+  end
+%>

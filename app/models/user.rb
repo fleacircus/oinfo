@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   belongs_to :mandator
   has_many :message
 
-  has_paper_trail
+  has_paper_trail :ignore => [:current_sign_in_at, :last_sign_in_at,
+                              :current_sign_in_ip, :last_sign_in_ip,
+                              :sign_in_count, :failed_attempts]
 
   def mandator_name
     mandator.try(:name)

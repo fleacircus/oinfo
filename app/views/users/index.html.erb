@@ -1,7 +1,2 @@
-<h2>
-  <%= User.model_name.human(:count => 2) %>
-  <% if can? :create, User %>
-    <span><%= link_to t('app.label.new_model', :model => User.model_name.human), new_user_path, :class => 'icon new' %></span>
-  <% end %>
-</h2>
+<%= render 'shared/view_title_link_new', :model => User %>
 <%= render 'shared/grid_users', :show_mandator_col => current_user.has_role?(:meta_admin) %>

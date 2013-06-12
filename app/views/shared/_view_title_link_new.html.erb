@@ -1,0 +1,9 @@
+<h2>
+  <%= model.model_name.human(:count => 2) %>
+  <% if can? :create, model %>
+    <span><%=
+      link_to t('app.label.new_model', :model => model.model_name.human),
+        new_polymorphic_path(model), :class => 'icon new'
+    %></span>
+  <% end %>
+</h2>

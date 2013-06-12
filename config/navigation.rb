@@ -21,16 +21,9 @@ SimpleNavigation::Configuration.run do |navigation|
       :if => Proc.new {can? :show, Message}
 
 
-    primary.item :changes, t('paper_trail_manager.change', :count => 2),
+    primary.item :changes, Version.model_name.human(:count => 2),
       changes_path, :highlights_on => %r(/changes),
-      :if => Proc.new {current_user.has_role? :meta_admin} do |subnav|
-
-      subnav.item :changes_all, t('app.label.all'), changes_path, :highlights_on => %r(/changes$)
-      [Role, Mandator, User, Message].each do |model|
-        subnav.item ":changes_#{model.model_name.downcase}", model.model_name.human(:count => 2), changes_path(:type => model.model_name)
-      end
-
-    end
+      :if => Proc.new {current_user.has_role? :meta_admin}
 
   end
 end

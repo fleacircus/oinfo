@@ -1,13 +1,9 @@
 <h2><%= @user.email %></h2>
 <%= show_for @user do |u| %>
   <%= u.attribute :activated %>
-  <%= u.attribute :mandator_name do %>
-    <% if !@user.mandator.nil? %>
-      <%= link_to @user.mandator_name, mandator_path(@user.mandator) %>
-    <% else %>
-      <%= t('show_for.blank_html') %>
-    <% end %>
-  <% end %>
+  <%= u.attribute :mandator_name do
+    @user.mandator.nil? ? not_specified_value() : link_to(@user.mandator_name, mandator_path(@user.mandator))
+  end %>
   <% [:current_sign_in_at, :last_sign_in_at].each do |f| %>
     <%= u.attribute f, :format => :fdatetime %>
   <% end %>
@@ -21,4 +17,4 @@
     <%= u.attribute f, :format => :fdatetime %>
   <% end %>
 <% end %>
-<%= render 'shared/link_edit_delete', :record => @user, :edit_path => edit_user_path(@user) %>
+<%= render 'shared/link_edit_delete', :record => @user %>

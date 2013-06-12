@@ -1,18 +1,36 @@
 # ruby encoding: utf-8
 en:
   paper_trail_manager:
-    change:
-      one:   'Change'
-      other: 'Changes'
+    create:  "created"
+    update:  "updated"
+    destroy: "deleted"
 
-    time:           'Time'
-    attribute_diff: 'Attribute with previous and current values'
+    show_title: "Change from %{date}"
+    previous:   "Previous change"
+    next:       "Next change"
+
+    messages:
+      permission_denied_list:     "You do not have permission to list changes."
+      permission_denied_rollback: "You do not have permission to revert this change."
+      no_version:                 "No such version."
+      rollback_create:            "Rolled back newly-created record by destroying it."
+      rollback_update:            "Rolled back changes to this record."
+      rollback_failed:            "Couldn't rollback. Sorry."
 
 de:
   paper_trail_manager:
-    change:
-      one:   'Änderung'
-      other: 'Änderungen'
+    create:  "angelegt"
+    update:  "aktualisiert"
+    destroy: "gelöscht"
 
-    time:           'Datum'
-    attribute_diff: 'Attribut mit vorherigen und aktuellen Werten'
+    show_title: "Änderung vom %{date}"
+    previous:   "Vorherige Änderung"
+    next:       "Nächste Änderung"
+
+    messages:
+      permission_denied_list:     "Sie haben keine Berechtigung um die Änderungen einzusehen."
+      permission_denied_rollback: "Sie haben keine Berechtigung um die Änderungen zurückzusetzen."
+      no_version:                 "Die Version wurde nicht gefunden."
+      rollback_create:            "Der Datensatz wurde gelöscht."
+      rollback_update:            "Die Änderungen wurden zurückgesetzt."
+      rollback_failed:            "Die Änderungen konnten nicht zurückgesetzt werden."

@@ -1,0 +1,15 @@
+# ruby encoding: utf-8
+en:
+  activerecord:
+    models:
+      version:
+        one:   "Change"
+        other: "Changes"
+
+    attributes:
+      version:
+        created_at: "Date"
+        event:      "Event"
+        item_type:  "Record Type"
+        item_id:    "Current Record"
+        whodunnit:  "Responsible"

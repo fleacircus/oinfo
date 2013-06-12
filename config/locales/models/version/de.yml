@@ -1,0 +1,15 @@
+# ruby encoding: utf-8
+de:
+  activerecord:
+    models:
+      version:
+        one:   "Änderung"
+        other: "Änderungen"
+
+    attributes:
+      version:
+        created_at: "Zeitpunkt"
+        event:      "Ereignis"
+        item_type:  "Datensatz Typ"
+        item_id:    "Aktueller Datensatz"
+        whodunnit:  "Verantwortlich"

@@ -1,21 +1,58 @@
-<h2><%= t('paper_trail_manager.change', :count => 2) %></h2>
-<div class="sub_navigation"><%= render_navigation :level => 2 %></div>
-<%= grid(@versions_grid, show_filters: false, allow_showing_all_records: false) do |g|
+<h2><%= Version.model_name.human(:count => 2) %></h2>
 
-  g.column :name => t('paper_trail_manager.time') do |version|
-    [link_to("##{version.id}", change_path(version))+' '+l(version.created_at, format: :fdatetime), :class => 'change_time']
+<%
+  types = []
+  change_item_types.each do |t|
+    types << [t("activerecord.models.#{t.downcase}", :count => 1), t]
+  end
+  events = []
+  ['create', 'update', 'destroy'].each do |e|
+    events << [t("paper_trail_manager.#{e.downcase}", :count => 1), e]
+  end
+%>
+
+<%= grid(@versions_grid, show_filters: :when_filtered, allow_showing_all_records: false) do |g|
+
+  g.column :html => {class: 'fdatetime'}, :name => Version.human_attribute_name('created_at'),
+    :attribute => 'created_at' do |version|
+      link_to(l(version.created_at, format: :fdatetime), change_path(version), title: t('app.action.show'))
   end
 
-  g.column :name => t('paper_trail_manager.attribute_diff') do |version|
-    [render('grid_version_detail_cell', :version => version), :class => 'change_details']
+  g.column :html => {class: 'item_type'}, :name => Version.human_attribute_name('item_type'),
+    :attribute => 'item_type', :custom_filter => types do |version|
+      t("activerecord.models.#{version.item_type.downcase}", :count => 1)
   end
 
-  if @versions_grid.count == 0
-    g.last_row do |number_of_columns|
-      content_tag(:tr, content_tag(:td,
-        t('app.messages.no_records_for_model', :model => t('paper_trail_manager.change', :count => 2)),
-        :colspan => number_of_columns), :class => 'no_records')
+  g.column :html => {class: 'event'}, :name => Version.human_attribute_name('event'),
+    :attribute => 'event', :custom_filter => events do |version|
+      t("paper_trail_manager.#{version.event}")
+  end
+
+  g.column :html => {class: 'record_link'}, :name => Version.human_attribute_name('item_id'),
+    :attribute => 'item_id', :filter => false do |version|
+      change_item_link(version)
+  end
+
+  g.column :name => Version.human_attribute_name('whodunnit'),
+    :attribute => 'whodunnit', :filter => false do |version|
+      change_whodunnit_link(version) || unknown_value()
+  end
+
+  g.column :html => {class: 'button'} do |version|
+    links = [link_to(image_tag('icons/page_white_show.png'),
+      change_path(version), title: t('app.action.show')
+    )]
+
+    if change_revert_allowed?(version)
+      links << link_to(image_tag('icons/page_white_lightning.png'), change_path(version),
+        :method => 'put', :title => t('app.action.rollback'),
+        :confirm => t('app.confirm.are_you_sure')
+      )
     end
+
+    links.join(' ').html_safe
   end
+
+  render 'shared/grid_row_no_records', :grid => @versions_grid, :row => g, :model => Version
 
 end %>

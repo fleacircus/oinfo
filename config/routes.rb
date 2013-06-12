@@ -21,5 +21,8 @@ Oinfo::Application.routes.draw do
 		}
 
 	resources :changes, :controller => 'changes'
+	match "/changes/:item_type/:item_id" => "changes#index",
+	  :as => "model_changes", :via => :get, :controller => 'changes',
+	  :constraints => {:item_id => /\d+/}
 
 end

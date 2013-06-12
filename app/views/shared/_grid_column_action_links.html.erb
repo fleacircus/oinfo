@@ -1,0 +1,30 @@
+<%
+  row.column :html => {class: 'button'} do |record|
+    links = []
+
+    if can? :read, record
+      links << link_to(image_tag('icons/page_white_show.png'),
+        polymorphic_path(record), title: t('app.action.show')
+      )
+    end
+
+    if can? :edit, record
+      links << link_to(image_tag('icons/page_white_edit.png'),
+        edit_polymorphic_path(record), title: t('app.action.edit')
+      )
+    end
+
+    if can? :delete, record
+      links << link_to(image_tag('icons/page_white_delete.png'),
+        record, title: t('app.action.delete'),
+        method: :delete, data: {confirm: t('app.confirm.are_you_sure')}
+      )
+    end
+
+    links << link_to(image_tag('icons/page_white_stack.png'),
+      model_changes_path(record.class, record.id), title: t('app.action.show_changes')
+    )
+
+    links.join(' ').html_safe
+  end
+%>

@@ -1,0 +1,15 @@
+<%
+  if model.is_a? Class
+    name = model.model_name.human(:count => 2)
+  else
+    name = t(model, :count => 2)
+  end
+
+  if grid.count == 0
+    row.last_row do |number_of_columns|
+      content_tag(:tr, content_tag(:td,
+        t('app.messages.no_records_for_model', :model => name),
+        :colspan => number_of_columns), :class => 'no_records')
+    end
+  end
+%>

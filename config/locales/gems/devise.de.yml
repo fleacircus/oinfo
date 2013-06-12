@@ -21,19 +21,24 @@ de:
       timeout: 'Ihre Sitzung ist abgelaufen, bitte melden Sie sich erneut an.'
       inactive: 'Ihr Benutzerkonto ist nicht aktiv.'
       not_found_in_database: "Ungültige Anmeldedaten."
+      not_approved: "Ihr Benutzerkonto wurde von Ihrem Administrator nicht aktiviert."
+
     sessions:
       signed_in: 'Sie haben sich erfolgreich angemeldet.'
       signed_out: 'Sie haben sich erfolgreich abgemeldet.'
+
     passwords:
       no_token: 'Sie können auf diese Seite nur zugreifen, wenn Sie den Link aus der E-Mail zum Zurücksetzen Ihres Passworts nutzen. Sollten Sie diesen Link genutzt haben, stellen Sie bitte sicher, dass Sie die vollständige URL verwendet haben.'
       send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie ihr Passwort zurücksetzen können.'
       updated: 'Ihr Passwort wurde geändert. Sie sind jetzt angemeldet.'
       updated_not_active: 'Ihr Passwort wurde geändert.'
       send_paranoid_instructions: "Falls Ihre E-Mail-Adresse in unserer Datenbank existiert erhalten Sie in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Passwort zurücksetzen können."
+
     confirmations:
       send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail, mit der Sie Ihre Registrierung bestätigen können.'
       send_paranoid_instructions: 'Falls Ihre E-Mail-Adresse in unserer Datenbank existiert erhalten Sie in wenigen Minuten eine E-Mail mit der die Sie Ihre Registrierung bestätigen können.'
       confirmed: 'Vielen Dank für Ihre Registrierung. Sie sind jetzt angemeldet.'
+
     registrations:
       signed_up: 'Sie haben sich erfolgreich registriert.'
       signed_up_but_unconfirmed: 'Sie haben sich erfolgreich registriert. Wir konnten Sie noch nicht anmelden, da Ihr Benutzerkonto noch nicht bestätigt ist. Sie erhalten in Kürze eine E-Mail mit der Anleitung, wie Sie Ihr Benutzerkonto freischalten können.'
@@ -42,13 +47,18 @@ de:
       updated: 'Ihre Daten wurden aktualisiert.'
       update_needs_confirmation: "Ihre Daten wurden aktualisiert, aber Sie müssen Ihre neue E-Mail-Adresse bestätigen. Sie erhalten in wenigen Minuten eine E-Mail, mit der Sie die Änderung Ihrer E-Mail-Adresse abschließen können."
       destroyed: 'Ihr Benutzerkonto wurde gelöscht.'
+      user:
+        signed_up_but_not_approved: "Sie haben sich erfolgreich registriert, aber ihr Benutzerkonto wurde von Ihrem Administrator noch nicht aktiviert."
+
     unlocks:
       send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihren Benutzerkonto entsperren können.'
       unlocked: 'Ihr Benutzerkonto wurde entsperrt. Sie sind jetzt angemeldet.'
       send_paranoid_instructions: "Falls Ihre E-Mail-Adresse in unserer Datenbank existiert erhalten Sie in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Benutzerkonto entsperren können."
+
     omniauth_callbacks:
       success: 'Sie haben sich erfolgreich mit Ihrem %{kind}-Account angemeldet.'
       failure: 'Sie konnten nicht mit Ihrem %{kind}-Account angemeldet werden, weil "%{reason}".'
+
     mailer:
       confirmation_instructions:
         subject: 'Anleitung zur Bestätigung Ihres Benutzerkontos'

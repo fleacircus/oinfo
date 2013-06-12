@@ -8,7 +8,9 @@ class <%= controller_class_name %>Controller < ApplicationController
   load_and_authorize_resource
 
   def index
-    @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
+    @<%= plural_table_name %>_grid = initialize_grid(
+      <%= orm_class.all(class_name) %>
+    )
   end
 
   def show
