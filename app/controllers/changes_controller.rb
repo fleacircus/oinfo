@@ -9,7 +9,7 @@ class ChangesController < PaperTrailManager::ChangesController
     end
 
     if params[:item_type] && params[:item_id]
-      conditions = ['versions.item_type == ? AND versions.item_id == ?', params[:item_type], params[:item_id]]
+      conditions = ['versions.item_type = ? AND versions.item_id = ?', params[:item_type], params[:item_id]]
     end
 
     @versions_grid = initialize_grid(
