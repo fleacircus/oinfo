@@ -28,6 +28,11 @@ class UsersController < ApplicationController
   end
 
 
+  def edit
+    @user = User.find(params[:id] || current_user)
+  end
+
+
   def create
     @user = User.new(params[:user])
 
