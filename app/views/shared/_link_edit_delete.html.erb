@@ -16,7 +16,7 @@
     )
   end
 
-  if can? :version, record
+  if can? :show, Version
     links << link_to(t('app.label.show_changes'),
       model_changes_path(record.class, record.id), :class => 'icon changes'
     )

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611020231) do
+ActiveRecord::Schema.define(:version => 20130613134417) do
 
   create_table "mandators", :force => true do |t|
     t.string   "name"
@@ -87,14 +87,16 @@ ActiveRecord::Schema.define(:version => 20130611020231) do
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
   create_table "versions", :force => true do |t|
-    t.string   "item_type",  :null => false
-    t.integer  "item_id",    :null => false
-    t.string   "event",      :null => false
+    t.string   "item_type",   :null => false
+    t.integer  "item_id",     :null => false
+    t.string   "event",       :null => false
     t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
+    t.integer  "mandator_id"
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+  add_index "versions", ["mandator_id"], :name => "index_versions_on_mandator_id"
 
 end

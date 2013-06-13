@@ -43,10 +43,12 @@
       change_path(version), title: t('app.action.show')
     )]
 
-    links << link_to(image_tag('icons/page_white_lightning.png'), change_path(version),
-        :method => 'put', :title => t('app.action.rollback'),
-        :confirm => t('app.confirm.are_you_sure')
-    )
+    if can? :update, version
+      links << link_to(image_tag('icons/page_white_lightning.png'), change_path(version),
+          :method => 'put', :title => t('app.action.rollback'),
+          :confirm => t('app.confirm.are_you_sure')
+      )
+    end
 
     links.join(' ').html_safe
   end

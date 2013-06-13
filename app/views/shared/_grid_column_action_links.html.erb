@@ -21,9 +21,12 @@
       )
     end
 
-    links << link_to(image_tag('icons/page_white_stack.png'),
-      model_changes_path(record.class, record.id), title: t('app.action.show_changes')
-    )
+
+    if can? :show, Version
+      links << link_to(image_tag('icons/page_white_stack.png'),
+        model_changes_path(record.class, record.id), title: t('app.action.show_changes')
+      )
+    end
 
     links.join(' ').html_safe
   end

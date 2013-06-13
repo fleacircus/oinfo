@@ -24,6 +24,8 @@ class Ability
       can :read,   Message, :mandator_id => nil
       can :manage, Message, :mandator_id => user.mandator_id
 
+      # MandatorAdmins can manage their associated changes
+      can :manage, Version, :mandator_id => user.mandator_id
 
     # User
     else

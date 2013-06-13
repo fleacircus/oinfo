@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_start_time, :set_locale
 
+  def info_for_paper_trail
+    { :mandator_id => current_user.nil? ? nil : current_user.mandator_id }
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, alert: exception.message
   end

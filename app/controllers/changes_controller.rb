@@ -1,12 +1,19 @@
 class ChangesController < ApplicationController
   before_filter :authenticate_user!
-  authorize_resource :class => false
+  authorize_resource :version, :parent => false
 
 
   def index
+    conditions = {}
+
+    if !current_user.mandator_id.nil?
+      conditions = {:mandator_id => current_user.mandator_id}
+    end
+
     if !params[:item_type].nil? && !params[:item_id].nil?
       if !params[:item_type].safe_constantize.nil? && params[:item_id].to_i != 0
-        conditions = ['versions.item_type = ? AND versions.item_id = ?', params[:item_type], params[:item_id]]
+        conditions[:item_type] = params[:item_type]
+        conditions[:item_id]   = params[:item_id]
       else
         params.delete :item_type
         params.delete :item_id
@@ -14,6 +21,8 @@ class ChangesController < ApplicationController
         return
       end
     end
+
+    logger.info "--\nconditions: #{conditions}\n--"
 
     @versions_grid = initialize_grid(
       Version,

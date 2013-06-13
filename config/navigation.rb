@@ -23,7 +23,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :changes, Version.model_name.human(:count => 2),
       changes_path, :highlights_on => %r(/changes),
-      :if => Proc.new {current_user.has_role? :meta_admin}
+      :if => Proc.new {can? :show, Version}
 
   end
 end

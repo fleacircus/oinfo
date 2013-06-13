@@ -87,4 +87,11 @@ module ChangesHelper
     end
   end
 
+
+  def change_mandator_link(version)
+    if mandator = Mandator.find(version.mandator_id) rescue nil
+      link_to(mandator.name, mandator_path(mandator))
+    end
+  end
+
 end

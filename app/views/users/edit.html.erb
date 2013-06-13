@@ -2,13 +2,6 @@
 <% if current_user.id == @user.id %>
   <%= show_for @user do |u| %>
     <%= u.attribute :activated %>
-    <%= u.attribute :mandator_name do %>
-      <% if !@user.mandator.nil? %>
-        <%= link_to @user.mandator_name, mandator_path(@user.mandator) %>
-      <% else %>
-        <%= t('show_for.blank_html') %>
-      <% end %>
-    <% end %>
     <% [:current_sign_in_at, :last_sign_in_at].each do |f| %>
       <%= u.attribute f, :format => :fdatetime %>
     <% end %>

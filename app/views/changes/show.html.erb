@@ -27,6 +27,12 @@
   <%= v.attribute :whodunnit do
     change_whodunnit_link(@version) || unknown_value()
   end %>
+
+  <% if current_user.mandator_id.nil?  %>
+    <%= v.attribute :mandator_id do
+      change_mandator_link(@version) || not_specified_value()
+    end %>
+  <% end %>
   </div>
   <table class="wice-grid right">
     <thead>
@@ -48,6 +54,8 @@
   </table>
   <div class="clear"></div>
 <% end %>
+<% if can? :update, @version %>
 <div class="link">
   <%= link_to t('app.action.rollback_change'), change_path(@version), :method => 'put', :confirm => t('app.confirm.are_you_sure'), :class => 'icon rollback' %>
 </div>
+<% end %>
