@@ -1,4 +1,4 @@
-class ChangesController < PaperTrailManager::ChangesController
+class ChangesController < ApplicationController
   before_filter :authenticate_user!
   authorize_resource :class => false
 
@@ -65,5 +65,15 @@ class ChangesController < PaperTrailManager::ChangesController
       redirect_to changes_path, alert: t('paper_trail_manager.messages.rollback_failed')
     end
   end
+
+
+  protected
+
+  def change_item_url(version)
+    return send("#{version.item_type.downcase}_url", version.item_id)
+  rescue NoMethodError
+    return nil
+  end
+  helper_method :change_item_url
 
 end

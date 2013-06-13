@@ -49,8 +49,6 @@ gem 'redcarpet', '~> 2.3.0'
 
 # Track changes to models' data
 gem 'paper_trail', '~> 2.7.2'
-#gem 'paper_trail_manager', '~> 0.2.0'
-gem 'paper_trail_manager', :git => 'git://github.com/fusion94/paper_trail_manager.git'
 
 # Test data generator
 gem 'faker'

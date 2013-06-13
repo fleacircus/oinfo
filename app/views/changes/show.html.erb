@@ -48,8 +48,6 @@
   </table>
   <div class="clear"></div>
 <% end %>
-<% if change_revert_allowed?(@version) %>
 <div class="link">
   <%= link_to t('app.action.rollback_change'), change_path(@version), :method => 'put', :confirm => t('app.confirm.are_you_sure'), :class => 'icon rollback' %>
 </div>
-<% end %>
