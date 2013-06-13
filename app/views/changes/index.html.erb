@@ -11,7 +11,7 @@
   end
 %>
 
-<%= grid(@versions_grid, show_filters: :when_filtered, allow_showing_all_records: false) do |g|
+<%= grid(@versions_grid) do |g|
 
   g.column :html => {class: 'fdatetime'}, :name => Version.human_attribute_name('created_at'),
     :attribute => 'created_at' do |version|

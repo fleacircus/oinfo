@@ -1,4 +1,4 @@
-<%= grid(@users_grid, show_filters: :when_filtered, allow_showing_all_records: false) do |g|
+<%= grid(@users_grid) do |g|
 
   g.column :name => User.human_attribute_name('email'),
     :attribute => 'email' do |user|

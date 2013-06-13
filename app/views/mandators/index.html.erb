@@ -1,5 +1,5 @@
 <%= render 'shared/view_title_link_new', :model => Mandator %>
-<%= grid(@mandators_grid, show_filters: :when_filtered, allow_showing_all_records: false) do |g|
+<%= grid(@mandators_grid) do |g|
 
   g.column :name => Mandator.human_attribute_name('name'),
     :attribute => 'name' do |mandator|
