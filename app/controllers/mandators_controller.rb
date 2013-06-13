@@ -12,23 +12,11 @@ class MandatorsController < ApplicationController
 
 
   def show
-    @mandator = Mandator.find(params[:id])
-
     @users_grid = initialize_grid(
       User,
       :conditions => ['users.id != ? AND users.mandator_id == ?', current_user.id, params[:id]],
       :order => 'users.email', :order_direction => 'asc'
     )
-  end
-
-
-  def new
-    @mandator = Mandator.new
-  end
-
-
-  def edit
-    @mandator = Mandator.find(params[:id])
   end
 
 
@@ -44,8 +32,6 @@ class MandatorsController < ApplicationController
 
 
   def update
-    @mandator = Mandator.find(params[:id])
-
     if @mandator.update_attributes(params[:mandator])
       redirect_to mandators_path, notice: flash_message('updated')
     else
@@ -55,7 +41,6 @@ class MandatorsController < ApplicationController
 
 
   def destroy
-    @mandator = Mandator.find(params[:id])
     @mandator.destroy
 
     redirect_to mandators_path, notice: flash_message('deleted')

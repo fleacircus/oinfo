@@ -95,6 +95,8 @@ class PaperTrailManager
     def change_item_link(version)
       if version.event != 'destroy'
         return link_to(change_title_for(version), change_item_url(version), :class => 'local')
+      else
+        return content_tag(:span, t('app.label.not_available'), :class => 'nil')
       end
     end
 

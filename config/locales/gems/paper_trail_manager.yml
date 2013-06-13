@@ -12,10 +12,11 @@ en:
     messages:
       permission_denied_list:     "You do not have permission to list changes."
       permission_denied_rollback: "You do not have permission to revert this change."
-      no_version:                 "No such version."
+      no_version_found:           "The change was not found."
+      record_not_exists:          "The corresponding record does not exist anymore."
       rollback_create:            "Rolled back newly-created record by destroying it."
       rollback_update:            "Rolled back changes to this record."
-      rollback_failed:            "Couldn't rollback. Sorry."
+      rollback_failed:            "The changes could not be reset."
 
 de:
   paper_trail_manager:
@@ -30,7 +31,8 @@ de:
     messages:
       permission_denied_list:     "Sie haben keine Berechtigung um die Änderungen einzusehen."
       permission_denied_rollback: "Sie haben keine Berechtigung um die Änderungen zurückzusetzen."
-      no_version:                 "Die Version wurde nicht gefunden."
+      no_version_found:           "Die Änderung wurde nicht gefunden."
+      record_not_exists:          "Der zugehöriger Datensatz existiert nicht mehr."
       rollback_create:            "Der Datensatz wurde gelöscht."
       rollback_update:            "Die Änderungen wurden zurückgesetzt."
       rollback_failed:            "Die Änderungen konnten nicht zurückgesetzt werden."

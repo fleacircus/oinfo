@@ -31,6 +31,7 @@ en:
       all: "All"
       unknown: "Unknown"
       not_specified: "Not specified"
+      not_available: "Not available"
 
 
     action:
@@ -73,5 +74,6 @@ en:
       created_model: "Successfully created %{model} %{user}."
       updated_model: "Successfully updated %{model} %{user}."
       deleted_model: "Successfully deleted %{model} %{user}."
+      not_found_model: "%{model} was not found."
       no_more_model_information: "No more information available."
       no_records_for_model: "No %{model} found."

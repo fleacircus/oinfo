@@ -20,7 +20,7 @@ Oinfo::Application.routes.draw do
 			:sign_out => 'logout'
 		}
 
-	resources :changes, :controller => 'changes'
+	resources :changes, :controller => 'changes', :only => [:index, :show, :update]
 	match "/changes/:item_type/:item_id" => "changes#index",
 	  :as => "model_changes", :via => :get, :controller => 'changes',
 	  :constraints => {:item_id => /\d+/}

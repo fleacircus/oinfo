@@ -43,18 +43,11 @@ class UsersController < ApplicationController
   end
 
 
-  def edit
-    @user = User.find(params[:id] || current_user)
-  end
-
-
   def update
     if params[:user][:password].blank?
       params[:user].delete("password")
       params[:user].delete("password_confirmation")
     end
-
-    @user = User.find(params[:id])
 
     if !current_user.has_role? :meta_admin
       params[:user].delete('role_ids')
@@ -75,12 +68,11 @@ class UsersController < ApplicationController
 
 
   def destroy
-    @user = User.find(params[:id])
     if @user.id == current_user.id
-        redirect_to users_path, alert: t('app.message.delete_account_impossible')
+        redirect_to users_path, alert: t('app.messages.delete_account_impossible')
     elsif @user.destroy
         redirect_to users_path, notice: flash_message('deleted')
-      end
+    end
   end
 
 

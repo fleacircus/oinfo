@@ -1,16 +1,15 @@
-<h2>
-  <%= t('paper_trail_manager.show_title', :date => l(@version.created_at, format: :fdatetime)) %>
-  <span><%= link_to t('app.label.all_changes'), model_changes_path(@version.item_type, @version.item_id), :class => 'icon changes' %></span>
-</h2>
-<div class="link pager">
-  <% if !@version.previous.nil? %>
-    <%= link_to t('paper_trail_manager.previous'), change_path(@version.previous), :class => 'icon previous' %>
-  <% end %>
-  <% if !@version.next.nil? %>
+<h2><%= t('paper_trail_manager.show_title', :date => l(@version.created_at, format: :fdatetime)) %></h2>
+<table class="pager">
+  <tbody><tr>
+    <td class="previous"><% if !@version.previous.nil? %>
+      <%= link_to t('paper_trail_manager.previous'), change_path(@version.previous), :class => 'icon previous' %>
+    </td><% end %>
+    <td><%= link_to t('app.label.all_changes'), model_changes_path(@version.item_type, @version.item_id), :class => 'icon changes' %></td>
+    <td class="next"><% if !@version.next.nil? %>
     <%= link_to t('paper_trail_manager.next'), change_path(@version.next), :class => 'icon next' %>
-  <% end %>
-  <div class="clear"></div>
-</div>
+    <% end %></td>
+  </tr></tbody>
+</table>
 <%= show_for @version do |v| %>
   <p>
     <strong><%= Version.human_attribute_name('item_id') %></strong>
@@ -29,9 +28,6 @@
     change_whodunnit_link(@version) || unknown_value()
   end %>
   </div>
-  <% if @version.event == 'update' or @version.event == 'create'
-      changes = changes_for(@version)
-  %>
   <table class="wice-grid right">
     <thead>
       <tr class="wice-grid-title-row">
@@ -39,6 +35,7 @@
       </tr>
     </thead>
     <tbody>
+    <% changes = changes_for(@version) %>
     <% changes.keys.sort.each_with_index do |key, i| %>
       <tr>
         <td class="shrink"><%= key %></td>
@@ -46,10 +43,9 @@
         <td class="shrink">&rarr;</td>
         <td class="curr"><%= text_or_nil(changes[key][:current]) %></td>
       </tr>
-      <% end %>
+    <% end %>
     </tbody>
   </table>
-  <% end %>
   <div class="clear"></div>
 <% end %>
 <% if change_revert_allowed?(@version) %>

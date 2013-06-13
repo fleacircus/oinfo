@@ -4,12 +4,15 @@ class ChangesController < PaperTrailManager::ChangesController
 
 
   def index
-    unless change_index_allowed?
-      return(redirect_to root_url), :error => t('paper_trail_manager.messages.permission_denied_list')
-    end
-
-    if params[:item_type] && params[:item_id]
-      conditions = ['versions.item_type = ? AND versions.item_id = ?', params[:item_type], params[:item_id]]
+    if !params[:item_type].nil? && !params[:item_id].nil?
+      if !params[:item_type].safe_constantize.nil? && params[:item_id].to_i != 0
+        conditions = ['versions.item_type = ? AND versions.item_id = ?', params[:item_type], params[:item_id]]
+      else
+        params.delete :item_type
+        params.delete :item_id
+        redirect_to changes_path, alert: t('paper_trail_manager.messages.no_version_found')
+        return
+      end
     end
 
     @versions_grid = initialize_grid(
@@ -21,7 +24,11 @@ class ChangesController < PaperTrailManager::ChangesController
 
 
   def show
-    super
+    begin
+      @version = Version.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to changes_path, alert: t('paper_trail_manager.messages.no_version_found')
+    end
   end
 
 
@@ -29,15 +36,19 @@ class ChangesController < PaperTrailManager::ChangesController
     begin
       @version = Version.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      return(redirect_to(:action => :index)), :error => t('paper_trail_manager.messages.no_version')
+      redirect_to changes_path, alert: t('paper_trail_manager.messages.no_version_found')
+      return
     end
 
-    unless change_revert_allowed?(@version)
-      return(redirect_to :action => :index), :error => t('paper_trail_manager.messages.permission_denied_rollback')
-    end
+    logger.info @version.inspect
 
     if @version.event == "create"
-      @record = @version.item_type.constantize.find(@version.item_id)
+      begin
+        @record = @version.item_type.constantize.find(@version.item_id)
+      rescue ActiveRecord::RecordNotFound
+        redirect_to changes_path, alert: t('paper_trail_manager.messages.record_not_exists')
+        return
+      end
       @result = @record.destroy
     else
       @record = @version.reify
@@ -46,12 +57,12 @@ class ChangesController < PaperTrailManager::ChangesController
 
     if @result
       if @version.event == "create"
-        redirect_to :action => :index, :notice => t('paper_trail_manager.messages.rollback_create')
+        redirect_to changes_path, notice: t('paper_trail_manager.messages.rollback_create')
       else
-        redirect_to change_item_url(@version), :notice => t('paper_trail_manager.messages.rollback_update')
+        redirect_to change_item_url(@version), notice: t('paper_trail_manager.messages.rollback_update')
       end
     else
-      redirect_to :action => :index, :error => t('paper_trail_manager.messages.rollback_failed')
+      redirect_to changes_path, alert: t('paper_trail_manager.messages.rollback_failed')
     end
   end
 

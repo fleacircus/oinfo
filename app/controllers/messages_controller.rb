@@ -16,18 +16,8 @@ class MessagesController < ApplicationController
   end
 
 
-  def show
-    @message = Message.find(params[:id])
-  end
-
-
   def new
     @message = Message.new
-  end
-
-
-  def edit
-    @message = Message.find(params[:id])
   end
 
 
@@ -46,8 +36,6 @@ class MessagesController < ApplicationController
 
 
   def update
-    @message = Message.find(params[:id])
-
     @message.user_id = current_user.id
     @message.mandator_id = current_user.mandator_id
 
@@ -60,7 +48,6 @@ class MessagesController < ApplicationController
 
 
   def destroy
-    @message = Message.find(params[:id])
     @message.destroy
 
     redirect_to messages_path, notice: flash_message('deleted')

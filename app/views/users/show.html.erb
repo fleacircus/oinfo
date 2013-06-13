@@ -1,20 +1,25 @@
 <h2><%= @user.email %></h2>
 <%= show_for @user do |u| %>
-  <%= u.attribute :activated %>
-  <%= u.attribute :mandator_name do
-    @user.mandator.nil? ? not_specified_value() : link_to(@user.mandator_name, mandator_path(@user.mandator))
-  end %>
-  <% [:current_sign_in_at, :last_sign_in_at].each do |f| %>
-    <%= u.attribute f, :format => :fdatetime %>
-  <% end %>
-  <%= u.attribute :sign_in_count %>
-  <%= u.attribute :failed_attempts %>
-  <%= u.attribute :locked_at, :format => :fdatetime %>
-  <%= u.attribute :unlock_token %>
-  <%= u.attribute :reset_password_sent_at, :format => :fdatetime %>
-  <%= u.attribute :reset_password_token %>
-  <% [:created_at, :updated_at].each do |f| %>
-    <%= u.attribute f, :format => :fdatetime %>
-  <% end %>
+  <div class="left">
+    <%= u.attribute :activated %>
+    <%= u.attribute :mandator_name do
+      @user.mandator.nil? ? not_specified_value() : link_to(@user.mandator_name, mandator_path(@user.mandator))
+    end %>
+    <% [:current_sign_in_at, :last_sign_in_at].each do |f| %>
+      <%= u.attribute f, :format => :fdatetime %>
+    <% end %>
+    <%= u.attribute :sign_in_count %>
+    <%= u.attribute :failed_attempts %>
+  </div>
+  <div class="right">
+    <%= u.attribute :locked_at, :format => :fdatetime %>
+    <%= u.attribute :unlock_token %>
+    <%= u.attribute :reset_password_sent_at, :format => :fdatetime %>
+    <%= u.attribute :reset_password_token %>
+    <% [:created_at, :updated_at].each do |f| %>
+      <%= u.attribute f, :format => :fdatetime %>
+    <% end %>
+  </div>
+  <div class="clear"></div>
 <% end %>
 <%= render 'shared/link_edit_delete', :record => @user %>
