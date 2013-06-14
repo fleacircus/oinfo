@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  authorize_resource
 
 
   def index
@@ -13,6 +13,11 @@ class MessagesController < ApplicationController
       messages,
       :order => 'messages.updated_at', :order_direction => 'desc'
     )
+  end
+
+
+  def show
+    @message = find_by_id_or_redirect(Message)
   end
 
 
@@ -35,7 +40,14 @@ class MessagesController < ApplicationController
   end
 
 
+  def edit
+    @message = find_by_id_or_redirect(Message)
+  end
+
+
   def update
+    @message = find_by_id_or_redirect(Message)
+
     @message.user_id = current_user.id
     @message.mandator_id = current_user.mandator_id
 
@@ -48,6 +60,7 @@ class MessagesController < ApplicationController
 
 
   def destroy
+    @message = find_by_id_or_redirect(Message)
     @message.destroy
 
     redirect_to messages_path, notice: flash_message('deleted')

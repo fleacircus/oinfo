@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  authorize_resource
 
   autocomplete :mandator, :name
 
@@ -23,13 +23,13 @@ class UsersController < ApplicationController
   end
 
 
-  def new
-    @user = User.new
+  def show
+    @user = find_by_id_or_redirect(User)
   end
 
 
-  def edit
-    @user = User.find(params[:id] || current_user)
+  def new
+    @user = User.new
   end
 
 
@@ -48,7 +48,14 @@ class UsersController < ApplicationController
   end
 
 
+  def edit
+    @user = find_by_id_or_redirect(User, params[:id] || current_user)
+  end
+
+
   def update
+    @user = find_by_id_or_redirect(User)
+
     if params[:user][:password].blank?
       params[:user].delete("password")
       params[:user].delete("password_confirmation")
@@ -73,6 +80,8 @@ class UsersController < ApplicationController
 
 
   def destroy
+    @user = find_by_id_or_redirect(User)
+
     if @user.id == current_user.id
         redirect_to users_path, alert: t('app.messages.delete_account_impossible')
     elsif @user.destroy

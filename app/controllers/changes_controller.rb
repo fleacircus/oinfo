@@ -33,23 +33,12 @@ class ChangesController < ApplicationController
 
 
   def show
-    begin
-      @version = Version.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to changes_path, alert: t('paper_trail_manager.messages.no_version_found')
-    end
+    @version = find_by_id_or_redirect(Version)
   end
 
 
   def update
-    begin
-      @version = Version.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to changes_path, alert: t('paper_trail_manager.messages.no_version_found')
-      return
-    end
-
-    logger.info @version.inspect
+    @version = find_by_id_or_redirect(Version)
 
     if @version.event == "create"
       begin

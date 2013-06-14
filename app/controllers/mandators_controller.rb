@@ -1,6 +1,6 @@
 class MandatorsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  authorize_resource
 
 
   def index
@@ -12,6 +12,8 @@ class MandatorsController < ApplicationController
 
 
   def show
+    @mandator = find_by_id_or_redirect(Mandator)
+
     @users_grid = initialize_grid(
       User,
       :conditions => ['users.id != ? AND users.mandator_id == ?', current_user.id, params[:id]],
@@ -31,7 +33,14 @@ class MandatorsController < ApplicationController
   end
 
 
+  def edit
+    @mandator = find_by_id_or_redirect(Mandator)
+  end
+
+
   def update
+    @mandator = find_by_id_or_redirect(Mandator)
+
     if @mandator.update_attributes(params[:mandator])
       redirect_to mandators_path, notice: flash_message('updated')
     else
@@ -41,6 +50,7 @@ class MandatorsController < ApplicationController
 
 
   def destroy
+    @mandator = find_by_id_or_redirect(Mandator)
     @mandator.destroy
 
     redirect_to mandators_path, notice: flash_message('deleted')
