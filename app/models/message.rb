@@ -2,6 +2,9 @@ class Message < ActiveRecord::Base
   resourcify
   attr_accessible :mandator_id, :text, :title, :user_id
 
+  validates :title, :presence => true
+  validates :text,  :presence => true
+
   belongs_to :user
   belongs_to :mandator
 
