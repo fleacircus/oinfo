@@ -77,3 +77,19 @@ en:
       not_found_model: "%{model} was not found."
       no_more_model_information: "No more information available."
       no_records_for_model: "No %{model} found."
+
+
+    version:
+      show_title: "Change from %{date}"
+      previous:   "Previous change"
+      next:       "Next change"
+
+      record_not_exists: "The corresponding record does not exist anymore."
+      rollback_create:   "Rolled back newly-created record by destroying it."
+      rollback_update:   "Rolled back changes to this record."
+      rollback_failed:   "The changes could not be reset."
+
+      event:
+        create:  "created"
+        update:  "updated"
+        destroy: "deleted"

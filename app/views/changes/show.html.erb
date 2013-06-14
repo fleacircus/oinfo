@@ -1,12 +1,12 @@
-<h2><%= t('paper_trail_manager.show_title', :date => l(@version.created_at, format: :fdatetime)) %></h2>
+<h2><%= t('app.version.show_title', :date => l(@version.created_at, format: :fdatetime)) %></h2>
 <table class="pager">
   <tbody><tr>
     <td class="previous"><% if !@version.previous.nil? %>
-      <%= link_to t('paper_trail_manager.previous'), change_path(@version.previous), :class => 'icon previous' %>
+      <%= link_to t('app.version.previous'), change_path(@version.previous), :class => 'icon previous' %>
     </td><% end %>
     <td><%= link_to t('app.label.all_changes'), model_changes_path(@version.item_type, @version.item_id), :class => 'icon changes' %></td>
     <td class="next"><% if !@version.next.nil? %>
-    <%= link_to t('paper_trail_manager.next'), change_path(@version.next), :class => 'icon next' %>
+    <%= link_to t('app.version.next'), change_path(@version.next), :class => 'icon next' %>
     <% end %></td>
   </tr></tbody>
 </table>
@@ -21,7 +21,7 @@
   end %>
 
   <%= v.attribute :event do
-    t("paper_trail_manager.#{@version.event}")
+    t("app.version.event.#{@version.event.downcase}")
   end %>
 
   <%= v.attribute :whodunnit do

@@ -17,12 +17,10 @@ class ChangesController < ApplicationController
       else
         params.delete :item_type
         params.delete :item_id
-        redirect_to changes_path, alert: t('paper_trail_manager.messages.no_version_found')
+        redirect_to changes_path, alert: t('app.messages.not_found_model', :model => Version.model_name.human)
         return
       end
     end
-
-    logger.info "--\nconditions: #{conditions}\n--"
 
     @versions_grid = initialize_grid(
       Version,
@@ -44,7 +42,7 @@ class ChangesController < ApplicationController
       begin
         @record = @version.item_type.constantize.find(@version.item_id)
       rescue ActiveRecord::RecordNotFound
-        redirect_to changes_path, alert: t('paper_trail_manager.messages.record_not_exists')
+        redirect_to changes_path, alert: t('app.version.record_not_exists')
         return
       end
       @result = @record.destroy
@@ -55,12 +53,12 @@ class ChangesController < ApplicationController
 
     if @result
       if @version.event == "create"
-        redirect_to changes_path, notice: t('paper_trail_manager.messages.rollback_create')
+        redirect_to changes_path, notice: t('app.version.rollback_create')
       else
-        redirect_to change_item_url(@version), notice: t('paper_trail_manager.messages.rollback_update')
+        redirect_to change_item_url(@version), notice: t('app.version.rollback_update')
       end
     else
-      redirect_to changes_path, alert: t('paper_trail_manager.messages.rollback_failed')
+      redirect_to changes_path, alert: t('app.version.rollback_failed')
     end
   end
 

@@ -7,7 +7,7 @@
   end
   events = []
   ['create', 'update', 'destroy'].each do |e|
-    events << [t("paper_trail_manager.#{e.downcase}", :count => 1), e]
+    events << [t("app.version.event.#{e.downcase}", :count => 1), e]
   end
 %>
 
@@ -25,7 +25,7 @@
 
   g.column :html => {class: 'event'}, :name => Version.human_attribute_name('event'),
     :attribute => 'event', :custom_filter => events do |version|
-      t("paper_trail_manager.#{version.event}")
+      t("app.version.event.#{version.event.downcase}")
   end
 
   g.column :html => {class: 'record_link'}, :name => Version.human_attribute_name('item_id'),

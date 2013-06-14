@@ -80,3 +80,19 @@ de:
       not_found_model: "%{model} wurde nicht gefunden."
       no_more_model_information: "Keine weiteren Informationen verfügbar."
       no_records_for_model: "Es wurden keine %{model} gefunden."
+
+
+    version:
+      show_title: "Änderung vom %{date}"
+      previous:   "Vorherige Änderung"
+      next:       "Nächste Änderung"
+
+      record_not_exists: "Der zugehöriger Datensatz existiert nicht mehr."
+      rollback_create:   "Der Datensatz wurde gelöscht."
+      rollback_update:   "Die Änderungen wurden zurückgesetzt."
+      rollback_failed:   "Die Änderungen konnten nicht zurückgesetzt werden."
+
+      event:
+        create:  "angelegt"
+        update:  "aktualisiert"
+        destroy: "gelöscht"
