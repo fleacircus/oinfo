@@ -38,6 +38,8 @@ a {
 
   img { vertical-align: bottom; }
 
+  &:hover { opacity: .75 }
+
   &.icon {
     padding-left: 20px;
     background: transparent center left no-repeat;
