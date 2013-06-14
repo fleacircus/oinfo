@@ -9,7 +9,7 @@
   <%= yield :head %>
   <%= csrf_meta_tags %>
 </head>
-<body id="<%= [controller.controller_name, controller.action_name].join '_' %>">
+<body id="<%= controller.controller_name %>" class="<%= controller.action_name %>">
   <div id="page">
 	<header>
 	  <h1>Online Information</h1>

@@ -1,4 +1,5 @@
 $color_text: #333;
+$color_text_input: lighten($color_text, 20%);
 $color_text_missing: lighten($color_text, 40%);
 $color_border: #ccc;
 $color_border_hover: $color_text;
@@ -16,21 +17,45 @@ $font: normal 14px verdana, arial, helvetica, sans-serif;
 $shadow_inset_top: inset 0 5px 5px -5px $color_shadow;
 $shadow_inset_bottom: inset 0 -10px 10px -10px $color_shadow;
 
+@mixin input_textarea_style {
+  padding: 4px;
+  border: 1px solid $color_border;
+  border-radius: 5px;
+  box-shadow: $shadow_inset_top;
+  color: $color_text_input;
+  &:hover {
+    border-color: $color_shadow;
+  }
+  &:focus {
+    border-color: $color_link;
+    color: $color_text;
+  }
+}
+
+
+
+
 * {
   margin: 0;
   padding: 0;
 }
 
+
 html {
   min-height: 100%;
 }
+
+
 body {
   background-color: #aaa;
   background-image: linear-gradient(to top, darken(#aaa, 50%), #aaa);
   color: $color_text;
   font: $font;
 }
+
+
 p, ol, ul, td { font: $font; }
+
 
 a {
   color: $color_link;
@@ -66,11 +91,31 @@ a {
     background: transparent url(image_path('icons/world_link.png')) bottom right no-repeat;
     background-size: 12px;
   }
+
   &.local {
     padding-right: 0;
     background: none
   }
 }
+
+input {
+  &[type='text'], &[type='email'], &[type='password'] { @include input_textarea_style; }
+  &[type='checkbox'] { vertical-align: bottom; }
+}
+input[type='submit'], button {
+  padding: 4px 10px;
+  border: 1px solid $color_border;
+  border-radius: 5px;
+  box-shadow: $shadow_inset_bottom;
+  background: #eee;
+  color: $color_text_input;
+  &:focus, &:hover  {
+    border-color: $color_shadow;
+    color: $color_link;
+  }
+  &:active { box-shadow: $shadow_inset_top; }
+}
+textarea { @include input_textarea_style; }
 
 fieldset {
   display: inline-block;
@@ -84,6 +129,20 @@ fieldset {
     font-size: 120%;
     font-weight: bold;
   }
+
+  div {
+    &.field { margin-bottom: 10px; }
+    &.field_with_errors {
+      display: inline;
+      label {
+        padding-left: 20px;
+        background: transparent url(image_path('icons/exclamation.png')) center left no-repeat;
+        color: $color_error;
+      }
+    }
+    &.button { padding-top: 10px; }
+  }
+
   label {
     display: block;
     margin-bottom: 2px;
@@ -93,7 +152,6 @@ fieldset {
 
       &.password {
         background: transparent url(image_path('icons/stars.png')) 310px center no-repeat;
-
         &.score0 { background-position: 294px center; }
         &.score1 { background-position: 278px center; }
         &.score2 { background-position: 262px center; }
@@ -102,32 +160,23 @@ fieldset {
       }
     }
   }
+
   input {
     &[type='text'], &[type='email'], &[type='password'] {
       width: 300px;
-      padding: 2px;
     }
-    &[type='checkbox'] {
-      vertical-align: bottom;
+    &[type='checkbox']+label {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+  }
+  input[type='submit'], button { float: right; }
 
-      &+label {
-        display: inline-block;
-        margin-bottom: 0;
-      }
-    }
-  }
-  input[type='submit'], button {
-    float: right;
-    padding: 2px 10px;
-  }
-  select {
-    width: 300px;
-  }
+  select { width: 300px; }
+
   textarea {
-    width: 300px;
     min-height: 200px;
     height: 200px;
-    padding: 2px;
     resize: vertical;
   }
 }
@@ -145,15 +194,18 @@ div {
       background-color: $color_alert;
       background-image: linear-gradient(to top, darken($color_alert, 15%), $color_alert);
     }
+
     &.warning {
       color: $color_text;
       background-color: $color_warning;
       background-image: linear-gradient(to top, darken($color_warning, 15%), $color_warning);
     }
+
     &.info {
       background-color: $color_info;
       background-image: linear-gradient(to top, darken($color_info, 15%), $color_info);
     }
+
     &.notice, &.success {
       background-color: $color_notice;
       background-image: linear-gradient(to top, darken($color_notice, 15%), $color_notice);
@@ -176,6 +228,7 @@ div {
       font-size: 12px;
       line-height: 20px;
     }
+
     ul {
       margin: 0;
       padding: 0;
@@ -183,19 +236,8 @@ div {
       li { font-size: 12px; }
     }
   }
-
-  &.field {
-    margin-bottom: 10px;
-  }
-  &.field_with_errors {
-    display: inline;
-
-    label { color: $color_error; }
-  }
-  &.button {
-    padding-top: 10px;
-  }
 }
+
 
 table {
   width: 100%;
@@ -212,19 +254,15 @@ table {
 
   thead {
     tr { box-shadow: $shadow_inset_bottom; }
-
     th {
       text-align: left;
       color: lighten($color_text, 20%);
-
-      &.boolean div {
-        padding: 0 !important;
-      }
-      input[type='text'], select {
-        width: 97% !important;
-      }
+      &.boolean div { padding: 0 !important; }
+      input[type='text'] { padding: 2px; }
+      input[type='text'], select { width: 97% !important; }
     }
   }
+
   tbody tr {
     &.even  { background: #eee; }
     &:hover { background: #ddd; }
@@ -233,7 +271,6 @@ table {
   th, td {
     padding: 4px 6px;
     border: 1px solid $color_border;
-
     &.right { text-align: right; }
     &.fdatetime, &.boolean, &.numeric, &.button, &.shrink {
       width: 1% !important;
@@ -244,7 +281,6 @@ table {
 
   td {
     vertical-align: top;
-
     &.left    { text-align: left; }
     &.boolean { text-align: center; }
     &.numeric { text-align: right; }
@@ -252,6 +288,7 @@ table {
 
   img { vertical-align: bottom; }
 }
+
 
 .pagination {
   height: 24px;
@@ -262,9 +299,9 @@ table {
     border: 1px solid $color_border;
     border-radius: 5px;
   }
+
   li {
     display: inline;
-
     a {
       float: left;
       padding: 0 8px;
@@ -281,9 +318,13 @@ table {
     }
   }
 }
-.pagination a, .pagination_status {
-  font-size: 71%;
+
+.pagination_status {
+  margin-top: 2px;
+  color: $color_text_input;
 }
+.pagination a, .pagination_status { font-size: 71%; }
+
 
 ul.group_by {
   list-style: none outside;
@@ -302,11 +343,11 @@ ul.group_by {
       display: block;
       padding: 2px;
       border-bottom: 1px solid $color_border;
-
       &:last-child { border-bottom: 0; }
     }
   }
 }
+
 
 .box, .show_for {
   padding: 10px;
@@ -326,25 +367,52 @@ ul.group_by {
   }
 }
 
+
+.center_box {
+  width: 332px;
+  margin: 0 auto;
+
+  fieldset { display: block; }
+}
+
+
 span.nil {
   color: $color_text_missing;
   font-style: italic;
 }
+
 
 .link {
   margin-top: 10px;
   text-align: right;
 }
 
-.clear {
-  clear: both !important;
+
+.clear { clear: both !important; }
+.left  { float: left !important; }
+.right { float: right !important; }
+
+
+div.sub_navigation {
+  margin-bottom: 10px;
+
+  ul { list-style: none inside; }
+  li {
+    display: inline-block;
+    border: 1px solid $color_border;
+    a {
+      display: inline-block;
+      min-width: 50px;
+      padding: 1px 10px 3px 10px;
+      box-shadow: $shadow_inset_bottom;
+      text-align: center;
+      font-size: 86%;
+      &.selected { box-shadow: $shadow_inset_top; }
+      &.selected, &:hover { background-color: #f6f6f6; }
+    }
+  }
 }
-.left {
-  float: left !important;
-}
-.right {
-  float: right !important;
-}
+
 
 #page {
   margin: 20px auto;
@@ -352,13 +420,12 @@ span.nil {
   background-color: #fff;
 }
 
+
 header {
   position: relative;
   padding: 10px 10px 0 10px;
 
-  h1 {
-    margin: 0 0 10px 0;
-  }
+  h1 { margin: 0 0 10px 0; }
 
   #account_box {
     position: absolute;
@@ -384,7 +451,6 @@ header {
 
         &.selected {
           border-bottom-color: #fff;
-
           a {
             padding: 4px 10px;
             box-shadow: none;
@@ -398,7 +464,6 @@ header {
           padding: 1px 10px 4px 10px;
           box-shadow: $shadow_inset_bottom;
           text-align: center;
-
           &:hover { background-color: #f6f6f6; }
         }
       }
@@ -406,119 +471,6 @@ header {
   }
 }
 
-#content{
-  padding: 20px;
-  border-top: 1px solid $color_border;
-  border-bottom: 1px solid $color_border;
-
-  h2, h3 {
-    margin-bottom: 5px;
-
-    span {
-      float: right;
-      font: $font;
-    }
-  }
-}
-
-div.sub_navigation {
-  margin-bottom: 10px;
-
-  ul { list-style: none inside; }
-  li {
-    display: inline-block;
-    border: 1px solid $color_border;
-
-    a {
-      display: inline-block;
-      min-width: 50px;
-      padding: 1px 10px 3px 10px;
-      box-shadow: $shadow_inset_bottom;
-      text-align: center;
-      font-size: 86%;
-
-      &.selected { box-shadow: $shadow_inset_top; }
-      &.selected, &:hover { background-color: #f6f6f6; }
-    }
-  }
-}
-
-div.center_box {
-  width: 332px;
-  margin: 0 auto;
-
-  fieldset {
-    display: block;
-  }
-}
-
-#users_show .show_for.user div {
-  &.left, &.right { width: 50%; }
-}
-#users_edit, #users_update {
-  fieldset {
-    float: left;
-    width: 430px;
-  }
-  .show_for.user {
-    float: right;
-    width: 430px;
-    margin-top: 9px;
-  }
-}
-
-#messages_new, #messages_edit {
-  fieldset {
-    display: block
-  }
-  input[type='text'], textarea {
-    width: 892px;
-  }
-}
-#messages_show {
-  .info {
-    float: left;
-    margin-top: 10px;
-  }
-  ul {
-    margin: 0 15px;
-  }
-}
-
-#dashboard_index {
-  .link { margin-top: 0; }
-}
-
-#changes_index {
-  th, td {
-    &.item_type, &.event { width: 100px; }
-  }
-}
-
-#changes_show {
-  table.pager {
-    tr:hover { background: transparent; }
-    td {
-      width: 33%;
-      padding: 0;
-      border: 0;
-      text-align: center;
-
-      &.previous { text-align: left; }
-      &.next     { text-align: right; }
-    }
-  }
-  div.show_for {
-    table {
-      width: 75%;
-
-      td {
-        font-size: 86%;
-        &.prev, &.curr { width: 50%; }
-      }
-    }
-  }
-}
 
 footer {
   padding: 5px 10px;
@@ -532,6 +484,92 @@ footer {
     a {
       img { opacity: .5; }
       &:hover img { opacity: 1; }
+    }
+  }
+}
+
+
+#content{
+  padding: 20px;
+  border-top: 1px solid $color_border;
+  border-bottom: 1px solid $color_border;
+
+  h2, h3 {
+    margin-bottom: 5px;
+    span {
+      float: right;
+      font: $font;
+    }
+  }
+}
+
+
+#dashboard.index {
+  .link { margin-top: 0; }
+}
+
+
+#users {
+  &.show {
+    .show_for.user div {
+      &.left, &.right { width: 50%; }
+    }
+  }
+
+  &.new, &.edit, &.update {
+    fieldset {
+      float: left;
+      width: 420px;
+    }
+    .show_for.user {
+      float: right;
+      width: 420px;
+      margin-top: 10px;
+    }
+  }
+}
+
+
+#messages {
+  fieldset { display: block; }
+  input[type='text'], textarea { width: 892px; }
+
+  &.show {
+    .info {
+      float: left;
+      margin-top: 10px;
+    }
+    ul { margin: 0 15px; }
+  }
+}
+
+
+#changes {
+  &.index {
+    th, td {
+      &.item_type, &.event { width: 100px; }
+    }
+  }
+
+  &.show {
+    table.pager {
+      tr:hover { background: transparent; }
+      td {
+        width: 33%;
+        padding: 0;
+        border: 0;
+        text-align: center;
+
+        &.previous { text-align: left; }
+        &.next     { text-align: right; }
+      }
+    }
+    div.show_for table {
+      width: 75%;
+      td {
+        font-size: 86%;
+        &.prev, &.curr { width: 50%; }
+      }
     }
   }
 }

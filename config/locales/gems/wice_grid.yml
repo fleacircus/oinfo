@@ -9,8 +9,8 @@ en:
     show_filter_tooltip: Show filter
     hide_filter_tooltip: Hide filter
     csv_export_tooltip: Export to CSV
-    filter_tooltip: Filter
-    reset_filter_tooltip: Reset
+    filter_tooltip: Filter records
+    reset_filter_tooltip: Reset filter
     boolean_filter_true_label: "yes"
     boolean_filter_false_label: "no"
     previous_label: «
@@ -420,8 +420,8 @@ de:
     show_filter_tooltip: Filter einblenden
     hide_filter_tooltip: Filter ausblenden
     csv_export_tooltip: CSV Export
-    filter_tooltip: Filter
-    reset_filter_tooltip: Reset
+    filter_tooltip: Filter anwenden
+    reset_filter_tooltip: Filter zurücksetzen
     boolean_filter_true_label: "Ja"
     boolean_filter_false_label: "Nein"
     previous_label: «

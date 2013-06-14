@@ -2,122 +2,104 @@
   width: 16px;
   height: 16px;
 }
-
-.wg-detached-filter{
-  a.date-label {text-decoration: none;}
-  a.date-label:hover {text-decoration: line-through;}
+@mixin date-label {
+  a.date-label {
+    text-decoration: none;
+    &:hover { text-decoration: line-through; }
+  }
 }
 
-.wice-grid{
+.wg-detached-filter { @include date-label; }
 
-  .clickable{
-    cursor: pointer;
-    margin-bottom: 2px;
-    margin-right: 2px;
-  }
+.wice-grid {
+  @include date-label;
 
-
-  a.date-label {text-decoration: none;}
-  a.date-label:hover {text-decoration: line-through;}
-
-  .ui-datepicker-trigger, .wg-detached-filter .ui-datepicker-trigger{
+  .ui-datepicker-trigger, .wg-detached-filter .ui-datepicker-trigger {
     cursor: pointer;
   }
 
-  .desc,  .asc{
+  .desc, .asc{
+    display: block;
     padding-right: 18px;
-    text-decoration:none;
+    text-decoration: none;
   }
 
   .desc {
-    background: transparent url(/assets/icons/grid/arrow_down.gif) right no-repeat
+    background: transparent url(image_path('icons/bullet_arrow_down.png')) right no-repeat
   }
   .asc  {
-    background: transparent url(/assets/icons/grid/arrow_up.gif)   right no-repeat
+    background: transparent url(image_path('icons/bullet_arrow_up.png')) right no-repeat
   }
 
-  .submit.clickable{
-    background: transparent url(/assets/icons/grid/table_refresh.png) no-repeat;
+  .clickable {
     @include icon-dimensions;
-  }
-
-  .reset.clickable{
-    background: transparent url(/assets/icons/grid/table.png) no-repeat;
-    @include icon-dimensions;
-  }
+    background: transparent no-repeat;
+    cursor: pointer;
 
 
-  .wg-show-filter.clickable,
-  .wg-hide-filter.clickable{
-    background: transparent url(/assets/icons/grid/page_white_find.png) no-repeat;
-    @include icon-dimensions;
-  }
-
-
-  .export-to-csv-button.clickable{
-    background: transparent url(/assets/icons/grid/page_white_excel.png) no-repeat;
-    @include icon-dimensions;
-  }
-
-  .clickable.select-all{
-    background: transparent url(/assets/icons/grid/tick_all.png) no-repeat;
-    @include icon-dimensions;
-    float:left;
-  }
-
-  .clickable.deselect-all{
-    background: transparent url(/assets/icons/grid/untick_all.png) no-repeat;
-    @include icon-dimensions;
-    float:left;
+    &.submit {
+      background-image: url(image_path('icons/table_lightning.png'));
+      float: left;
+      margin-left: -1px;
+    }
+    &.reset {
+      background-image: url(image_path('icons/table_refresh.png'));
+      float: right;
+      margin: 1px -1px 0 0;
+    }
+    &.wg-show-filter, &.wg-hide-filter {
+      background-image: url(image_path('icons/page_white_find.png'));
+      margin-left: -1px;
+    }
+    &.select-all {
+      background-image: url(/assets/icons/grid/tick_all.png);
+      float: left;
+    }
+    &.deselect-all {
+      background-image: url(/assets/icons/grid/untick_all.png);
+      float: left;
+    }
+    &.export-to-csv-button {
+      background-image: url(/assets/icons/grid/page_white_excel.png);
+    }
   }
 
   .custom-dropdown-container {
     position: relative;
-    padding-right: 18px;
+    padding-right: 10px;
 
-
-    .collapse-multi-select-icon, .expand-multi-select-icon{
-      width: 12px;
-      height: 12px;
-      position:absolute;
-      top:0;
-      right:0;
+    .collapse-multi-select-icon, .expand-multi-select-icon {
+      position: absolute;
+      top: -3px;
+      right: 0;
+      @include icon-dimensions;
+      background: transparent no-repeat;
     }
-
-    .collapse-multi-select-icon{
-      background: transparent url(/assets/icons/grid/collapse.gif) no-repeat;
-    }
-
-    .expand-multi-select-icon{
-      background: transparent url(/assets/icons/grid/expand.gif) no-repeat;
-    }
-
+    .collapse-multi-select-icon { background-image: url(image_path('icons/bullet_toggle_minus.png')); }
+    .expand-multi-select-icon   { background-image: url(image_path('icons/bullet_toggle_plus.png')); }
   }
 
   .text-filter-container {
-    position: relative; padding-right: 13px;
+    position: relative;
+    padding-right: 13px;
+
     .negation-checkbox {
-      position:absolute;
-      top:0;
-      right:0;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 
 
   /* in case of twitter bootstrap :) */
-  thead th select{
-    width: auto;
-  }
+  thead th select { width: auto; }
 
-  .pagination{
+  .pagination {
     margin: 0px;
     float: left;
   }
 
-
-  tr.wg-filter-row  input[type=text] {
-    width: 100px;
-  }
+  tr.wg-filter-row input[type=text] { width: 100px; }
 
   .pagination_status {
     font-weight: bold;
@@ -126,12 +108,12 @@
 
 }
 
-.wice-grid-query-panel{
-  li {list-style-type: none; }
+.wice-grid-query-panel {
+  li { list-style-type: none; }
 
-  ul {margin-left: 0 }
+  ul { margin-left: 0; }
 
-  a.wice-grid-delete-query .delete-icon{
+  a.wice-grid-delete-query .delete-icon {
     background: transparent url(/assets/icons/grid/delete.png) no-repeat;
     float: left;
     @include icon-dimensions;
