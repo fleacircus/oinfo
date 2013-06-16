@@ -1,5 +1,6 @@
 Oinfo::Application.routes.draw do
 
+
 	resources :dashboard, :only => :index
 
 	resources :users do
@@ -7,7 +8,6 @@ Oinfo::Application.routes.draw do
   end
 
   resources :mandators
-
   resources :messages
 
 	resource :account, :controller => "users", :only => :edit
@@ -22,7 +22,7 @@ Oinfo::Application.routes.draw do
 
 	resources :changes, :controller => 'changes', :only => [:index, :show, :update]
 	match "/changes/:item_type/:item_id" => "changes#index",
-	  :as => "model_changes", :via => :get, :controller => 'changes',
+	  :as => "instance_changes", :via => :get, :controller => 'changes',
 	  :constraints => {:item_id => /\d+/}
 
 end
