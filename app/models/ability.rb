@@ -41,5 +41,9 @@ class Ability
       can :read, Message, :mandator_id => [nil , user.mandator_id]
 
     end
+
+    # No one can delete his own account
+    cannot :delete, User, :id => user.id
+
   end
 end
