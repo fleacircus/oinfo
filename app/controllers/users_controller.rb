@@ -6,15 +6,9 @@ class UsersController < ApplicationController
 
 
   def index
-    if current_user.has_role? :meta_admin
-      conditions = ['users.id != ?', current_user.id]
-    else
-      conditions = ['users.id != ? AND users.mandator_id == ?', current_user.id, current_user.mandator_id]
-    end
-
     @users_grid = initialize_grid(
-      User, :include => :mandator,
-      :conditions => conditions,
+      User.accessible_by(current_ability),
+      :include => :mandator,
       :order => 'users.email', :order_direction => 'asc',
       :custom_order => {
         'users.mandator_id' => 'mandators.name'
@@ -41,7 +35,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      redirect_to users_path, notice: flash_message('created')
+      redirect_to_with_flash users_path, :notice, 'create_instance', User, @user.email
     else
       render :action => 'new'
     end
@@ -69,9 +63,9 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       if @user.id == current_user.id
         sign_in @user, :bypass => true
-        redirect_to root_path, notice: t('app.messages.updated_account')
+        redirect_to_with_flash root_path, :notice, 'update_account'
       else
-        redirect_to users_path, notice: flash_message('updated')
+        redirect_to_with_flash users_path, :notice, 'update_instance', User, @user.email
       end
     else
       render :action => 'edit'
@@ -83,16 +77,10 @@ class UsersController < ApplicationController
     @user = find_by_id_or_redirect(User)
 
     if @user.id == current_user.id
-        redirect_to users_path, alert: t('app.messages.delete_account_impossible')
+        redirect_to_with_flash users_path, :alert, 'destroy_account_impossible'
     elsif @user.destroy
-        redirect_to users_path, notice: flash_message('deleted')
+        redirect_to_with_flash users_path, :notice, 'destroy_instance', User, @user.email
     end
   end
 
-
-  private
-
-  def flash_message(type)
-    t('app.messages.'+type+'_model', :model => User.model_name.human, :name => @user.email)
-  end
 end

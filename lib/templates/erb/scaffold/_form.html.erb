@@ -1,27 +1,19 @@
 <%%
-  model = <%= class_name %>.model_name.human
+  model_name = <%= class_name %>.model_name.human
 
   action = @<%= singular_table_name %>.id.nil? ? 'new' : 'edit'
-  legend = t("app.title.#{action}_model", :model => model)
+  legend = t("app.title.#{action}_instance", :instance => model_name)
 
 %>
 <%%= form_for(@<%= singular_table_name %>) do |f| %>
-  <%% if @<%= singular_table_name %>.errors.any? %>
-    <div id="error_explanation">
-      <h2><%%= t('activerecord.errors.template.header', :model => model, :count => @<%= singular_table_name %>.errors.count) %></h2>
-      <ul>
-      <%% @<%= singular_table_name %>.errors.full_messages.each do |msg| %>
-        <li><%%= msg %></li>
-      <%% end %>
-      </ul>
-    </div>
-  <%% end %>
+  <%%= render 'shared/form_errors', :instance => @<%= singular_table_name %> %>
   <%%= field_set_tag legend do %>
 <% attributes.each do |attribute| -%>
     <div class="field">
       <%%= f.label :<%= attribute.name %> %>
       <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
-    </div><% end %>
+    </div>
+<% end %>
     <div class="button">
       <%%= f.submit t(@<%= singular_table_name %>.id.nil? ? 'app.action.create' : 'app.action.update') %>
     </div>

@@ -17,7 +17,8 @@ class ChangesController < ApplicationController
       else
         params.delete :item_type
         params.delete :item_id
-        redirect_to changes_path, alert: t('app.messages.not_found_model', :model => Version.model_name.human)
+
+        redirect_to_with_flash changes_path, :notice, 'not_found_instance', Version
         return
       end
     end

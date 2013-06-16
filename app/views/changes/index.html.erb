@@ -53,6 +53,6 @@
     links.join(' ').html_safe
   end
 
-  render 'shared/grid_row_no_records', :grid => @versions_grid, :row => g, :model => Version
+  render 'shared/grid_row_no_instances', :grid => @versions_grid, :row => g, :model => Version
 
 end %>

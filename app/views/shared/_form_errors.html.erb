@@ -1,0 +1,10 @@
+ <% if instance.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= t('activerecord.errors.template.header', :model => instance.class.model_name.human, :count => instance.errors.count) %></h2>
+    <ul>
+    <% instance.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

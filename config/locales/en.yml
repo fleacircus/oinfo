@@ -12,9 +12,9 @@ en:
       dashboard: "Dashboard"
       user_data: "User Data"
       account_settings: "Your Account Settings"
-      new_model: "New %{model}"
-      edit_model: "Edit %{model}"
-      more_model: "More %{model}"
+      accounting: "Accounting"
+      new_instance: "New %{instance}"
+      edit_instance: "Edit %{instance}"
 
 
     label:
@@ -23,9 +23,11 @@ en:
       change_password: "Change password"
       new_password: "New password"
       confirm_new_password: "Confirm new password"
-      new_model: "New %{model}"
-      edit_model: "Edit %{model}"
-      delete_model: "Delete %{model}"
+      new_instance: "New %{instance}"
+      edit_instance: "Edit %{instance}"
+      delete_instance: "Delete %{instance}"
+      destroy_instance: "Delete %{instance}"
+      more_instance: "Weitere %{instance}"
       show_changes: "Show changes"
       all_changes: "All changes for this record"
       all: "All"
@@ -61,6 +63,7 @@ en:
 
     confirm:
       are_you_sure: "Are you sure?"
+      delete_instance: "Do you want to delete this record?"
 
 
     hint:
@@ -71,12 +74,11 @@ en:
       updated_account: "Successfully updated your account."
       deactivate_account_impossible: "You can't deactivate your account!"
       delete_account_impossible: "You can't delete your account!"
-      created_model: "Successfully created %{model} %{user}."
-      updated_model: "Successfully updated %{model} %{user}."
-      deleted_model: "Successfully deleted %{model} %{user}."
-      not_found_model: "%{model} was not found."
-      no_more_model_information: "No more information available."
-      no_records_for_model: "No %{model} found."
+      created_instance: "Successfully created %{model} %{name}."
+      updated_instance: "Successfully updated %{model} %{name}."
+      deleted_instance: "Successfully deleted %{model} %{name}."
+      not_found_instance: "%{model} was not found."
+      no_instances_for_model: "No %{model} found."
 
 
     version:

@@ -13,8 +13,9 @@ de:
       dashboard: "Dashboard"
       user_data: "Benutzerdaten"
       account_settings: "Ihre Konto Einstellungen"
-      new_model: "%{model} anlegen"
-      edit_model: "%{model} bearbeiten"
+      accounting: "Belegwesen"
+      new_instance: "%{instance} anlegen"
+      edit_instance: "%{instance} bearbeiten"
 
 
     label:
@@ -23,11 +24,12 @@ de:
       change_password: "Passwort ändern"
       new_password: "Neues Passwort"
       confirm_new_password: "Neues Passwort Wdh."
-      new_model: "%{model} anlegen"
-      edit_model: "%{model} bearbeiten"
-      delete_model: "%{model} löschen"
-      more_model: "Weitere %{model}"
-      all_model: "Alle %{model}"
+      new_instance: "%{instance} anlegen"
+      edit_instance: "%{instance} bearbeiten"
+      delete_instance: "%{instance} löschen"
+      destroy_instance: "%{instance} löschen"
+      more_instance: "Weitere %{instance}"
+      all_instance: "Alle %{instance}"
       show_changes: "Änderungen anzeigen"
       all_changes: "Alle Änderungen für diesen Datensatz"
       all: "Alle"
@@ -46,6 +48,7 @@ de:
       show:     "Anzeigen"
       change:   "Ändern"
       create:   "Anlegen"
+      destroy:  "Löschen"
       delete:   "Löschen"
       send:     "Senden"
       resend:   "Erneut senden"
@@ -64,6 +67,8 @@ de:
 
     confirm:
       are_you_sure: "Sind Sie sicher?"
+      delete_instance: "Wollen Sie diesen Datensatz wirklich löschen?"
+
 
 
     hint:
@@ -71,15 +76,14 @@ de:
 
 
     messages:
-      updated_account: "Ihr Benutzerkonto wurde erfolgreich aktualisiert."
+      update_account: "Ihr Benutzerkonto wurde erfolgreich aktualisiert."
       deactivate_account_impossible: "Sie können Ihr Benutzerkonto nicht deaktvieren!"
-      delete_account_impossible: "Sie können Ihr Benutzerkonto nicht löschen!"
-      created_model: "%{model} %{name} wurde erfolgreich angelegt."
-      updated_model: "%{model} %{name} wurde erfolgreich aktualisiert."
-      deleted_model: "%{model} %{name} wurde erfolgreich gelöscht."
-      not_found_model: "%{model} wurde nicht gefunden."
-      no_more_model_information: "Keine weiteren Informationen verfügbar."
-      no_records_for_model: "Es wurden keine %{model} gefunden."
+      destroy_account_impossible: "Sie können Ihr Benutzerkonto nicht löschen!"
+      create_instance: "%{model} %{name} wurde erfolgreich angelegt."
+      update_instance: "%{model} %{name} wurde erfolgreich aktualisiert."
+      destroy_instance: "%{model} %{name} wurde erfolgreich gelöscht."
+      not_found_instance: "%{model} wurde nicht gefunden."
+      no_instances_for_model: "Es wurden keine %{model} gefunden."
 
 
     version:

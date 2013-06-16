@@ -90,6 +90,13 @@
     }
   }
 
+  thead th {
+    &:last-child, &.filter_icons {
+      width: 79px;
+      min-width: 79px;
+    }
+  }
+
 
   /* in case of twitter bootstrap :) */
   thead th select { width: auto; }

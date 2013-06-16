@@ -10,9 +10,11 @@ module ApplicationHelper
     Redcarpet::Markdown.new(Redcarpet::Render::XHTML, args).render(text).html_safe
   end
 
+
   def unknown_value()
     content_tag('span', t('app.label.unknown'), :class => 'nil')
   end
+
   def not_specified_value()
     content_tag('span', t('app.label.not_specified'), :class => 'nil')
   end

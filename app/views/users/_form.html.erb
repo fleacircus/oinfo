@@ -3,27 +3,16 @@
     javascript_include_tag 'user_password'
   end
 
-  model = User.model_name.human
-
   if @user == @current_user
     legend = t('app.title.account_settings')
   else
     action = @user.id.nil? ? 'new' : 'edit'
-    legend = t("app.title.#{action}_model", :model => model)
+    legend = t("app.title.#{action}_instance", :instance => User.model_name.human)
   end
 
 %>
 <%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('activerecord.errors.template.header', :model => model, :count => @user.errors.count) %></h2>
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/form_errors', :instance => @user %>
   <%= field_set_tag legend do %>
     <div class="field">
       <%= f.label :email %>

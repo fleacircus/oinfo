@@ -22,6 +22,9 @@
 	  <% end %>
 	</header>
 	<div id="content">
+	  <% if user_signed_in? %>
+	  <div class="sub_navigation"><%= render_navigation :level => 2 %></div>
+	  <% end %>
 	  <% flash.each do |name, msg| %>
 	  <%= content_tag :div, msg, :class => "flash #{name}" if msg.is_a?(String) %>
 	  <% end %>

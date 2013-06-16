@@ -1,0 +1,29 @@
+<div class="link"><%=
+
+  links      = []
+  model_name = instance.class.model_name.human
+  path_args  = instance_path_args instance
+
+  if can? :edit, instance
+    links << link_to(t('app.label.edit_instance', :instance => model_name),
+      edit_polymorphic_path(path_args), :class => 'icon edit'
+    )
+  end
+
+  if can? :destroy, instance
+    links << link_to(t('app.label.destroy_instance', :instance => model_name),
+      path_args, :class => 'icon delete', method: :delete, data: {
+        confirm: t('app.confirm.delete_instance', :model => instance.class.model_name.human )
+      }
+    )
+  end
+
+  if can? :show, Version
+    links << link_to(t('app.label.show_changes'),
+      instance_changes_path(instance.class, instance.id), :class => 'icon changes'
+    )
+  end
+
+  links.join(' | ').html_safe
+
+%></div>

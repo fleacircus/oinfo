@@ -99,7 +99,10 @@ a {
 }
 
 input {
-  &[type='text'], &[type='email'], &[type='password'] { @include input_textarea_style; }
+  &[type='text'], &[type='email'], &[type='password'], &[type='number'] {
+    @include input_textarea_style;
+  }
+  &[type='number']   { text-align: right; }
   &[type='checkbox'] { vertical-align: bottom; }
 }
 input[type='submit'], button {
@@ -163,21 +166,43 @@ fieldset {
 
   input {
     &[type='text'], &[type='email'], &[type='password'] {
-      width: 300px;
+      width: 410px;
+    }
+    &[type='number'] {
+      width: 190px;
     }
     &[type='checkbox']+label {
       display: inline-block;
       margin-bottom: 0;
     }
+    &.date_select {
+      width: 170px;
+      &+img.ui-datepicker-trigger {
+        float: right;
+        vertical-align: top;
+        cursor: pointer;
+      }
+    }
+
   }
   input[type='submit'], button { float: right; }
 
-  select { width: 300px; }
+  select { width: 410px; }
 
   textarea {
     min-height: 200px;
     height: 200px;
     resize: vertical;
+  }
+
+  &.columns {
+    display: block;
+    div {
+      &.left, &.right { width: 420px; }
+      div {
+        &.left, &.right { width: 200px; }
+      }
+    }
   }
 }
 
@@ -369,7 +394,7 @@ ul.group_by {
 
 
 .center_box {
-  width: 332px;
+  width: 442px;
   margin: 0 auto;
 
   fieldset { display: block; }
@@ -387,6 +412,7 @@ span.nil {
   text-align: right;
 }
 
+.disabled { opacity: .5; }
 
 .clear { clear: both !important; }
 .left  { float: left !important; }
@@ -394,21 +420,22 @@ span.nil {
 
 
 div.sub_navigation {
-  margin-bottom: 10px;
-
-  ul { list-style: none inside; }
+  ul {
+    list-style: none inside;
+    margin: -20px 0 20px;
+  }
   li {
     display: inline-block;
-    border: 1px solid $color_border;
+    margin-right: 10px;
+    padding-top: 8px;
+
+    &:last-child { margin-right: 0; }
+    &.selected {
+      background: transparent url(image_path('icons/bullet_arrow_down_blue.png')) top center no-repeat;
+    }
     a {
       display: inline-block;
-      min-width: 50px;
-      padding: 1px 10px 3px 10px;
-      box-shadow: $shadow_inset_bottom;
-      text-align: center;
       font-size: 86%;
-      &.selected { box-shadow: $shadow_inset_top; }
-      &.selected, &:hover { background-color: #f6f6f6; }
     }
   }
 }
@@ -520,6 +547,10 @@ footer {
     fieldset {
       float: left;
       width: 420px;
+
+      input {
+        &#user_password, &#user_password_confirmation { width: 301px; }
+      }
     }
     .show_for.user {
       float: right;

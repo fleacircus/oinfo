@@ -4,14 +4,28 @@ class ApplicationController < ActionController::Base
 
 
   def find_by_id_or_redirect(model, id = params[:id])
-    record = model.find_by_id(id)
+    instance = model.find_by_id(id)
 
-    if record.nil?
+    if instance.nil?
       path = model == Version ? changes_path : polymorphic_path(model)
-      redirect_to path, alert: t('app.messages.not_found_model', :model => model.model_name.human)
+      redirect_to_with_flash path, :alert, 'not_found_instance', model
     else
-      return record
+      return instance
     end
+  end
+
+
+  def instance_path_args(instance = nil)
+    args     = params[:controller].split(/::|\//)[0..1]
+    args[-1] = instance.nil? ? args[-1].singularize : instance
+    return args
+  end
+  helper_method :instance_path_args
+
+  def redirect_to_with_flash(path, type, message, model = nil, name = '')
+    model = model.nil? ? '' : model.model_name.human
+    flash[type] = t("app.messages.#{message}", :model => model, :name => name)
+    redirect_to path
   end
 
 
