@@ -11,11 +11,11 @@ module ApplicationHelper
   end
 
 
-  def unknown_value()
+  def unknown_value
     content_tag('span', t('app.label.unknown'), :class => 'nil')
   end
 
-  def not_specified_value()
+  def not_specified_value
     content_tag('span', t('app.label.not_specified'), :class => 'nil')
   end
 
