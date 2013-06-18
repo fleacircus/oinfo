@@ -1,4 +1,4 @@
-<%= render 'shared/view_title_link_new', :model => Message %>
+<%= render 'shared/title_link_new', :model => Message %>
 <%= grid(@messages_grid) do |g|
 
   g.column :name => Message.human_attribute_name('title'), :attribute => 'title' do |message|
