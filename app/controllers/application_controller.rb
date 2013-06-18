@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
 
   def instance_path_args(instance = nil)
-    args     = params[:controller].split(/::|\//)[0..1]
+    args     = params[:controller].split(/\//)
     args[-1] = instance.nil? ? args[-1].singularize : instance
     return args
   end
