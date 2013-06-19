@@ -1,0 +1,16 @@
+<%
+  model_name = Distributor.model_name.human
+
+  action = @distributor.id.nil? ? 'new' : 'edit'
+  legend = t("app.title.#{action}_instance", :instance => model_name)
+
+%>
+<%= form_for [:accounting, @distributor] do |f| %>
+  <%= render 'shared/form_errors', :instance => @distributor %>
+  <%= field_set_tag legend do %>
+    <%= render 'shared/form_address_fields', :form => f %>
+    <div class="button">
+      <%= f.submit t(@distributor.id.nil? ? 'app.action.create' : 'app.action.update') %>
+    </div>
+  <% end %>
+<% end %>

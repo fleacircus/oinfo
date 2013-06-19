@@ -1,11 +1,14 @@
 class Mandator < ActiveRecord::Base
-  resourcify
   attr_accessible :name
 
   validates :name, :presence => true
 
   has_many :user, :order => :email
   has_many :message
+  has_many :distributor
+  has_many :customer
+  has_many :address
+  has_many :voucher
 
   has_paper_trail
 

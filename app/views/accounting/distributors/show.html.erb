@@ -1,0 +1,5 @@
+<h2><%= Distributor.model_name.human %> <%= @distributor.name %></h2>
+<div class="box">
+  <%= render 'shared/show_address_fields', :instance => @distributor %>
+</div>
+<%= render 'shared/links_instance_modify', :instance => @distributor %>

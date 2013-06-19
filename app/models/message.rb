@@ -1,5 +1,4 @@
 class Message < ActiveRecord::Base
-  resourcify
   attr_accessible :mandator_id, :text, :title, :user_id
 
   validates :title, :presence => true

@@ -1,0 +1,20 @@
+<%= render 'shared/title_link_new', :model => Customer %>
+<%= grid(@customers_grid) do |g|
+
+  g.column :name => Customer.human_attribute_name('name'), :attribute => 'name' do |customer|
+    link_to(customer.name, accounting_customer_path(customer))
+  end
+
+  if current_user.has_role? :meta_admin
+    g.column :name => Mandator.model_name.human,
+      :attribute => 'id', :model => Mandator,
+      :custom_filter => Mandator.all.map{|m| [m.name, m.id]} do |customer|
+        customer.mandator.nil? ? not_specified_value : link_to(customer.mandator.name, mandator_path(customer.mandator))
+    end
+  end
+
+  render 'shared/grid_columns_timestamps', :row => g, :model => Customer
+  render 'shared/grid_column_action_links', :row => g
+  render 'shared/grid_row_no_instances', :grid => @customers_grid, :row => g, :model => Customer
+
+end %>

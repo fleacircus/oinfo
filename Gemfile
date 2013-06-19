@@ -40,9 +40,16 @@ gem 'show_for', '~> 0.2.6'
 
 # I18n
 gem 'rails-i18n'
+gem 'delocalize', '~> 0.3.1'
 
 # Formular text_field autocomplete
 gem 'rails3-jquery-autocomplete', '~> 1.0.11'
+
+# Formular for nested models
+gem 'nested_form', '~> 0.3.2'
+
+# Formular country dropdown
+gem 'localized_country_select', '>= 0.9.2'
 
 # Markdown processing
 gem 'redcarpet', '~> 2.3.0'

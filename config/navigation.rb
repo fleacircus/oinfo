@@ -16,6 +16,19 @@ SimpleNavigation::Configuration.run do |navigation|
       :if => Proc.new {can? :show, User}
 
 
+    primary.item :accounting, t('app.title.accounting'),
+      accounting_invoices_path, :highlights_on => %r(/accounting),
+      :if => Proc.new {can? :show, Invoice} do |v|
+
+        [Invoice, Distributor, Customer].each do |m|
+          v.item m.model_name.constantize, m.model_name.human(:count => 2),
+            polymorphic_path([:accounting, m]),
+            :highlights_on => %r(/accounting/#{m.model_name.route_key}),
+            :if => Proc.new {can? :show, m}
+        end
+    end
+
+
     primary.item :messages, Message.model_name.human(:count => 2),
       messages_path, :highlights_on => %r(/messages),
       :if => Proc.new {can? :show, Message}

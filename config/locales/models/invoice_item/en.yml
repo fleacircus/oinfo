@@ -1,0 +1,16 @@
+# ruby encoding: utf-8
+en:
+  activerecord:
+    models:
+      invoiceitem: "Item"
+      invoice_item:
+        one:   "Item"
+        other: "Items"
+
+    attributes:
+      invoice_item:
+        id:           "#"
+        gross_amount: "Gross"
+        net_amount:   "Net"
+        benefit:      "Discount"
+        benefit_is_relative: "%"

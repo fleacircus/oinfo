@@ -11,7 +11,74 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130614085625) do
+ActiveRecord::Schema.define(:version => 20130618104610) do
+
+  create_table "customers", :force => true do |t|
+    t.integer  "mandator_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "street"
+    t.integer  "postal_code"
+    t.string   "city"
+    t.string   "province"
+    t.string   "country"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "customers", ["mandator_id"], :name => "index_customers_on_mandator_id"
+  add_index "customers", ["user_id"], :name => "index_customers_on_user_id"
+
+  create_table "distributors", :force => true do |t|
+    t.integer  "mandator_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "street"
+    t.integer  "postal_code"
+    t.string   "city"
+    t.string   "province"
+    t.string   "country"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "distributors", ["mandator_id"], :name => "index_distributors_on_mandator_id"
+  add_index "distributors", ["user_id"], :name => "index_distributors_on_user_id"
+
+  create_table "invoice_items", :force => true do |t|
+    t.integer  "invoice_id"
+    t.decimal  "price",               :precision => 10, :scale => 2, :default => 0.0,   :null => false
+    t.string   "currency"
+    t.integer  "quantity",                                           :default => 0,     :null => false
+    t.string   "name",                                                                  :null => false
+    t.decimal  "tax",                 :precision => 3,  :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "benefit",             :precision => 10, :scale => 2, :default => 0.0,   :null => false
+    t.boolean  "benefit_is_relative",                                :default => false, :null => false
+    t.decimal  "net_amount",          :precision => 10, :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "gross_amount",        :precision => 10, :scale => 2, :default => 0.0,   :null => false
+    t.datetime "created_at",                                                            :null => false
+    t.datetime "updated_at",                                                            :null => false
+  end
+
+  add_index "invoice_items", ["invoice_id"], :name => "index_invoice_items_on_invoice_id"
+
+  create_table "invoices", :force => true do |t|
+    t.integer  "mandator_id"
+    t.integer  "user_id"
+    t.integer  "distributor_id", :null => false
+    t.integer  "customer_id",    :null => false
+    t.integer  "invoice_number", :null => false
+    t.date     "invoice_date",   :null => false
+    t.date     "delivery_date",  :null => false
+    t.date     "value_date",     :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "invoices", ["customer_id"], :name => "index_invoices_on_customer_id"
+  add_index "invoices", ["distributor_id"], :name => "index_invoices_on_distributor_id"
+  add_index "invoices", ["mandator_id"], :name => "index_invoices_on_mandator_id"
+  add_index "invoices", ["user_id"], :name => "index_invoices_on_user_id"
 
   create_table "mandators", :force => true do |t|
     t.string   "name",       :null => false

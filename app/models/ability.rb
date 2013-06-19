@@ -27,6 +27,11 @@ class Ability
       # MandatorAdmins can manage their associated changes
       can :manage, Version, :mandator_id => user.mandator_id
 
+      # MandatorAdmins can manage their associated accounting date
+      can :manage, Distributor, :mandator_id => user.mandator_id
+      can :manage, Customer, :mandator_id => user.mandator_id
+      can :manage, Invoice, :mandator_id => user.mandator_id
+
     # User
     else
 

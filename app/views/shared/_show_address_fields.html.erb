@@ -1,0 +1,6 @@
+<h3><%= defined?(title) ? title : t('app.title.address') %></h3>
+<p><%= instance.name %></p>
+<p><%= instance.street %></p>
+<p><%= [instance.postal_code, instance.city].join ' ' %></p>
+<p><%= instance.province %></p>
+<p><%= t(:countries)[instance.country.to_sym] %></p>

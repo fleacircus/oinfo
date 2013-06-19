@@ -1,0 +1,60 @@
+<h2><%= Invoice.model_name.human %></h2>
+<%= show_for @invoice do |i| %>
+  <div class="addresses">
+    <div class="left">
+      <%= render 'shared/show_address_fields', :instance => @invoice.distributor, :title => Invoice.human_attribute_name('distributor_id') %>
+    </div>
+    <div class="right">
+      <%= render 'shared/show_address_fields', :instance => @invoice.customer, :title => Invoice.human_attribute_name('customer_id') %>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="dates">
+    <div class="left">
+      <div class="left">
+        <%= i.attribute :invoice_number %>
+      </div>
+      <div class="right">
+        <%= i.attribute :invoice_date %>
+      </div>
+    </div>
+    <div class="right">
+      <div class="left">
+        <%= i.attribute :delivery_date %>
+      </div>
+      <div class="right">
+        <%= i.attribute :value_date %>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <h3><%= InvoiceItem.model_name.human(:count => 2) %></h3>
+  <table>
+    <thead>
+      <tr>
+        <% [:name, :price, :quantity, :tax, :benefit, :net_amount, :gross_amount].each do |a| %>
+        <%= content_tag :th, InvoiceItem.human_attribute_name(a), :class => a %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @invoice.invoice_items.each do |item| %>
+      <tr>
+        <td class="name"><%= item.name %></td>
+        <td class="numeric price"><%= content_tag(:span, item.currency) %><%= number_with_precision(item.price, :precision => 2) %></td>
+        <td class="numeric quantity"><%= item.quantity %></td>
+        <td class="numeric tax"><%= number_with_precision(item.tax, :precision => 2) %>%</td>
+        <td class="numeric benefit"><%= content_tag(:span, item.currency) if !item.benefit_is_relative %><%= number_with_precision(item.benefit, :precision => 2) %><%= '%' if item.benefit_is_relative %></td>
+        <td class="numeric net_amount"><%= content_tag(:span, item.currency) %><%= number_with_precision(item.net_amount, :precision => 2) %></td>
+        <td class="numeric gross_amount"><%= content_tag(:span, item.currency) %><%= number_with_precision(item.gross_amount, :precision => 2) %></td>
+      </tr>
+      <% end %>
+      <tr class="summary">
+        <td class="sum" colspan="5">Summe</td>
+        <td class="numeric net_amount"><%= content_tag(:span, @invoice.invoice_items.last.currency) %><%= number_with_precision(@invoice.invoice_items.sum(:net_amount), :precision => 2) %></td>
+        <td class="numeric gross_amount"><%= content_tag(:span, @invoice.invoice_items.last.currency) %><%= number_with_precision(@invoice.invoice_items.sum(:gross_amount), :precision => 2) %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+<%= render 'shared/links_instance_modify', :instance => @invoice %>

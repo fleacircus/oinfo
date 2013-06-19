@@ -1,0 +1,35 @@
+<%= render 'shared/title_link_new', :model => Invoice %>
+<%= grid(@invoices_grid) do |g|
+
+  g.column :html => {class: 'numeric'}, :name => Invoice.human_attribute_name('invoice_number'),
+    :attribute => 'invoice_number' do |invoice|
+      link_to(invoice.invoice_number, accounting_invoice_path(invoice))
+  end
+
+  g.column :html => {class: 'fdate'}, :name => Invoice.human_attribute_name('invoice_date'),
+    :attribute => 'invoice_date' do |invoice|
+      invoice.invoice_date.nil? ? '' : l(invoice.invoice_date, format: :fdate)
+  end
+
+  g.column :name => Invoice.human_attribute_name('customer_id'),
+    :attribute => 'name', :model => 'Customer' do |invoice|
+      link_to(invoice.customer.name, accounting_customer_path(invoice.customer))
+  end
+
+  g.column :name => Invoice.human_attribute_name('distributor_id'),
+    :attribute => 'name', :model => 'Distributor' do |invoice|
+      link_to(invoice.distributor.name, accounting_distributor_path(invoice.distributor))
+  end
+
+  ['net_amount', 'gross_amount'].each do |attr|
+    g.column :html => {class: 'numeric'}, :name => Invoice.human_attribute_name(attr),
+      :attribute => attr, :model => 'InvoiceItem' do |invoice|
+        content_tag(:span, invoice.invoice_items.last.currency)+' '+
+          number_with_precision(invoice.invoice_items.sum(attr), :precision => 2)
+    end
+  end
+
+  render 'shared/grid_column_action_links', :row => g
+  render 'shared/grid_row_no_instances', :grid => @invoices_grid, :row => g, :model => Invoice
+
+end %>

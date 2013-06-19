@@ -12,7 +12,8 @@ $color_info: $color_link;
 $color_notice: #090;
 $color_success: $color_notice;
 
-$font: normal 14px verdana, arial, helvetica, sans-serif;
+$font_size: 14px;
+$font: normal $font_size verdana, arial, helvetica, sans-serif;
 
 $shadow_inset_top: inset 0 5px 5px -5px $color_shadow;
 $shadow_inset_bottom: inset 0 -10px 10px -10px $color_shadow;
@@ -69,15 +70,15 @@ a {
     padding-left: 20px;
     background: transparent center left no-repeat;
 
-    &.account  { background-image: url(image_path('icons/user_gray.png')) }
-    &.logout   { background-image: url(image_path('icons/door_in.png')) }
-    &.new      { background-image: url(image_path('icons/page_white_add.png')) }
-    &.edit     { background-image: url(image_path('icons/page_white_edit.png')) }
-    &.show     { background-image: url(image_path('icons/page_white_show.png')) }
-    &.delete   { background-image: url(image_path('icons/page_white_delete.png')) }
-    &.changes  { background-image: url(image_path('icons/page_white_stack.png')) }
-    &.rollback { background-image: url(image_path('icons/page_white_lightning.png')) }
-    &.previous { background-image: url(image_path('icons/resultset_previous.png')) }
+    &.account    { background-image: url(image_path('icons/user_gray.png')) }
+    &.logout     { background-image: url(image_path('icons/door_in.png')) }
+    &.new, &.add { background-image: url(image_path('icons/page_white_add.png')) }
+    &.edit       { background-image: url(image_path('icons/page_white_edit.png')) }
+    &.show       { background-image: url(image_path('icons/page_white_show.png')) }
+    &.delete     { background-image: url(image_path('icons/page_white_delete.png')) }
+    &.changes    { background-image: url(image_path('icons/page_white_stack.png')) }
+    &.rollback   { background-image: url(image_path('icons/page_white_lightning.png')) }
+    &.previous   { background-image: url(image_path('icons/resultset_previous.png')) }
     &.next, &.more {
       padding-left: 0;
       padding-right: 20px;
@@ -187,7 +188,7 @@ fieldset {
   }
   input[type='submit'], button { float: right; }
 
-  select { width: 410px; }
+  select { width: 420px; }
 
   textarea {
     min-height: 200px;
@@ -289,7 +290,7 @@ table {
   }
 
   tbody tr {
-    &.even  { background: #eee; }
+    &.even { background: #eee; }
     &:hover { background: #ddd; }
   }
 
@@ -297,7 +298,7 @@ table {
     padding: 4px 6px;
     border: 1px solid $color_border;
     &.right { text-align: right; }
-    &.fdatetime, &.boolean, &.numeric, &.button, &.shrink {
+    &[class*='date'], &[class*='time'], &.boolean, &.numeric, &.button, &.shrink {
       width: 1% !important;
       white-space: nowrap;
     }
@@ -306,8 +307,8 @@ table {
 
   td {
     vertical-align: top;
-    &.left    { text-align: left; }
-    &.boolean { text-align: center; }
+    &.left { text-align: left; }
+    &[class*='date'], &[class*='time'], &.boolean { text-align: center; }
     &.numeric { text-align: right; }
   }
 
@@ -389,6 +390,14 @@ ul.group_by {
 
   table {
     &:last-of-type, &:only-of-type { margin-bottom: 0; }
+  }
+  div {
+    &.left, &.right {
+      width: 420px;
+      div {
+        &.left, &.right { width: 200px; }
+      }
+    }
   }
 }
 
@@ -574,6 +583,67 @@ footer {
   }
 }
 
+#customers, #distributors {
+  input[id$='postal_code'] { width: 50px; }
+}
+
+#invoices {
+  table#invoice_items {
+    tr { border: 1px solid $color_border; }
+    th, td {
+      border: 0;
+      vertical-align: middle;
+    }
+
+    .name {
+      input { width: 290px; }
+    }
+    .price, .benefit {
+      input { width: 120px; }
+    }
+    .quantity, .tax {
+      white-space: nowrap;
+      input { width: 55px; }
+    }
+    .benefit_is_relative { padding-left: 0; }
+    .currency {
+      width: 1%;
+      white-space: nowrap;
+
+      select { width: 60px; }
+    }
+    .destroy {
+      width: 16px;
+      vertical-align: middle;
+    }
+
+    &+div.link { text-align: left; }
+  }
+
+  &.show {
+    .dates { margin: 20px 0; }
+    h3 { font-size: $font_size; }
+    tr.summary {
+      background-color: #fff;
+      box-shadow: $shadow_inset_top;
+      td.sum { font-weight: bold; }
+    }
+    td {
+      font-size: 100%;
+
+      &.price, &.net_amount, &.gross_amount { width: 100px !important; }
+      &.benefit { width: 80px !important; }
+      &.currency { width: 1%; }
+      &.quantity, &.tax { width: 50px !important; }
+
+      span {
+        float: left;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
 
 #changes {
   &.index {
@@ -595,11 +665,14 @@ footer {
         &.next     { text-align: right; }
       }
     }
-    div.show_for table {
-      width: 75%;
-      td {
-        font-size: 86%;
-        &.prev, &.curr { width: 50%; }
+    div.show_for {
+      div.left { width: 25%; }
+      table {
+        width: 75%;
+        td {
+          font-size: 86%;
+          &.prev, &.curr { width: 50%; }
+        }
       }
     }
   }

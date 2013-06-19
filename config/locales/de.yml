@@ -14,6 +14,7 @@ de:
       user_data: "Benutzerdaten"
       account_settings: "Ihre Konto Einstellungen"
       accounting: "Belegwesen"
+      address: "Adresse"
       new_instance: "%{instance} anlegen"
       edit_instance: "%{instance} bearbeiten"
 
@@ -24,6 +25,7 @@ de:
       change_password: "Passwort ändern"
       new_password: "Neues Passwort"
       confirm_new_password: "Neues Passwort Wdh."
+      add_instance: "%{instance} hinzufügen"
       new_instance: "%{instance} anlegen"
       edit_instance: "%{instance} bearbeiten"
       delete_instance: "%{instance} löschen"
@@ -53,6 +55,7 @@ de:
       send:     "Senden"
       resend:   "Erneut senden"
       generate: "Generieren"
+      choose:   "Auswählen"
       show_changes: "Änderungen anzeigen"
       rollback: "Zurücksetzen"
       rollback_change: "Änderung zurücksetzen"

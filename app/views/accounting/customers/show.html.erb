@@ -1,0 +1,5 @@
+<h2><%= Customer.model_name.human %></h2>
+<div class="box">
+  <%= render 'shared/show_address_fields', :instance => @customer %>
+</div>
+<%= render 'shared/links_instance_modify', :instance => @customer %>

@@ -13,6 +13,7 @@ en:
       user_data: "User Data"
       account_settings: "Your Account Settings"
       accounting: "Accounting"
+      address: "Address"
       new_instance: "New %{instance}"
       edit_instance: "Edit %{instance}"
 
@@ -23,6 +24,7 @@ en:
       change_password: "Change password"
       new_password: "New password"
       confirm_new_password: "Confirm new password"
+      add_instance: "Add %{instance}"
       new_instance: "New %{instance}"
       edit_instance: "Edit %{instance}"
       delete_instance: "Delete %{instance}"
@@ -50,6 +52,7 @@ en:
       send:     "Send"
       resend:   "Resend"
       generate: "Generate"
+      choose:   "Choose"
       rollback: "Roll back"
       rollback_change: "Roll back change"
       show_changes: "Show changes"
@@ -71,12 +74,12 @@ en:
 
 
     messages:
-      updated_account: "Successfully updated your account."
+      update_account: "Successfully updated your account."
       deactivate_account_impossible: "You can't deactivate your account!"
       delete_account_impossible: "You can't delete your account!"
-      created_instance: "Successfully created %{model} %{name}."
-      updated_instance: "Successfully updated %{model} %{name}."
-      deleted_instance: "Successfully deleted %{model} %{name}."
+      create_instance: "Successfully created %{model} %{name}."
+      update_instance: "Successfully updated %{model} %{name}."
+      dedtroy_instance: "Successfully deleted %{model} %{name}."
       not_found_instance: "%{model} was not found."
       no_instances_for_model: "No %{model} found."
 

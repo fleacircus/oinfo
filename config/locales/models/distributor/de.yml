@@ -1,0 +1,16 @@
+# ruby encoding: utf-8
+de:
+  activerecord:
+    models:
+      distributor:
+        one:   "Lieferant"
+        other: "Lieferanten"
+
+    attributes:
+      distributor:
+        name:        "Name"
+        street:      "Straße"
+        city:        "Stadt"
+        postal_code: "Postleitzahl"
+        province:    "Bundesland"
+        country:     "Land"

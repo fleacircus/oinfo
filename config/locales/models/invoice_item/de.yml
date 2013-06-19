@@ -1,0 +1,21 @@
+# ruby encoding: utf-8
+de:
+  activerecord:
+    models:
+      invoiceitem: "Posten"
+      invoice_item:
+        one:   "Posten"
+        other: "Posten"
+
+    attributes:
+      invoice_item:
+        id:           "#"
+        name:         "Bezeichnung"
+        price:        "Preis"
+        currency:     "Währung"
+        quantity:     "Anzahl"
+        tax:          "USt."
+        gross_amount: "Brutto"
+        net_amount:   "Netto"
+        benefit:      "Skonto"
+        benefit_is_relative: "%"

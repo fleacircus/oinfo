@@ -1,0 +1,24 @@
+<div class="field">
+  <%= form.label :name %>
+  <%= form.text_field :name, :autofocus => true %>
+</div>
+<div class="field">
+  <%= form.label :street %>
+  <%= form.text_field :street %>
+</div>
+<div class="field">
+  <%= form.label :postal_code %>
+  <%= form.number_field :postal_code, :precision => 0, :delimiter => '' %>
+</div>
+<div class="field">
+  <%= form.label :city %>
+  <%= form.text_field :city %>
+</div>
+<div class="field">
+  <%= form.label :province %>
+  <%= form.text_field :province %>
+</div>
+<div class="field">
+  <%= form.label :country %>
+  <%= form.localized_country_select :country %>
+</div>

@@ -1,0 +1,29 @@
+# ruby encoding: utf-8
+en:
+  activerecord:
+    attributes:
+      invoice:
+        id:             "#"
+        invoice_number: "Number"
+        invoice_date:   "Date"
+        distributor_id: "Distributor"
+        customer_id:    "Customer"
+        gross_amount:   "Gross"
+        net_amount:     "Net"
+        invoice_items:  "Items"
+
+      invoice_items:
+        name:     "Items » Name"
+        price:    "Items » Price"
+        currency: "Items » Currency"
+        quantity: "Items » Quantity"
+        tax:      "Items » Tax"
+        benefit:  "Items » Discount"
+        benefit_is_relative: "%"
+
+    errors:
+      models:
+        invoice:
+          attributes:
+            invoice_items:
+              too_short: "must be defined"

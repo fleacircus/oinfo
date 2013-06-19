@@ -1,0 +1,13 @@
+<tr class="fields">
+  <td class="name"><%= f.text_field :name %></td>
+  <td class="price"><%= f.number_field :price, :precision => 2, :delimiter => '' %></td>
+  <td class="quantity"><%= f.number_field :quantity %></td>
+  <td class="tax"><%= f.number_field :tax, :precision => 2, :delimiter => '' %>%</td>
+  <td class="benefit"><%= f.number_field :benefit, :precision => 2, :delimiter => '' %></td>
+  <td class="benefit_is_relative"><%= f.check_box :benefit_is_relative %></td>
+  <td class="currency"><%= f.select :currency, ['EUR', 'USD'] %></td>
+  <td class="destroy"><%=
+    f.link_to_remove image_tag('icons/delete.png', :alt => 'X' ),
+      :title => t('app.label.destroy_instance', :instance => InvoiceItem.model_name.human)
+  %></td>
+</tr>
