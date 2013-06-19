@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618104610) do
+ActiveRecord::Schema.define(:version => 20130619104610) do
 
   create_table "customers", :force => true do |t|
     t.integer  "mandator_id"
@@ -47,15 +47,15 @@ ActiveRecord::Schema.define(:version => 20130618104610) do
 
   create_table "invoice_items", :force => true do |t|
     t.integer  "invoice_id"
-    t.decimal  "price",               :precision => 10, :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "price",               :precision => 12, :scale => 2, :default => 0.0,   :null => false
     t.string   "currency"
     t.integer  "quantity",                                           :default => 0,     :null => false
     t.string   "name",                                                                  :null => false
-    t.decimal  "tax",                 :precision => 3,  :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "benefit",             :precision => 10, :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "tax",                 :precision => 5,  :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "benefit",             :precision => 12, :scale => 2, :default => 0.0,   :null => false
     t.boolean  "benefit_is_relative",                                :default => false, :null => false
-    t.decimal  "net_amount",          :precision => 10, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "gross_amount",        :precision => 10, :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "net_amount",          :precision => 12, :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "gross_amount",        :precision => 12, :scale => 2, :default => 0.0,   :null => false
     t.datetime "created_at",                                                            :null => false
     t.datetime "updated_at",                                                            :null => false
   end
