@@ -8,7 +8,7 @@ de:
       user:
         email:                  "E-Mail-Adresse"
         password:               "Passwort"
-        password_confirmation : "Passwort Wdh."
+        password_confirmation:  "Passwort Wdh."
         encrypted_password:     "Verschlüsseltes Passwort"
         current_password:       "Aktuelles Passwort"
         current_sign_in_at:     "Aktuelle Anmeldung"
@@ -18,7 +18,7 @@ de:
         locked_at:              "Sperrung"
         unlock_token:           "Entsperrung Token"
         sign_in_count:          "Anmeldungen"
-        failed_attempts:         "Fehlversuche"
+        failed_attempts:        "Fehlversuche"
         activated:              "Aktiviert"
         mandator:               "Mandant"
         mandator_name:          "Mandant"
