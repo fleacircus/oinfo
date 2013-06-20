@@ -13,7 +13,7 @@
     end
   end
 
-  render 'shared/grid_columns_timestamps', :row => g, :model => User
+  render 'shared/grid_columns_timestamps', :row => g, :model => User, :timestamps => ['current_sign_in_at', 'last_sign_in_at'], :format => :mdatetime
 
   g.column :html => {:class => 'boolean'}, :name => User.human_attribute_name('activated'),
     :attribute => 'activated' do |user|

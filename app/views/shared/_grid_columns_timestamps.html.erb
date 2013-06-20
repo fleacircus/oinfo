@@ -1,8 +1,11 @@
 <%
-  ['created_at', 'updated_at'].each do |attr|
-    row.column :html => {class: 'fdatetime'}, :name => model.human_attribute_name(attr),
+  timestamps = (timestamps || [:created_at, :updated_at]).map {|s| s.to_s}
+  format     = format || :fdatetime
+
+  timestamps.each do |attr|
+    row.column :html => {class: format.to_s}, :name => model.human_attribute_name(attr),
       :attribute => attr do |instance|
-        instance[attr].nil? ? '' : l(instance[attr], format: :fdatetime)
+        instance[attr].nil? ? '' : l(instance[attr], format: format)
     end
   end
 %>
