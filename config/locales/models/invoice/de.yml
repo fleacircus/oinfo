@@ -19,6 +19,7 @@ de:
         currency:        "Währung"
         value_date:      "Valutadatum"
         invoice_items:   "Posten"
+        attachments:     "Angehängte Dateien"
 
       invoice_items:
         name:     "Posten » Bezeichnung"
@@ -28,6 +29,10 @@ de:
         tax:      "Posten » Umsatzsteuer"
         benefit:  "Posten » Skonto"
         benefit_is_relative: "%"
+
+      attachments:
+        name: "Anhang » Name"
+        file: "Anhang » Datei"
 
     errors:
       models:

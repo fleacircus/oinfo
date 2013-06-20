@@ -6,7 +6,7 @@ require_dependency "<%= namespaced_file_path %>/application_controller"
 class <%= controller_class_name %>Controller < RestrictionController
 
   def index
-    @<%= plural_table_name %>_grid = initialize_grid(<%= class_name %>)
+    @<%= plural_table_name %>_grid = initialize_grid(<%= class_name %>.accessible_by(current_ability))
   end
 
 end

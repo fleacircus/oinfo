@@ -1,0 +1,12 @@
+# ruby encoding: utf-8
+de:
+  activerecord:
+    models:
+      attachment:
+        one:   "Anhang"
+        other: "Anhänge"
+
+    attributes:
+      attachment:
+        name: "Name"
+        file: "Datei"

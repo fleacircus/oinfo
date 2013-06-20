@@ -12,11 +12,7 @@ class User < ActiveRecord::Base
   has_many :distributor
   has_many :customer
   has_many :address
-  has_many :voucher
-
-  has_paper_trail :ignore => [:current_sign_in_at, :last_sign_in_at,
-                              :current_sign_in_ip, :last_sign_in_ip,
-                              :sign_in_count, :failed_attempts]
+  has_many :invoice
 
   def mandator_name
     mandator.try(:name)

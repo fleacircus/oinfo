@@ -2,6 +2,7 @@ class Distributor < ActiveRecord::Base
   attr_accessible :name,  :street, :postal_code, :city, :province,:country,
                   :mandator_id, :user_id
 
+
   belongs_to :user
   belongs_to :mandator
   has_many :invoice

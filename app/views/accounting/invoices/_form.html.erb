@@ -45,7 +45,7 @@
     </div>
     <div class="clear"></div>
     <h3><%= InvoiceItem.model_name.human(:count => 2) %></h3>
-    <table id="invoice_items">
+    <table id="invoice_items" class="form">
       <thead>
         <tr>
           <% [:name, :price, :quantity, :tax, :benefit, :benefit_is_relative, :currency].each do |a| %>
@@ -61,6 +61,24 @@
     <div class="link"><%=
       f.link_to_add t('app.label.add_instance', :instance => InvoiceItem.model_name.human),
         :invoice_items, :data => { :target => "#invoice_items" }, :class => 'icon add'
+    %></div>
+    <h3><%= Attachment.model_name.human(:count => 2) %></h3>
+    <table id="attachments" class="form">
+      <thead>
+        <tr>
+          <% [:name, :file].each do |a| %>
+          <%= content_tag :th, Attachment.human_attribute_name(a), :class => a %>
+          <% end %>
+          <th class="destroy"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= f.fields_for :attachments, :wrapper => false %>
+      </tbody>
+    </table>
+    <div class="link"><%=
+      f.link_to_add t('app.label.add_instance', :instance => Attachment.model_name.human),
+        :attachments, :data => { :target => "#attachments" }, :class => 'icon add'
     %></div>
     <div class="button">
       <%= f.submit t(@invoice.id.nil? ? 'app.action.create' : 'app.action.update') %>

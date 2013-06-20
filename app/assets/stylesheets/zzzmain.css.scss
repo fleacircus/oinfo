@@ -308,8 +308,11 @@ table {
   td {
     vertical-align: top;
     &.left { text-align: left; }
-    &[class*='date'], &[class*='time'], &.boolean { text-align: center; }
+    &[class*='date'], &[class*='time'], &.boolean {
+      text-align: center;
+    }
     &.numeric { text-align: right; }
+    span.nil { float: left; }
   }
 
   img { vertical-align: bottom; }
@@ -357,19 +360,20 @@ ul.group_by {
 
   span.group_title {
     display: block;
-    padding: 4px;
-    border: 1px solid $color_border;
-    box-shadow: $shadow_inset_bottom;
-    line-height: 1;
+    font-weight: bold;
+    color: lighten($color_text, 20%);
   }
   ul {
     margin-bottom: 10px;
     list-style: none inside;
     li {
       display: block;
-      padding: 2px;
-      border-bottom: 1px solid $color_border;
-      &:last-child { border-bottom: 0; }
+      padding: 2px 0 2px 20px;
+      &:before {
+        margin-left: -20px;
+        color: lighten($color_text, 20%);
+        content: '» ';
+      }
     }
   }
 }
@@ -541,6 +545,10 @@ footer {
 
 
 #dashboard.index {
+  div {
+    &.left  { width: 600px; }
+    &.right { width: 300px; }
+  }
   .link { margin-top: 0; }
 }
 
@@ -588,7 +596,7 @@ footer {
 }
 
 #invoices {
-  table#invoice_items {
+  table.form {
     tr { border: 1px solid $color_border; }
     th, td {
       border: 0;
@@ -612,17 +620,26 @@ footer {
 
       select { width: 60px; }
     }
+    .name {
+      input { width: 290px; }
+    }
     .destroy {
       width: 16px;
       vertical-align: middle;
     }
-
-    &+div.link { text-align: left; }
+  }
+  &.new, &.create, &.edit {
+    div.link {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    table#attachments + div.link { margin-bottom: 0; }
   }
 
   &.show {
     .dates { margin: 20px 0; }
     h3 { font-size: $font_size; }
+    table { margin-bottom: 20px; }
     tr.summary {
       background-color: #fff;
       box-shadow: $shadow_inset_top;
@@ -641,6 +658,7 @@ footer {
         margin-right: 5px;
       }
     }
+    .show_for ul { list-style: none outside; }
   }
 }
 

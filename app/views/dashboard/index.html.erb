@@ -1,18 +1,33 @@
 <h2>Dashboard</h2>
-<h3><%= Message.model_name.human(:count => 2) %></h3>
-<ul class="group_by">
-<% @messages.each do |date, messages| %>
-  <li><span class="group_title"><%= l(date, format: :fdate) %></span>
-    <ul>
-<% messages.each do |message| %>
-      <li><%= link_to message.title, message_path(message) %></li>
-<% end %>
-    </ul>
-  </li>
-<% end %>
-</ul>
-<div class="link">
-  <%= link_to t('app.label.more_instance', :instance => Message.model_name.human(:count => 2)),
-    messages_path, :class => 'icon more'
-  %>
+<div class="left">
+  <h3><%= Message.model_name.human(:count => 2) %></h3>
+  <div class="box">
+    <ul class="group_by">
+    <% if @messages.count > 0 %>
+      <% @messages.each do |date, messages| %>
+        <li><span class="group_title"><%= l(date, format: :fdate) %></span>
+          <ul>
+      <% messages.each do |message| %>
+            <li><%= link_to message.title, message_path(message) %></li>
+      <% end %>
+          </ul>
+        </li>
+      <% end %>
+      </ul>
+      <div class="link">
+        <%= link_to t('app.label.more_instance', :instance => Message.model_name.human(:count => 2)),
+          messages_path, :class => 'icon more'
+        %>
+      </div>
+    <% else %>
+      <span class="nil"><%= t('app.messages.no_instances_for_model', :model => Message) %></span>
+    <% end %>
+  </div>
 </div>
+<div class="right">
+  <h3>...</h3>
+  <div class="box">
+    <%= not_specified_value %>
+  </div>
+</div>
+<div class="clear"></div>

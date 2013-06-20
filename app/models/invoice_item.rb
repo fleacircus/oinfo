@@ -2,7 +2,7 @@ class InvoiceItem < ActiveRecord::Base
   attr_accessible :invoice_id, :name, :price, :currency, :quantity,
                   :benefit, :benefit_is_relative, :tax
 
-  belongs_to :invoice
+  belongs_to :invoice, :touch => true
 
   validates :name, :presence => true
   validates :price, :presence => true, :numericality => true

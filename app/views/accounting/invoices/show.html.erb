@@ -56,5 +56,15 @@
       </tr>
     </tbody>
   </table>
+  <h3><%= Attachment.model_name.human(:count => 2) %></h3>
+  <% if @invoice.attachments.count > 0 %>
+  <ul>
+    <% @invoice.attachments.each do |item| %>
+    <li><%= link_to item.name, item.file_url %></li>
+    <% end %>
+  </ul>
+  <% else %>
+      <span class="nil"><%= t('app.messages.no_instances_for_model', :model => Attachment) %></span>
+  <% end %>
 <% end %>
 <%= render 'shared/links_instance_modify', :instance => @invoice %>

@@ -2,15 +2,17 @@ class Invoice < ActiveRecord::Base
   attr_accessible :mandator_id, :user_id, :customer_id, :distributor_id,
                   :invoice_date, :invoice_number,
                   :delivery_date, :value_date,
-                  :invoice_items_attributes
+                  :invoice_items_attributes, :attachments_attributes
 
   belongs_to :user
   belongs_to :mandator
   belongs_to :customer
   belongs_to :distributor
   has_many   :invoice_items, :dependent => :destroy
+  has_many   :attachments, :as => :attachable, :dependent => :destroy
 
   accepts_nested_attributes_for :invoice_items, :allow_destroy => true
+  accepts_nested_attributes_for :attachments,   :allow_destroy => true
 
   validates :customer_id, :presence => true
   validates :distributor_id, :presence => true
