@@ -15,7 +15,7 @@ Oinfo::Application.routes.draw do
   resources :mandators
   resources :messages
 
-  resource :account, :controller => "users", :only => :edit
+  resource :account, :controller => 'users', :only => :edit
 
   root :to => 'dashboard#index'
 
@@ -26,8 +26,11 @@ Oinfo::Application.routes.draw do
     }
 
   resources :changes, :controller => 'changes', :only => [:index, :show, :update]
-  match "/changes/:item_type/:item_id" => "changes#index",
-    :as => "instance_changes", :via => :get, :controller => 'changes',
+  match '/changes/:item_type/:item_id' => 'changes#index',
+    :as => 'instance_changes', :via => :get, :controller => 'changes',
     :constraints => {:item_id => /\d+/}
+
+  match '/files/:id/:basename.:extension', :controller => 'attachments',
+    :action => 'download', :conditions => { :method => :get }
 
 end
