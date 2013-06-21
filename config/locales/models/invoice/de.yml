@@ -20,6 +20,8 @@ de:
         value_date:      "Valutadatum"
         invoice_items:   "Posten"
         attachments:     "Angehängte Dateien"
+        user:            "Verantwortlich"
+        mandator:        "Mandant"
 
       invoice_items:
         name:     "Posten » Bezeichnung"

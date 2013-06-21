@@ -25,10 +25,10 @@
   }
 
   .desc {
-    background: transparent url(image_path('icons/bullet_arrow_down.png')) right no-repeat
+    background: transparent url(image_path('icons/control-270-small.png')) right no-repeat
   }
   .asc  {
-    background: transparent url(image_path('icons/bullet_arrow_up.png')) right no-repeat
+    background: transparent url(image_path('icons/control-090-small.png')) right no-repeat
   }
 
   .clickable {
@@ -38,25 +38,23 @@
 
 
     &.submit {
-      background-image: url(image_path('icons/table_lightning.png'));
+      background-image: url(image_path('icons/binocular.png'));
       float: left;
-      margin-left: -1px;
     }
     &.reset {
-      background-image: url(image_path('icons/table_refresh.png'));
-      float: right;
-      margin: 1px -1px 0 0;
+      background-image: url(image_path('icons/broom.png'));
+      float: left;
+      margin-left: 5px;
     }
     &.wg-show-filter, &.wg-hide-filter {
-      background-image: url(image_path('icons/page_white_find.png'));
-      margin-left: -1px;
+      background-image: url(image_path('icons/funnel.png'));
     }
     &.select-all {
-      background-image: url(/assets/icons/grid/tick_all.png);
+      background-image: url(image_path('icons/ui-check-box.png'));
       float: left;
     }
     &.deselect-all {
-      background-image: url(/assets/icons/grid/untick_all.png);
+      background-image: url(image_path('icons/ui-check-box-uncheck.png'));
       float: left;
     }
     &.export-to-csv-button {
@@ -70,13 +68,13 @@
 
     .collapse-multi-select-icon, .expand-multi-select-icon {
       position: absolute;
-      top: -3px;
+      top: -2px;
       right: 0;
       @include icon-dimensions;
       background: transparent no-repeat;
     }
-    .collapse-multi-select-icon { background-image: url(image_path('icons/bullet_toggle_minus.png')); }
-    .expand-multi-select-icon   { background-image: url(image_path('icons/bullet_toggle_plus.png')); }
+    .collapse-multi-select-icon { background-image: url(image_path('icons/toggle-small.png')); }
+    .expand-multi-select-icon   { background-image: url(image_path('icons/toggle-small-expand.png')); }
   }
 
   .text-filter-container {
@@ -124,7 +122,7 @@
   ul { margin-left: 0; }
 
   a.wice-grid-delete-query .delete-icon {
-    background: transparent url(/assets/icons/grid/delete.png) no-repeat;
+    background: transparent url(image_path('icons/minus-circle.png')) no-repeat;
     float: left;
     @include icon-dimensions;
   }

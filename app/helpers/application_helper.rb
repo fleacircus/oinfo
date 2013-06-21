@@ -11,6 +11,15 @@ module ApplicationHelper
   end
 
 
+  def link_to_file(file)
+    type = file.content_type.nil? ? '' : file.content_type.gsub(/\/|\.|-/, ' ')
+    size = file.file_size.nil? ? '' : content_tag(:span, "[#{number_with_precision(file.file_size / 1000.0)} kB]", :class => 'small')
+    link = link_to(file.name, file.file_url, :class => "icon file #{type}") + size
+
+    return link.html_safe
+  end
+
+
   def unknown_value
     content_tag('span', t('app.label.unknown'), :class => 'nil')
   end

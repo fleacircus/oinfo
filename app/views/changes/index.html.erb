@@ -39,12 +39,12 @@
   end
 
   g.column :html => {class: 'button'} do |version|
-    links = [link_to(image_tag('icons/page_white_show.png'),
+    links = [link_to(image_tag('icons/document-search-result.png'),
       change_path(version), title: t('app.action.show')
     )]
 
     if can? :update, version
-      links << link_to(image_tag('icons/page_white_lightning.png'), change_path(version),
+      links << link_to(image_tag('icons/document-tree.png'), change_path(version),
           :method => 'put', :title => t('app.action.rollback'),
           :confirm => t('app.confirm.are_you_sure')
       )

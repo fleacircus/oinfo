@@ -4,39 +4,39 @@
     path_args = instance_path_args(instance)
 
     if can? :read, instance
-      links << link_to(image_tag('icons/page_white_show.png'),
+      links << link_to(image_tag('icons/document-search-result.png'),
         polymorphic_path(path_args), title: t('app.action.show')
       )
     else
-      links << content_tag(:span, image_tag('icons/page_white_show.png'), :class => 'disabled')
+      links << content_tag(:span, image_tag('icons/'), :class => 'disabled')
     end
 
     if can? :edit, instance
-      links << link_to(image_tag('icons/page_white_edit.png'),
+      links << link_to(image_tag('icons/document--pencil.png'),
         edit_polymorphic_path(path_args), title: t('app.action.edit')
       )
     else
-      links << content_tag(:span, image_tag('icons/page_white_edit.png'), :class => 'disabled')
+      links << content_tag(:span, image_tag('icons/document--pencil.png'), :class => 'disabled')
     end
 
     if can? :delete, instance
-      links << link_to(image_tag('icons/page_white_delete.png'),
+      links << link_to(image_tag('icons/document--minus.png'),
         path_args, title: t('app.action.delete'),
         method: :delete, data: {
           confirm: t('app.confirm.delete_instance', :model => instance.class.model_name.human )
         }
       )
     else
-      links << content_tag(:span, image_tag('icons/page_white_delete.png'), :class => 'disabled')
+      links << content_tag(:span, image_tag('icons/document--minus.png'), :class => 'disabled')
     end
 
 
     if can? :show, Version
-      links << link_to(image_tag('icons/page_white_stack.png'),
+      links << link_to(image_tag('icons/documents-stack.png'),
         instance_changes_path(instance.class, instance.id), title: t('app.action.show_changes')
       )
     else
-      links << content_tag(:span, image_tag('icons/page_white_stack.png'), :class => 'disabled')
+      links << content_tag(:span, image_tag('icons/documents-stack.png'), :class => 'disabled')
     end
 
     links.join(' ').html_safe

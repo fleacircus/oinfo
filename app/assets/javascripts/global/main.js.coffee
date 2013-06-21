@@ -7,5 +7,5 @@ jQuery ->
     changeMonth: true
     changeYear: true
     showOn: 'button'
-    buttonImage: '/assets/icons/grid/calendar_view_month.png'
+    buttonImage: '/assets/icons/calendar-month.png'
     buttonImageOnly: true

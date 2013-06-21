@@ -7,7 +7,7 @@
   <td class="benefit_is_relative"><%= f.check_box :benefit_is_relative %></td>
   <td class="currency"><%= f.select :currency, ['EUR', 'USD'] %></td>
   <td class="destroy"><%=
-    f.link_to_remove image_tag('icons/delete.png', :alt => 'X' ),
+    f.link_to_remove image_tag('icons/minus-circle.png', :alt => 'X' ),
       :title => t('app.label.destroy_instance', :instance => InvoiceItem.model_name.human)
   %></td>
 </tr>

@@ -60,11 +60,41 @@
   <% if @invoice.attachments.count > 0 %>
   <ul>
     <% @invoice.attachments.each do |item| %>
-    <li><%= link_to item.name, item.file_url %></li>
+    <li><%= link_to_file item %></li>
     <% end %>
   </ul>
   <% else %>
       <span class="nil"><%= t('app.messages.no_instances_for_model', :model => Attachment) %></span>
   <% end %>
+  <div class="clear"></div>
+  <div class="stats">
+    <div class="left">
+      <div class="left">
+        <%= i.attribute :created_at, :format => :fdatetime %>
+      </div>
+      <div class="right">
+        <%= i.attribute :updated_at, :format => :fdatetime %>
+      </div>
+    </div>
+    <div class="right">
+      <div class="left">
+        <%= i.association :user do |user| %>
+          <%= link_to user.email, user_path(user) %>
+        <% end %>
+      </div>
+      <% if current_user.has_role?(:meta_admin) %>
+      <div class="right">
+        <% if @invoice.mandator.nil? %>
+          <%= i.association :mandator, :using => :name %>
+        <% else %>
+        <%= i.association :mandator do |mandator| %>
+          <%= link_to mandator.name, mandator_path(mandator) %>
+        <% end %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <div class="clear"></div>
+  </div>
 <% end %>
 <%= render 'shared/links_instance_modify', :instance => @invoice %>

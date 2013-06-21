@@ -9,7 +9,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :customer
   belongs_to :distributor
   has_many   :invoice_items, :dependent => :destroy
-  has_many   :attachments, :as => :attachable, :dependent => :destroy
+  has_many   :attachments, :as => :attachable
 
   accepts_nested_attributes_for :invoice_items, :allow_destroy => true
   accepts_nested_attributes_for :attachments,   :allow_destroy => true
