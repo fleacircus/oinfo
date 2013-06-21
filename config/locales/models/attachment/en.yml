@@ -1,0 +1,7 @@
+# ruby encoding: utf-8
+en:
+  activerecord:
+    models:
+      attachment:
+        one:   "Attachment"
+        other: "Attachments"

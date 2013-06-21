@@ -402,8 +402,8 @@ ul {
   li { margin-left: 15px; }
 
   &.group_by {
-    margin-left: 0;
     list-style: none outside;
+    &>li { margin-left: 0; }
 
     span.group_title {
       display: block;

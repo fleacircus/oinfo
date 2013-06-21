@@ -64,7 +64,7 @@
     <% end %>
   </ul>
   <% else %>
-      <span class="nil"><%= t('app.messages.no_instances_for_model', :model => Attachment) %></span>
+      <span class="nil"><%= t('app.messages.no_instances_for_model', :model => Attachment.model_name.human(:count => 2)) %></span>
   <% end %>
   <div class="clear"></div>
   <div class="stats">
