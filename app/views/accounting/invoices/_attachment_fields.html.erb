@@ -1,5 +1,6 @@
 <tr class="fields">
   <td class="name"><%= f.text_field :name %></td>
+  <td class="show"><%= link_to image_tag('icons/page_white_show.png'), f.object.file_url, title: t('app.action.show'), :target => '_blank' %></td>
   <td class="file"><%= f.file_field :file %></td>
   <td class="destroy"><%=
     f.link_to_remove image_tag('icons/delete.png', :alt => 'X' ),

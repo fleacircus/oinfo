@@ -66,9 +66,9 @@
     <table id="attachments" class="form">
       <thead>
         <tr>
-          <% [:name, :file].each do |a| %>
-          <%= content_tag :th, Attachment.human_attribute_name(a), :class => a %>
-          <% end %>
+          <th class="name"><%= Attachment.human_attribute_name(:name) %></th>
+          <th class="show"></th>
+          <th class="file"><%= Attachment.human_attribute_name(:file) %></th>
           <th class="destroy"></th>
         </tr>
       </thead>

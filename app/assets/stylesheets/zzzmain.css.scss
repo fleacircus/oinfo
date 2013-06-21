@@ -620,12 +620,17 @@ footer {
 
       select { width: 60px; }
     }
-    .name {
-      input { width: 290px; }
-    }
-    .destroy {
+    .destroy, .show {
       width: 16px;
       vertical-align: middle;
+    }
+    .show {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    &#attachments {
+      .name input { width: 400px; }
+      .file { width: 418px; }
     }
   }
   &.new, &.create, &.edit {
