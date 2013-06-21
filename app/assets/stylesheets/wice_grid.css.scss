@@ -106,7 +106,10 @@
     float: left;
   }
 
-  tr.wg-filter-row input[type=text] { width: 100px; }
+  tr.wg-filter-row {
+    box-shadow: none;
+    input[type=text] { width: 100px; }
+  }
 
   .pagination_status {
     font-weight: bold;
