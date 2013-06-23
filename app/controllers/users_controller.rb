@@ -4,21 +4,42 @@ class UsersController < ApplicationController
 
   autocomplete :mandator, :name
 
+  @@export_include = :mandator
 
   def index
-    @users_grid = initialize_grid(
-      User.accessible_by(current_ability),
-      :include => :mandator,
-      :order => 'users.email', :order_direction => 'asc',
-      :custom_order => {
-        'users.mandator_id' => 'mandators.name'
+    respond_to do |format|
+      format.html {
+        @users_grid = initialize_grid(
+          User.accessible_by(current_ability),
+          :include => :mandator,
+          :order => 'users.email', :order_direction => 'asc',
+          :custom_order => {
+            'users.mandator_id' => 'mandators.name'
+          }
+        )
       }
-    )
+      format.json {
+        render json: User.accessible_by(current_ability).to_json(:include => @@export_include)
+      }
+      format.xml {
+        render xml: User.accessible_by(current_ability).to_xml(:include => @@export_include)
+      }
+    end
   end
 
 
   def show
-    @user = find_by_id_or_redirect(User)
+    if !(@user = find_by_id_or_redirect(User)).nil?
+      respond_to do |format|
+        format.html
+        format.json {
+          render json: @user.to_json(:include => @@export_include)
+        }
+        format.xml {
+          render xml: @user.to_xml(:include => @@export_include)
+        }
+      end
+    end
   end
 
 

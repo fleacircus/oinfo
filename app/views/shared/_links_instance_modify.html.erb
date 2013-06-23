@@ -1,8 +1,11 @@
-<div class="link"><%=
-
-  links      = []
+<%
+  export, links = '', []
   model_name = instance.class.model_name.human
   path_args  = instance_path_args instance
+
+  if defined?(export) && export
+    export = render 'shared/links_instance_export', :instance => instance
+  end
 
   if can? :edit, instance
     links << link_to(t('app.label.edit_instance', :instance => model_name),
@@ -24,6 +27,4 @@
     )
   end
 
-  links.join(' | ').html_safe
-
-%></div>
+%><div class="link"><%= export+links.join(' | ').html_safe %></div>

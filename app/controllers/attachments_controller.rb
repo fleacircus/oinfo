@@ -6,11 +6,11 @@ class AttachmentsController < ApplicationController
     name = "#{params[:basename]}.#{params[:extension]}"
     file = Attachment.where(:id => params[:id], :file => name).limit(1)
 
-    if file.count > 0
-      send_file Rails.root.join('uploads', file[0].file.file.file),
+    begin
+      send_file file[0].intern_url,
         :x_sendfile => true, :type => file[0].content_type, :filename => file[0].name
-    else
-      raise ActionController::RoutingError.new('Not Found')
+    rescue
+      render :nothing => true, :status => 404
     end
   end
 

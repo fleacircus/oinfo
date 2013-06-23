@@ -9,6 +9,14 @@ class Attachment < ActiveRecord::Base
 
   has_paper_trail
 
+  def intern_url
+    Rails.root.join('uploads', self.file.file.file)
+  end
+
+  def public_url
+    "/files/#{self.id}/#{File.basename(self.file_url)}"
+  end
+
   private
 
   def update_attributes

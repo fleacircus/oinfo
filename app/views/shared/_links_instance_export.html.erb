@@ -1,0 +1,9 @@
+<%
+  links = []
+  path_args = instance_path_args instance
+
+  ['json', 'xml'].each do |t|
+    links << link_to(t.upcase, polymorphic_path(path_args, :format => t), :class => "icon file #{t}", :target => '_blank')
+  end
+
+%><div class="export"><%= links.join(' | ').html_safe %></div>

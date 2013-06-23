@@ -34,8 +34,6 @@ $shadow_inset_bottom: inset 0 -10px 10px -10px $color_shadow;
 }
 
 
-
-
 * {
   margin: 0;
   padding: 0;
@@ -92,42 +90,6 @@ a {
       background-position: right 2px;
       background-image: url(image_path('icons/control.png'))
     }
-
-    &.file {
-      background-image: url(image_path('icons/document.png'));
-
-      &.audio  { background-image: url(image_path('icons/music.png')); }
-      &.image  { background-image: url(image_path('icons/image.png')); }
-      &.video  { background-image: url(image_path('icons/film.png')); }
-      &.text   { background-image: url(image_path('icons/document-text.png')); }
-      &.pdf    { background-image: url(image_path('icons/document-pdf.png')); }
-      &.zip, &[class*='compressed'] {
-        background-image: url(image_path('icons/document-zipper.png'));
-      }
-      &.msword, &[class*='officedocument word'] {
-        background-image: url(image_path('icons/document-word.png'));
-      }
-      &[class*='writer'], &[class*='opendocument text'] {
-        background-image: url(image_path('icons/document-text-image.png'));
-      }
-      &.excel, &[class*='officedocument spreadsheet'] {
-        background-image: url(image_path('icons/document-excel.png'));
-      }
-      &[class*='calc'], &[class*='opendocument spreadsheet'] {
-        background-image: url(image_path('icons/document-table.png'));
-      }
-      &.powerpoint, &[class*='officedocument presentation'] {
-        background-image: url(image_path('icons/document-powerpoint.png'));
-      }
-      &[class*='impress'], &[class*='opendocument presentation'] {
-        background-image: url(image_path('icons/document-block.png'));
-      }
-      &[class*='draw'], &[class*='opendocument graphics'] {
-        background-image: url(image_path('icons/document-image.png'));
-      }
-
-      &+span.small { margin-left: 5px; }
-    }
   }
 
   &[href^=http] {
@@ -138,6 +100,47 @@ a {
   &.local {
     padding-right: 0;
     background: none
+  }
+}
+
+a, del {
+  &.icon.file {
+    padding-left: 20px;
+    background: transparent url(image_path('icons/document.png')) 0 2px no-repeat;
+
+    &.audio  { background-image: url(image_path('icons/music.png')); }
+    &.image  { background-image: url(image_path('icons/image.png')); }
+    &.video  { background-image: url(image_path('icons/film.png')); }
+    &.text   { background-image: url(image_path('icons/document-text.png')); }
+    &.json   { background-image: url(image_path('icons/json.png')); }
+    &.xml    { background-image: url(image_path('icons/xml.png')); }
+    &.pdf    { background-image: url(image_path('icons/document-pdf.png')); }
+    &.zip, &[class*='compressed'] {
+      background-image: url(image_path('icons/document-zipper.png'));
+    }
+    &.msword, &[class*='officedocument word'] {
+      background-image: url(image_path('icons/document-word.png'));
+    }
+    &[class*='writer'], &[class*='opendocument text'] {
+      background-image: url(image_path('icons/document-text-image.png'));
+    }
+    &.excel, &[class*='officedocument spreadsheet'] {
+      background-image: url(image_path('icons/document-excel.png'));
+    }
+    &[class*='calc'], &[class*='opendocument spreadsheet'] {
+      background-image: url(image_path('icons/document-table.png'));
+    }
+    &.powerpoint, &[class*='officedocument presentation'] {
+      background-image: url(image_path('icons/document-powerpoint.png'));
+    }
+    &[class*='impress'], &[class*='opendocument presentation'] {
+      background-image: url(image_path('icons/document-block.png'));
+    }
+    &[class*='draw'], &[class*='opendocument graphics'] {
+      background-image: url(image_path('icons/document-image.png'));
+    }
+
+    &+span.small { margin-left: 5px; }
   }
 }
 
@@ -471,6 +474,8 @@ span {
 .link {
   margin-top: 10px;
   text-align: right;
+
+  .export { float:left; }
 }
 
 .disabled { opacity: .5; }
