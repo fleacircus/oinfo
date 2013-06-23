@@ -20,7 +20,7 @@
         %>
       </div>
     <% else %>
-      <span class="nil"><%= t('app.messages.no_instances_for_model', :model => Message) %></span>
+      <span class="nil"><%= t('app.messages.no_instances_for_model', :model => Message.model_name.human(:count => 2)) %></span>
     <% end %>
   </div>
 </div>
