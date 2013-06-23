@@ -94,7 +94,7 @@ a {
 
   &[href^=http] {
     padding-right: 15px;
-    background: transparent url(image_path('icons/globe-small-green.png')) 4px right no-repeat;
+    background: transparent url(image_path('icons/globe-small-green.png')) right 4px no-repeat;
   }
 
   &.local {
