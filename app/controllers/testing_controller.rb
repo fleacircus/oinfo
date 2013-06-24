@@ -1,3 +1,4 @@
+# ruby encoding: utf-8
 class TestingController < ApplicationController
   before_filter :authenticate_user!
 
