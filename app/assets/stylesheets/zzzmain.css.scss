@@ -52,6 +52,7 @@ body {
   font: $font;
 }
 
+h1, h2, h3, h4, strong { color: lighten($color_text, 20%); }
 
 p, ol, ul, td { font: $font; }
 
@@ -460,15 +461,11 @@ ul {
 }
 
 
-span {
-  &.nil {
-    color: $color_text_missing;
-    font-style: italic;
-  }
-  &.small {
-    font-size: 86%;
-  }
+.nil {
+  color: $color_text_missing;
+  font-style: italic;
 }
+.small { font-size: 86%; }
 
 
 .link {

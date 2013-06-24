@@ -6,6 +6,11 @@
       Der folgende Link erzeugt einen Hintergrundprozess, der
       nach einer definierten Zeit eine neue Nachricht generiert.
     </p>
+    <p class="small">
+      <strong>Hinweis:</strong>
+      Auf Heroku.com funktionieren Hintergrundprozesse nur mit
+      kostenpflichtigen <code>worker</code>-Instanzen.
+    </p>
     <div class="link">
       <%= link_to 'Nachricht generieren', testing_generate_message_path, :class => 'button' %>
     </div>

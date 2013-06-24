@@ -6,7 +6,7 @@ class TestingController < ApplicationController
   end
 
   def generate_message
-    Delayed::Job.enqueue MessageJob.new(current_user), 0, 5.minutes.from_now
+    Delayed::Job.enqueue MessageJob.new(current_user), :run_at => 5.minutes.from_now
     redirect_to testing_index_path, :notice => 'Die Nachricht wird in ungefähr 5 Minuten generiert.'
   end
 
