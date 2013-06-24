@@ -1,0 +1,13 @@
+# ruby encoding: utf-8
+en:
+  activerecord:
+    models:
+      task:
+        one:   "Task"
+        other: "Tasks"
+
+    attributes:
+      task:
+        priority: "Priority"
+        handler:  "Handler"
+        run_at:   "Run at"

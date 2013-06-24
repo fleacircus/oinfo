@@ -604,31 +604,6 @@ footer {
 }
 
 
-#testing.index {
-  div {
-    &.left, &.right { width: 450px; }
-  }
-  p { text-align: justify; }
-  .link { margin-top: 15px; }
-  pre {
-    margin-top: 15px;
-    padding: 5px;
-    background: #fff;
-    border: 1px solid $color_border;
-    box-shadow: $shadow_inset_top;
-    font: normal 12px monospace;
-    color: $color_link;
-    &:before {
-      content: 'CODE';
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: lighten($color_text, 20%);
-    }
-  }
-}
-
-
 #users {
   &.show {
     .show_for.user div {
@@ -777,6 +752,44 @@ footer {
           font-size: 86%;
           &.prev, &.curr { width: 50%; }
         }
+      }
+    }
+  }
+}
+
+
+#testing.index {
+  div {
+    &.left, &.right { width: 450px; }
+  }
+  .box { margin-bottom: 20px; }
+  p { text-align: justify; }
+  .link { margin-top: 15px; }
+  pre {
+    margin-top: 15px;
+    padding: 5px;
+    max-height: 200px;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid $color_border;
+    box-shadow: $shadow_inset_top;
+    font: normal 12px monospace;
+    color: $color_link;
+    &:before {
+      content: 'CODE';
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: lighten($color_text, 20%);
+    }
+  }
+  table {
+    pre {
+      margin: 0;
+      max-height: 100px;
+      &:before {
+        display: none;
+        margin: 0;
       }
     }
   }

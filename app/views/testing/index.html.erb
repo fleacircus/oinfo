@@ -16,9 +16,9 @@
     </div>
     <pre>def generate_message
   Delayed::Job.enqueue(
-    MessageJob.new(current_user), # method call
-    0,                            # priority
-    5.minutes.from_now            # execution time
+    MessageJob.new(current_user),      # method call
+    :priority => 0,                    # priority
+    :run_at   => 5.minutes.from_now    # execution time
   )
   redirect_to [...]
 end
@@ -42,3 +42,30 @@ end</pre>
   </div>
 </div>
 <div class="clear"></div>
+<h3>Delayed::Job » Tasks</h3>
+<%= grid(@tasks_grid, :show_filters => :no) do |g|
+
+  g.column :html => {:class => 'numeric shrink'}, :name => 'Id',
+    :attribute => 'id' do |task|
+      task.id
+  end
+
+  g.column :html => {:class => 'numeric shrink'}, :name => t('activerecord.attributes.task.priority'),
+    :attribute => 'id' do |task|
+      task.priority
+  end
+
+  g.column :name => t('activerecord.attributes.task.handler'),
+    :attribute => 'handler' do |task|
+      content_tag(:pre, task.handler)
+  end
+
+  g.column :html => {class: 'fdatetime'}, :name => t('activerecord.attributes.task.run_at'),
+    :attribute => 'run_at' do |task|
+      task.run_at.nil? ? '' : l(task.run_at, format: :fdatetime)
+  end
+
+  render 'shared/grid_columns_timestamps', :row => g, :model => Delayed::Job, :timestamps => [:created_at]
+  render 'shared/grid_row_no_instances', :grid => @tasks_grid, :row => g, :model => 'activerecord.models.task'
+
+end %>

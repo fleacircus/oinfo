@@ -59,6 +59,7 @@ gem 'redcarpet', '~> 2.3.0'
 
 # Asynchron task execution in the background
 gem 'delayed_job_active_record', '~> 0.4.4'
+gem 'daemons', '~> 1.1.9'
 
 # Track changes to models' data
 gem 'paper_trail', '~> 2.7.2'
