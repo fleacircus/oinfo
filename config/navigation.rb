@@ -38,5 +38,7 @@ SimpleNavigation::Configuration.run do |navigation|
       changes_path, :highlights_on => %r(/changes),
       :if => Proc.new {can? :show, Version}
 
+    primary.item :testing, 'Testing', testing_index_path
+
   end
 end

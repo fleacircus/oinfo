@@ -151,7 +151,7 @@ input {
   &[type='number']   { text-align: right; }
   &[type='checkbox'] { vertical-align: bottom; }
 }
-input[type='submit'], button {
+input[type='submit'], button, a.button {
   padding: 4px 10px;
   border: 1px solid $color_border;
   border-radius: 5px;
@@ -604,6 +604,31 @@ footer {
     &.left, &.right { width: 450px; }
   }
   .link { margin-top: 0; }
+}
+
+
+#testing.index {
+  div {
+    &.left, &.right { width: 450px; }
+  }
+  p { text-align: justify; }
+  .link { margin-top: 15px; }
+  pre {
+    margin-top: 15px;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid $color_border;
+    box-shadow: $shadow_inset_top;
+    font: normal 12px monospace;
+    color: $color_link;
+    &:before {
+      content: 'CODE';
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: lighten($color_text, 20%);
+    }
+  }
 }
 
 

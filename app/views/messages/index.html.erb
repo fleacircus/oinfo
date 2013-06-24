@@ -1,11 +1,24 @@
 <%= render 'shared/title_link_new', :model => Message %>
 <%= grid(@messages_grid) do |g|
 
+  g.column :html => {class: 'mdatetime'}, :name => Message.human_attribute_name('date'),
+    :attribute => 'updated_at' do |message|
+      message.updated_at.nil? ? '' : l(message.updated_at, format: :mdatetime)
+  end
+
   g.column :name => Message.human_attribute_name('title'), :attribute => 'title' do |message|
     link_to(message.title, message_path(message))
   end
 
-  render 'shared/grid_columns_timestamps', :row => g, :model => Message
+  g.column :html => {class: 'shrink'}, :name => Message.human_attribute_name('user_id'),
+    :attribute => 'user_id' do |message|
+      if can? :show, message.user
+        link_to(message.user.email, user_path(message.user))
+      else
+        message.user.email
+      end
+  end
+
   render 'shared/grid_column_action_links', :row => g
   render 'shared/grid_row_no_instances', :grid => @messages_grid, :row => g, :model => Message
 

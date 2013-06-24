@@ -1,0 +1,39 @@
+<h2>Testing</h2>
+<div class="left">
+  <h3>Delayed::Job » MessageJob</h3>
+  <div class="box">
+    <p>
+      Der folgende Link erzeugt einen Hintergrundprozess, der
+      nach einer definierten Zeit eine neue Nachricht generiert.
+    </p>
+    <div class="link">
+      <%= link_to 'Nachricht generieren', testing_generate_message_path, :class => 'button' %>
+    </div>
+    <pre>def generate_message
+  Delayed::Job.enqueue(
+    MessageJob.new(current_user), # method call
+    0,                            # priority
+    5.minutes.from_now            # execution time
+  )
+  redirect_to [...]
+end
+
+class MessageJob < Struct.new(:user)
+  def perform
+    Message.create({
+      :title       => '[...]',
+      :text        => '[...]',
+      :user_id     => user.id,
+      :mandator_id => user.mandator_id
+    })
+  end
+end</pre>
+  </div>
+</div>
+<div class="right">
+  <h3>Delayed::Job » ImportJob</h3>
+  <div class="box">
+    TODO
+  </div>
+</div>
+<div class="clear"></div>

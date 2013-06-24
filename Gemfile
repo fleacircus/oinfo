@@ -58,7 +58,8 @@ gem 'carrierwave', '~> 0.8.0'
 gem 'redcarpet', '~> 2.3.0'
 
 # Asynchron task execution in the background
-#gem 'delayed_job_active_record', '~> 0.4.4'
+gem 'delayed_job_active_record', '~> 0.4.4'
+gem 'workless', '~> 1.1.1'
 
 # Track changes to models' data
 gem 'paper_trail', '~> 2.7.2'

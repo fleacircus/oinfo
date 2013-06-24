@@ -1,13 +1,19 @@
 module ApplicationHelper
 
   def markdown(text)
-    args = {
+    render_args = {
+      :hard_wrap => true,
+      :filter_html => true
+    }
+    markdown_args = {
       :autolink => true,
       :no_intra_emphasis => true,
       :space_after_headers => true,
       :fenced_code_blocks => true
     }
-    Redcarpet::Markdown.new(Redcarpet::Render::XHTML, args).render(text).html_safe
+    Redcarpet::Markdown.new(
+      Redcarpet::Render::XHTML.new(render_args), markdown_args
+    ).render(text).html_safe
   end
 
 

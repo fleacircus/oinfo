@@ -8,5 +8,7 @@ de:
 
     attributes:
       message:
-        title: "Titel"
-        text:  "Text"
+        title:   "Titel"
+        text:    "Text"
+        user_id: "Verfasser"
+        date:    "Datum"

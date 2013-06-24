@@ -2,6 +2,9 @@ Oinfo::Application.routes.draw do
 
   resources :dashboard, :only => :index
 
+  resources :testing, :only => [:index]
+  get '/testing/generate_message'
+
   resources :users do
     get :autocomplete_mandator_name, :on => :collection
   end

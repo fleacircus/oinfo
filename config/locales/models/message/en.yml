@@ -1,0 +1,7 @@
+# ruby encoding: utf-8
+en:
+  activerecord:
+    attributes:
+      message:
+        user_id: "Author"
+        date:    "Date"

@@ -17,6 +17,7 @@ class Ability
 
       # MandatorAdmins can create and manage their associated user
       can :create, User
+      can :read,   User, :mandator_id => user.mandator_id
       can :manage, User, :mandator_id => User.with_role(:mandator_admin, user).map(&:mandator_id)
 
       # MandatorAdmins can create and manage their associated messages
