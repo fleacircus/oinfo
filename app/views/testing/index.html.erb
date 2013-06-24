@@ -1,15 +1,15 @@
 <h2>Testing</h2>
+<div class="small">
+  <strong>Hinweis:</strong>
+  Auf Heroku.com funktionieren Hintergrundprozesse nur mit
+  kostenpflichtigen <code>worker</code>-Instanzen.
+</div>
 <div class="left">
   <h3>Delayed::Job » MessageJob</h3>
   <div class="box">
     <p>
       Der folgende Link erzeugt einen Hintergrundprozess, der
       nach einer definierten Zeit eine neue Nachricht generiert.
-    </p>
-    <p class="small">
-      <strong>Hinweis:</strong>
-      Auf Heroku.com funktionieren Hintergrundprozesse nur mit
-      kostenpflichtigen <code>worker</code>-Instanzen.
     </p>
     <div class="link">
       <%= link_to 'Nachricht generieren', testing_generate_message_path, :class => 'button' %>
@@ -36,9 +36,47 @@ end</pre>
   </div>
 </div>
 <div class="right">
-  <h3>Delayed::Job » ImportJob</h3>
+  <h3>Delayed::Job » ImportInvoicesJob</h3>
   <div class="box">
-    TODO
+    <p>
+      Der folgende Link erzeugt einen Hintergrundprozess, der
+      eine XML-Datei von http://localhost/invoices.xml holt und
+      die darin definierten Rechnungen importiert.
+    </p>
+    <div class="link">
+      <%= link_to 'Rechnungen importieren', testing_import_invoices_path, :class => 'button' %>
+    </div>
+    <pre>def import_invoices
+  Delayed::Job.enqueue(
+    ImportInvoicesJob.new(current_user),  # method call
+    :priority => 10,                      # priority
+  )
+  redirect_to [...]
+end
+
+class ImportInvoicesJob < Struct.new(:user)
+  def perform
+    data = Hash.from_xml open('[...]')
+
+    # simple/incomplete import analysis
+    data['invoices']['invoice'].each do |set|
+      customer      = set.delete 'customer'
+      distributor   = set.delete 'distributor'
+      invoice_items = set.delete 'invoice_items'
+      attachments   = set.delete 'attachments'
+
+      rec = Invoice.new(set)
+      rec.user_id     = user.id
+      rec.mandator_id = user.mandator_id
+
+      invoice_items.each do |item|
+        rec.invoice_items.build(item)
+      end
+
+      rec.save!
+    end
+  end
+end</pre>
   </div>
 </div>
 <div class="clear"></div>

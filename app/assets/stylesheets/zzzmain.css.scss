@@ -761,9 +761,13 @@ footer {
 #testing.index {
   div {
     &.left, &.right { width: 450px; }
+    &.small { margin-bottom: 5px; }
   }
-  .box { margin-bottom: 20px; }
-  p { text-align: justify; }
+  .box { margin-bottom: 10px; }
+  p {
+    min-height: 60px;
+    text-align: justify;
+  }
   .link { margin-top: 15px; }
   pre {
     margin-top: 15px;

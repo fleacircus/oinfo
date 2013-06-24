@@ -11,4 +11,9 @@ class TestingController < ApplicationController
     redirect_to testing_index_path, :notice => 'Die Nachricht wird in ungefähr 5 Minuten generiert.'
   end
 
+  def import_invoices
+    Delayed::Job.enqueue ImportInvoicesJob.new(current_user), :priority => 10
+    redirect_to testing_index_path, :notice => 'Die Rechnung wird in nun importiert.'
+  end
+
 end

@@ -4,6 +4,7 @@ Oinfo::Application.routes.draw do
 
   resources :testing, :only => [:index]
   get '/testing/generate_message'
+  get '/testing/import_invoices'
 
   resources :users do
     get :autocomplete_mandator_name, :on => :collection
