@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoices>
+  <invoice>
+    <customer-id type="integer">7</customer-id>
+    <delivery-date type="date">2013-07-28</delivery-date>
+    <distributor-id type="integer">1</distributor-id>
+    <invoice-date type="date">2013-07-21</invoice-date>
+    <invoice-number type="integer">3</invoice-number>
+    <value-date type="date">2013-08-10</value-date>
+    <invoice-items type="array">
+      <invoice-item>
+        <benefit type="decimal">10.0</benefit>
+        <benefit-is-relative type="boolean">false</benefit-is-relative>
+        <currency>EUR</currency>
+        <name>Test 01</name>
+        <price type="decimal">150.0</price>
+        <quantity type="integer">15</quantity>
+        <tax type="decimal">7.0</tax>
+      </invoice-item>
+      <invoice-item>
+        <currency>EUR</currency>
+        <name>Test 02</name>
+        <price type="decimal">50.0</price>
+        <quantity type="integer">200</quantity>
+        <tax type="decimal">19.0</tax>
+      </invoice-item>
+    </invoice-items>
+    <attachments type="array">
+      <attachment>
+        <name>Imported File.pdf</name>
+        <remote-file-url>http://localhost/oinfo/Example%20File.pdf</remote-file-url>
+      </attachment>
+    </attachments>
+  </invoice>
+  <invoice>
+    <delivery-date type="date">2013-08-12</delivery-date>
+    <distributor-id type="integer">1</distributor-id>
+    <invoice-date type="date">2013-08-20</invoice-date>
+    <invoice-number type="integer">4</invoice-number>
+    <value-date type="date">2013-08-29</value-date>
+    <customer>
+      <name>Max Mustermann</name>
+      <street>Musterstraße 12</street>
+      <postal-code type="integer">12345</postal-code>
+      <city>Musterstadt</city>
+      <province/>
+      <country>DE</country>
+    </customer>
+    <invoice-items type="array">
+      <invoice-item>
+        <benefit type="decimal">0.0</benefit>
+        <benefit-is-relative type="boolean">false</benefit-is-relative>
+        <currency>EUR</currency>
+        <name>Position Eins</name>
+        <price type="decimal">123.0</price>
+        <quantity type="integer">12</quantity>
+        <tax type="decimal">19.0</tax>
+      </invoice-item>
+      <invoice-item>
+        <currency>EUR</currency>
+        <name>Position Zwei</name>
+        <price type="decimal">450.0</price>
+        <quantity type="integer">2</quantity>
+        <tax type="decimal">19.0</tax>
+      </invoice-item>
+    </invoice-items>
+  </invoice>
+</invoices>
