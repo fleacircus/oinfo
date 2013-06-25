@@ -15,8 +15,11 @@
       <%= link_to 'Nachricht generieren', testing_generate_message_path, :class => 'button' %>
     </div>
     <pre>def generate_message
-  Delayed::Job.enqueue(
-    MessageJob.new(current_user),      # method call
+  Delayed::Job.enqueue(                # method call
+    MessageJob.new(
+      current_user.id,
+      current_user.mandator_id
+    ),
     :priority => 0,                    # priority
     :run_at   => 5.minutes.from_now    # execution time
   )
@@ -40,16 +43,19 @@ end</pre>
   <div class="box">
     <p>
       Der folgende Link erzeugt einen Hintergrundprozess, der
-      eine XML-Datei von http://localhost/invoices.xml holt und
+      eine XML-Datei von <a href="https://github.com/fleacircus/oinfo/blob/master/test/files/invoices.xml" target="_blank">http://localhost/invoices.xml</a> holt und
       die darin definierten Rechnungen importiert.
     </p>
     <div class="link">
       <%= link_to 'Rechnungen importieren', testing_import_invoices_path, :class => 'button' %>
     </div>
     <pre>def import_invoices
-  Delayed::Job.enqueue(
-    ImportInvoicesJob.new(current_user),  # method call
-    :priority => 10,                      # priority
+  Delayed::Job.enqueue(                # method call
+    ImportInvoicesJob.new(
+      current_user.id,
+      current_user.mandator_id
+    ),
+    :priority => 10,                   # priority
   )
   redirect_to [...]
 end
@@ -58,22 +64,18 @@ class ImportInvoicesJob < Struct.new(:user)
   def perform
     data = Hash.from_xml open('[...]')
 
-    # simple/incomplete import analysis
     data['invoices']['invoice'].each do |set|
-      customer      = set.delete 'customer'
-      distributor   = set.delete 'distributor'
-      invoice_items = set.delete 'invoice_items'
-      attachments   = set.delete 'attachments'
+      # check if invoice already exists
+      test = Invoice.where(
+        :invoice_number => set['invoice_number'],
+        :mandator_id    => self.mandator_id
+      ).first
 
-      rec = Invoice.new(set)
-      rec.user_id     = user.id
-      rec.mandator_id = user.mandator_id
-
-      invoice_items.each do |item|
-        rec.invoice_items.build(item)
+      if test.nil?
+        # import analysis
+        [... » <a href="https://github.com/fleacircus/oinfo/blob/master/app/jobs/import_invoices_job.rb" target="_blank">GitHub</a>]
+        invoice.save!
       end
-
-      rec.save!
     end
   end
 end</pre>
