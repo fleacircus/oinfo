@@ -1,4 +1,4 @@
-class ImportInvoicesJob < Struct.new(:user_id, :mandator_id)
+class ImportInvoicesJob < Struct.new(:user)
 
   def perform
     data = Hash.from_xml open('http://localhost/oinfo/invoices.xml')
@@ -8,10 +8,11 @@ class ImportInvoicesJob < Struct.new(:user_id, :mandator_id)
       # check if invoice already exists
       test = Invoice.where(
         :invoice_number => set['invoice_number'],
-        :mandator_id    => self.mandator_id
+        :mandator_id    => self.user.mandator_id
       ).first
 
       if test.nil?
+
         # import analysis
         customer      = find_or_create(set.delete('customer'), Customer)
         distributor   = find_or_create(set.delete('distributor'), Distributor)
@@ -19,7 +20,7 @@ class ImportInvoicesJob < Struct.new(:user_id, :mandator_id)
         attachments   = set.delete 'attachments'
 
         invoice = Invoice.new(set)
-        invoice.user_id, invoice.mandator_id = self.user_id, self.mandator_id
+        invoice.user_id, invoice.mandator_id = self.user.id, self.user.mandator_id
         invoice.customer_id    = customer.id    if !customer.nil?
         invoice.distributor_id = distributor.id if !distributor.nil?
 
@@ -44,9 +45,9 @@ class ImportInvoicesJob < Struct.new(:user_id, :mandator_id)
 
   def find_or_create(hash, model)
     if !hash.nil?
-      instance = model.where(:name => hash['name'], :mandator_id => self.mandator_id).first
+      instance = model.where(:name => hash['name'], :mandator_id => self.user.mandator_id).first
       if instance.nil?
-        hash['user_id'],  hash['mandator_id'] = self.user_id, self.mandator_id
+        hash['user_id'],  hash['mandator_id'] = self.user.id, self.user.mandator_id
         instance = model.create(hash)
       end
       hash = instance

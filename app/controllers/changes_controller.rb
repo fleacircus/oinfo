@@ -66,11 +66,15 @@ class ChangesController < ApplicationController
 
   protected
 
-  def change_item_url(version)
-    return send("#{version.item_type.downcase}_url", version.item_id)
+  def change_item_path(version)
+    path = "#{version.item_type.downcase}_path"
+    if ['Invoice', 'InvoiceItem', 'Customer', 'Distributor', 'Attachment'].include? version.item_type
+      path = "accounting_#{path}"
+    end
+    return send(path, version.item_id)
   rescue NoMethodError
     return nil
   end
-  helper_method :change_item_url
+  helper_method :change_item_path
 
 end

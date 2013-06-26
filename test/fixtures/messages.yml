@@ -1,13 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  title: MyString
-  text: MyText
-  mandator_id: 1
-  user_id: 1
+  title: "Test Message One"
+  text: "Message for test purpose."
+  user: admin
 
 two:
-  title: MyString
-  text: MyText
-  mandator_id: 1
-  user_id: 1
+  title: "Test Message Two"
+  text: "Message for test purpose."
+  mandator: mandator_1
+  user: mandator

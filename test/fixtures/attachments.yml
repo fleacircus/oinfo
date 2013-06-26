@@ -1,11 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  description: MyText
-  file: MyString
-  attachable: 
+one: {}
 
-two:
-  description: MyText
-  file: MyString
-  attachable: 
+two: {}

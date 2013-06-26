@@ -1,27 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  mandator_id: 1
-  user_id: 1
-  distributor_id: 1
-  customer_id: 1
-  voucher_number: 1
-  voucher_date: 2013-06-14
+  invoice_number: 1
+  invoice_date: 2013-06-14
   delivery_date: 2013-06-14
-  gross_amount: 9.99
-  net_amount: 9.99
-  currency: MyString
   value_date: 2013-06-14
+  customer: one
+  distributor: one
+  user: admin
 
 two:
-  mandator_id: 1
-  user_id: 1
-  distributor_id: 1
-  customer_id: 1
-  voucher_number: 1
-  voucher_date: 2013-06-14
+  invoice_number: 2
+  invoice_date: 2013-06-14
   delivery_date: 2013-06-14
-  gross_amount: 9.99
-  net_amount: 9.99
-  currency: MyString
   value_date: 2013-06-14
+  customer: one
+  distributor: one
+  mandator: mandator_1
+  user: mandator

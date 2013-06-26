@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: "Example Mandator 01"
+mandator_1:
+  name: "Test Mandator 1"
 
-two:
-  name: "Example Mandator 01"
+mandator_2:
+  name: "Test Mandator 2"

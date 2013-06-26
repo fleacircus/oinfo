@@ -55,14 +55,18 @@ module ChangesHelper
 
 
   def change_title_for(version)
-    current = version.next.try(:reify)
+    current  = version.next.try(:reify)
     previous = version.reify rescue nil
-    record = version.item_type.constantize.find(version.item_id) rescue nil
+    record   = version.item_type.constantize.find(version.item_id) rescue nil
 
     name = nil
-    [:name, :title, :email, :to_s].each do |name_method|
+
+    [:name, :title, :email, :invoice_number, :to_s].each do |name_method|
       [previous, current, record].each do |obj|
         name = obj.send(name_method) if obj.respond_to?(name_method)
+        if name_method == :invoice_number && name && record
+          name = "#{Invoice.model_name.human} #{name}"
+        end
         break if name
       end
       break if name
@@ -73,11 +77,12 @@ module ChangesHelper
 
 
   def change_item_link(version)
-    if version.event != 'destroy'
-      return link_to(change_title_for(version), change_item_url(version), :class => 'local')
-    else
-      return content_tag(:span, t('app.label.not_available'), :class => 'nil')
+    if version.event != 'destroy' && version.item_type.constantize.exists?(version.item_id)
+      if !(path = change_item_path(version)).nil?
+        return link_to change_title_for(version), change_item_path(version)
+      end
     end
+    content_tag :span, t('app.label.not_available'), :class => 'nil'
   end
 
 

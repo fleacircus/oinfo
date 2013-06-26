@@ -8,7 +8,7 @@ class Mandator < ActiveRecord::Base
   has_many :distributor
   has_many :customer
   has_many :address
-  has_many :voucher
+  has_many :invoice
 
   has_paper_trail
 

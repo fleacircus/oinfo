@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class DistributorsControllerTest < ActionController::TestCase
+class Accounting::DistributorsControllerTest < ActionController::TestCase
   setup do
+    sign_in(users(:admin))
     @distributor = distributors(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:distributors)
   end
 
   test "should get new" do
@@ -30,7 +30,7 @@ class DistributorsControllerTest < ActionController::TestCase
     }
     end
 
-    assert_redirected_to distributor_path(assigns(:distributor))
+    assert_redirected_to accounting_distributors_path
   end
 
   test "should show distributor" do
@@ -54,7 +54,7 @@ class DistributorsControllerTest < ActionController::TestCase
       country: @distributor.country,
       province: @distributor.province
     }
-    assert_redirected_to distributor_path(assigns(:distributor))
+    assert_redirected_to accounting_distributors_path
   end
 
   test "should destroy distributor" do
@@ -62,6 +62,6 @@ class DistributorsControllerTest < ActionController::TestCase
       delete :destroy, id: @distributor
     end
 
-    assert_redirected_to distributors_path
+    assert_redirected_to accounting_distributors_path
   end
 end

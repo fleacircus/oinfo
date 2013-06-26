@@ -2,13 +2,13 @@ require 'test_helper'
 
 class MandatorsControllerTest < ActionController::TestCase
   setup do
-    @mandator = mandators(:one)
+    sign_in(users(:admin))
+    @mandator = mandators(:mandator_2)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:mandators)
   end
 
   test "should get new" do
@@ -18,10 +18,10 @@ class MandatorsControllerTest < ActionController::TestCase
 
   test "should create mandator" do
     assert_difference('Mandator.count') do
-      post :create, mandator: { name: @mandator.name }
+      post :create, mandator: { name: "New created #{@mandator.name}" }
     end
 
-    assert_redirected_to mandator_path(assigns(:mandator))
+    assert_redirected_to mandators_path
   end
 
   test "should show mandator" do
@@ -36,7 +36,7 @@ class MandatorsControllerTest < ActionController::TestCase
 
   test "should update mandator" do
     put :update, id: @mandator, mandator: { name: @mandator.name }
-    assert_redirected_to mandator_path(assigns(:mandator))
+    assert_redirected_to mandators_path
   end
 
   test "should destroy mandator" do

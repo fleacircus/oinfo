@@ -9,7 +9,7 @@ class TestingController < ApplicationController
 
   def generate_message
     Delayed::Job.enqueue(
-      MessageJob.new(current_user.id, current_user.mandator_id),
+      MessageJob.new(current_user),
       :priority => 0,
       :run_at => 5.minutes.from_now
     )
@@ -20,7 +20,7 @@ class TestingController < ApplicationController
 
   def import_invoices
     Delayed::Job.enqueue(
-      ImportInvoicesJob.new(current_user.id, current_user.mandator_id),
+      ImportInvoicesJob.new(current_user),
       :priority => 10
     )
 

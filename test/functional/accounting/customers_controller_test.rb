@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class CustomersControllerTest < ActionController::TestCase
+class Accounting::CustomersControllerTest < ActionController::TestCase
   setup do
+    sign_in(users(:admin))
     @customer = customers(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:customers)
   end
 
   test "should get new" do
@@ -30,7 +30,7 @@ class CustomersControllerTest < ActionController::TestCase
       }
     end
 
-    assert_redirected_to customer_path(assigns(:customer))
+    assert_redirected_to accounting_customers_path
   end
 
   test "should show customer" do
@@ -54,7 +54,7 @@ class CustomersControllerTest < ActionController::TestCase
       country: @customer.country,
       province: @customer.province
     }
-    assert_redirected_to customer_path(assigns(:customer))
+    assert_redirected_to accounting_customers_path
   end
 
   test "should destroy customer" do
@@ -62,6 +62,6 @@ class CustomersControllerTest < ActionController::TestCase
       delete :destroy, id: @customer
     end
 
-    assert_redirected_to customers_path
+    assert_redirected_to accounting_customers_path
   end
 end

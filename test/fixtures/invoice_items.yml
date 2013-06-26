@@ -1,21 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  invoice_id: 1
+invoice_item_1:
+  invoice: one
   price: 9.99
-  currency: MyString
-  quantity: 1
-  name: MyString
-  tax: 9.99
-  benefit: 9.99
-  benefit_is_relative: false
+  currency: EUR
+  quantity: 100
+  name: "Example Item One"
+  tax: 19.00
+  benefit: 10.00
+  benefit_is_relative: true
 
-two:
-  invoice_id: 1
-  price: 9.99
-  currency: MyString
-  quantity: 1
-  name: MyString
-  tax: 9.99
-  benefit: 9.99
+invoice_item_2:
+  invoice: two
+  price: 2330.00
+  currency: EUR
+  quantity: 10
+  name: "Example Item Two"
+  tax: 19.00
+  benefit: 100.00
   benefit_is_relative: false

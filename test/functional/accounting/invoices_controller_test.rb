@@ -1,14 +1,15 @@
 require 'test_helper'
 
-class InvoicesControllerTest < ActionController::TestCase
+class Accounting::InvoicesControllerTest < ActionController::TestCase
   setup do
+    sign_in(users(:admin))
     @invoice = invoices(:one)
+    @item    = invoice_items(:invoice_item_1)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:invoices)
   end
 
   test "should get new" do
@@ -22,18 +23,24 @@ class InvoicesControllerTest < ActionController::TestCase
         mandator_id: @invoice.mandator_id,
         user_id: @invoice.user_id,
         invoice_date: @invoice.invoice_date,
-        invoice_number: @invoice.invoice_number,
+        invoice_number: @invoice.invoice_number+1,
         customer_id: @invoice.customer_id,
         distributor_id: @invoice.distributor_id,
-        gross_amount: @invoice.gross_amount,
-        net_amount: @invoice.net_amount,
-        currency: @invoice.currency,
         delivery_date: @invoice.delivery_date,
-        value_date: @invoice.value_date
+        value_date: @invoice.value_date,
+        invoice_items_attributes: [{
+          price: @item.price,
+          currency: @item.currency,
+          quantity: @item.quantity,
+          name: @item.name,
+          tax: @item.tax,
+          benefit: @item.benefit,
+          benefit_is_relative: @item.benefit_is_relative
+        }]
       }
     end
 
-    assert_redirected_to invoice_path(assigns(:invoice))
+    assert_redirected_to accounting_invoices_path
   end
 
   test "should show invoice" do
@@ -51,16 +58,13 @@ class InvoicesControllerTest < ActionController::TestCase
       mandator_id: @invoice.mandator_id,
       user_id: @invoice.user_id,
       invoice_date: @invoice.invoice_date,
-      invoice_number: @invoice.invoice_number,
+      invoice_number: @invoice.invoice_number+1,
       customer_id: @invoice.customer_id,
       distributor_id: @invoice.distributor_id,
-      gross_amount: @invoice.gross_amount,
-      net_amount: @invoice.net_amount,
-      currency: @invoice.currency,
       delivery_date: @invoice.delivery_date,
       value_date: @invoice.value_date
     }
-    assert_redirected_to invoice_path(assigns(:invoice))
+    assert_redirected_to accounting_invoices_path
   end
 
   test "should destroy invoice" do
@@ -68,6 +72,6 @@ class InvoicesControllerTest < ActionController::TestCase
       delete :destroy, id: @invoice
     end
 
-    assert_redirected_to invoices_path
+    assert_redirected_to accounting_invoices_path
   end
 end

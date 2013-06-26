@@ -3,19 +3,19 @@
 one:
   mandator_id: 1
   user_id: 1
-  name: MyString
-  street: MyString
-  postal_code: 1
-  city: MyString
-  province: MyString
-  country: MyString
+  name: "Example Distributor One"
+  street: "Example Street One"
+  postal_code: 11111
+  city: "Example City One"
+  province: ""
+  country: "DE"
 
 two:
   mandator_id: 1
   user_id: 1
-  name: MyString
-  street: MyString
-  postal_code: 1
-  city: MyString
-  province: MyString
-  country: MyString
+  name: "Example Distributor Two"
+  street: "Example Street Two"
+  postal_code: 22222
+  city: "Example City Two"
+  province: "Example Province Two"
+  country: "DE"
