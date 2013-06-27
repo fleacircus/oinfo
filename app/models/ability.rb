@@ -33,6 +33,9 @@ class Ability
       can :manage, Customer, :mandator_id => user.mandator_id
       can :manage, Invoice, :mandator_id => user.mandator_id
 
+      # User can download their associated attachments
+      can :download, Attachment, :mandator_id => user.mandator_id
+
     # User
     else
 
@@ -45,6 +48,9 @@ class Ability
 
       # User can read their associated messages
       can :read, Message, :mandator_id => [nil , user.mandator_id]
+
+      # User can download their associated attachments
+      can :download, Attachment, :mandator_id => user.mandator_id
 
     end
 

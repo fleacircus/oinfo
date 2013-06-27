@@ -1,13 +1,13 @@
 class Attachment < ActiveRecord::Base
+  restricted_model
+  mount_uploader :file, FileUploader
+
   attr_accessible :name, :file, :remote_file_url
 
   belongs_to :attachable, :polymorphic => true, :touch => true
 
-  mount_uploader :file, FileUploader
-
   before_save :update_attributes
 
-  has_paper_trail
 
   def intern_url
     Rails.root.join('uploads', self.file.file.file)

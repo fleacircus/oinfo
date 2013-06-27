@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624071235) do
+ActiveRecord::Schema.define(:version => 20130627142407) do
 
   create_table "attachments", :force => true do |t|
     t.string   "name"
@@ -22,9 +22,13 @@ ActiveRecord::Schema.define(:version => 20130624071235) do
     t.datetime "updated_at",      :null => false
     t.string   "content_type"
     t.integer  "file_size"
+    t.integer  "user_id"
+    t.integer  "mandator_id"
   end
 
   add_index "attachments", ["attachable_id"], :name => "index_attachments_on_attachable_id"
+  add_index "attachments", ["mandator_id"], :name => "index_attachments_on_mandator_id"
+  add_index "attachments", ["user_id"], :name => "index_attachments_on_user_id"
 
   create_table "customers", :force => true do |t|
     t.integer  "mandator_id"
