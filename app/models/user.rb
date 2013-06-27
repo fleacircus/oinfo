@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
   default_scope order('email asc')
 
   belongs_to :mandator
-  has_many :message
-  has_many :distributor
-  has_many :customer
-  has_many :address
-  has_many :invoice
+  has_many :messages
+  has_many :distributors
+  has_many :customers
+  has_many :addresses
+  has_many :invoices
 
   def mandator_name
     mandator.try(:name)
