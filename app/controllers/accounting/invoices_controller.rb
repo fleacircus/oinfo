@@ -1,6 +1,6 @@
-class Accounting::InvoicesController < RestrictionController
-  @@export_include = [:customer, :distributor, :invoice_items,
-                      :attachments => {:except => :file, :methods => :public_url}]
+class Accounting::InvoicesController < RestrictedAccess::Controller
+  EXPORT_INCLUDE = [:customer, :distributor, :invoice_items,
+                    :attachments => {:except => :file, :methods => :public_url}]
 
   def index
     respond_to do |format|
@@ -15,10 +15,10 @@ class Accounting::InvoicesController < RestrictionController
         )
       }
       format.json {
-        render json: Invoice.accessible_by(current_ability).to_json(:include => @@export_include)
+        render json: Invoice.accessible_by(current_ability).to_json(:include => EXPORT_INCLUDE)
       }
       format.xml {
-        render xml: Invoice.accessible_by(current_ability).to_xml(:include => @@export_include)
+        render xml: Invoice.accessible_by(current_ability).to_xml(:include => EXPORT_INCLUDE)
       }
     end
   end
@@ -28,10 +28,10 @@ class Accounting::InvoicesController < RestrictionController
     respond_to do |format|
       format.html
       format.json {
-        render json: @invoice.to_json(:include => @@export_include)
+        render json: @invoice.to_json(:include => EXPORT_INCLUDE)
       }
       format.xml {
-        render xml: @invoice.to_xml(:include => @@export_include)
+        render xml: @invoice.to_xml(:include => EXPORT_INCLUDE)
       }
     end
   end

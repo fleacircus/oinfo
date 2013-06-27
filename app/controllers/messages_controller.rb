@@ -1,4 +1,4 @@
-class MessagesController < RestrictionController
+class MessagesController < RestrictedAccess::Controller
 
   def index
     @messages_grid = initialize_grid(
