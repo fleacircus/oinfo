@@ -9,15 +9,11 @@ class ApplicationController < ActionController::Base
     if instance.nil?
       respond_to do |format|
         format.html {
-          path = model == Version ? changes_path : polymorphic_path(model)
+          path = model == Version ? changes_path : polymorphic_path(params[:controller].split(/\//)[0..-1])
           redirect_to_with_flash path, :alert, 'not_found_instance', model
         }
-        format.json {
-          render :nothing => true, :status => 404
-        }
-        format.xml {
-          render :nothing => true, :status => 404
-        }
+        format.json { render :nothing => true, :status => 404 }
+        format.xml  { render :nothing => true, :status => 404 }
       end
       return
     end
