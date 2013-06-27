@@ -212,11 +212,11 @@ fieldset {
   }
 
   input {
-    &[type='text'], &[type='email'], &[type='password'] {
-      width: 410px;
-    }
-    &[type='number'] {
-      width: 190px;
+    &[type='text'], &[type='email'], &[type='password'] { width: 410px; }
+    &[type='number'] { width: 190px; }
+    &[type='file'] {
+      max-width: 100%;
+      overflow: hidden;
     }
     &[type='checkbox']+label {
       display: inline-block;
