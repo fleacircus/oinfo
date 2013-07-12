@@ -20,6 +20,7 @@ en:
 
     label:
       account: "Your Account"
+      messages: "Messages"
       send_me_reset_password_instructions: "Send me reset password instructions"
       change_password: "Change password"
       new_password: "New password"

@@ -77,6 +77,7 @@ a {
     background: transparent 0 2px no-repeat;
 
     &.account    { background-image: url(image_path('icons/user-silhouette.png')) }
+    &.messages   { background-image: url(image_path('icons/mail-open-document-text.png')) }
     &.logout     { background-image: url(image_path('icons/control-power.png')) }
     &.new, &.add { background-image: url(image_path('icons/document--plus.png')) }
     &.edit       { background-image: url(image_path('icons/document--pencil.png')) }

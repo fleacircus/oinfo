@@ -15,6 +15,7 @@
 	  <h1>Online Information</h1>
 	  <% if user_signed_in? %>
 	  <div id="account_box">
+		<%= link_to t('app.label.messages'), messages_path, :class => 'icon messages' %> |
 		<%= link_to t('app.label.account'), edit_account_path, :class => 'icon account' %> |
 		<%= link_to t('app.action.logout'), destroy_user_session_path, :method => :delete, :class => 'icon logout' %>
 	  </div>

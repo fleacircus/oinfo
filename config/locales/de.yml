@@ -21,6 +21,7 @@ de:
 
     label:
       account: "Ihr Konto"
+      messages: "Nachrichten"
       send_me_reset_password_instructions: "Anweisungen zur Passwort-Zurücksetzung senden"
       change_password: "Passwort ändern"
       new_password: "Neues Passwort"

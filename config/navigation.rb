@@ -34,11 +34,11 @@ SimpleNavigation::Configuration.run do |navigation|
       :if => Proc.new {can? :show, Message}
 
 
-    primary.item :changes, Version.model_name.human(:count => 2),
-      changes_path, :highlights_on => %r(/changes),
-      :if => Proc.new {can? :show, Version}
-
-    primary.item :testing, 'Testing', testing_index_path
+#    primary.item :changes, Version.model_name.human(:count => 2),
+#      changes_path, :highlights_on => %r(/changes),
+#      :if => Proc.new {can? :show, Version}
+#
+#    primary.item :testing, 'Testing', testing_index_path
 
   end
 end
